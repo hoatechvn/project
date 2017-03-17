@@ -26,6 +26,10 @@
                     <label>Loại Hợp Đồng</label>
                     <input class="form-control" name="typecontract" placeholder="Nhập tên quyền truy cập" value="{{$type_contract->type}}" />
                 </div>
+               <div class="form-group">
+                    <label>Mã loại Hợp Đồng</label>
+                    <input class="form-control" name="idtypecontract" placeholder="Nhập tên quyền truy cập" value="{{$type_contract->idtype}}" />
+                </div>
                 <div class="form-group">
                	 	<label>Mô tả</label>
                 	<textarea class="form-control" rows="3" name="description">{{$type_contract->description}}</textarea>

@@ -25,6 +25,10 @@
                     <input class="form-control" name="typecontract" placeholder="Nhập tên loại hợp đồng" />
                 </div>
                 <div class="form-group">
+                    <label>Mã loại hợp đồng</label>
+                    <input class="form-control" name="idtypecontract" placeholder="Nhập mã loại hợp đồng" />
+                </div>
+                <div class="form-group">
                	 	<label>Mô tả</label>
                 	<textarea class="form-control" rows="3" name="description"></textarea>
                 </div>

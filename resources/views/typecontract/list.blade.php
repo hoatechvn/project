@@ -22,6 +22,7 @@
                 <tr align="center">
                     <th>ID</th>
                     <th>Loại hợp đồng</th>
+                    <th>Mã loại</th>
                     <th>Mô tả</th>
                     <th></th>
                     <th></th>
@@ -32,6 +33,7 @@
                 <tr class="odd gradeX" align="center">
                     <td>{{$cont->id}}</td>
                     <td>{{$cont->type}}</td>
+                    <td>{{$cont->idtype}}</td>
                     <td>{{$cont->description}}</td>
                     <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="contract/update/{{$cont->id}}">Chỉnh sửa</a></td>
                     <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="contract/delete/{{$cont->id}}"> Xóa</a></td>
