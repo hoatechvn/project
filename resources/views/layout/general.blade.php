@@ -72,6 +72,18 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                 <li>
+                     <a href="#"><i class="fa fa-cube fa-fw"></i> Chi tiết hợp đồng<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="design/list">Danh sách chi tiết hợp đồng</a>
+                        </li>
+                        <li>
+                            <a href="design/add">Thêm Chi tiết hợp đồng</a> <!--typecontract tên thư mục chứa-->
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
                 <li>
                     <a href="#"><i class="fa fa-users fa-fw"></i> Account<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
