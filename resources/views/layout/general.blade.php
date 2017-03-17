@@ -61,13 +61,13 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-cube fa-fw"></i> Product<span class="fa arrow"></span></a>
+                     <a href="#"><i class="fa fa-cube fa-fw"></i> Loại hợp đồng<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">List Product</a>
+                            <a href="contract/list">Danh sách loại hợp đồng</a>
                         </li>
                         <li>
-                            <a href="#">Add Product</a>
+                            <a href="contract/add">Thêm loại hợp đồng</a> <!--typecontract tên thư mục chứa-->
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
