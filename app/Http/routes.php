@@ -45,3 +45,18 @@ Route::group(['prefix'=>'account'], function(){
 
 	Route::get('delete/{id}','AccountController@getDelete');
 });
+
+// Phan thong tin cho type_contract
+Route::group(['prefix'=>'contract'], function(){
+	//contract/list
+	Route::get('list','TypeContractController@getList');
+
+	Route::get('update/{id}','TypeContractController@getUpdate');
+	Route::post('update/{id}','TypeContractController@postUpdate');
+
+	Route::get('add','TypeContractController@getAdd');
+	Route::post('add','TypeContractController@postAdd');
+
+
+	Route::get('delete/{id}','TypeContractController@getDelete');
+});
