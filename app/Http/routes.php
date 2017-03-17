@@ -60,3 +60,17 @@ Route::group(['prefix'=>'contract'], function(){
 
 	Route::get('delete/{id}','TypeContractController@getDelete');
 });
+// Phan thong tin cho Design
+Route::group(['prefix'=>'design'], function(){
+	//design/list
+	Route::get('list','DesignController@getList');
+
+	Route::get('update/{id}','DesignController@getUpdate');
+	Route::post('update/{id}','DesignController@postUpdate');
+
+	Route::get('add','DesignController@getAdd');
+	Route::post('add','DesignController@postAdd');
+
+
+	Route::get('delete/{id}','DesignController@getDelete');
+});
