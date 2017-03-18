@@ -8,9 +8,9 @@ class type_contract extends Model {
 	public $timestamps = false;
 	protected $table="type_contract";
 
-	public function account()
-	{
-		return $this->hasMany('App\design','id_typecontruct','id');
-	}
+	public function design()
+ 	{
+ 		return $this->hasMany('App\design','id_typecontruct','id');
+ 	}
 
 }

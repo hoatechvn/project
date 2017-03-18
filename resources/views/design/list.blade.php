@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Chi tiết hợp đồng
+                <h1 class="page-header">Danh sách hợp đồng thiết kế
                 </h1>
         </div>
 
@@ -17,26 +17,34 @@
         	</div>
         @endif
            
-		<table class="table table-striped table-bordered table-hover" >
+		<table class="table table-striped table-bordered table-hover"  id="dataTables-example">
             <thead>
                 <tr align="center">
                    <th>ID</th>
-                    <th>Tên</th>
+                    <th>Tên hợp đồng</th>
                     <th>Ngày đăng ký</th>
                     <th>Tên khách hàng</th>
-                    <th></th>
-                    <th></th>
+                    
+                    <th>Chi tiết</th>
+                    <th>Phiếu thu</th>
+                    <th>Phiếu chi</th>
+                    <th>Chỉnh sửa</th>
+                    <th>Xóa</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($design as $des)    <!--$type_contract được truyền qua từ controller tương ứng (ở phần key, value)-->
+                @foreach($design as $des)   
                 <tr class="odd gradeX" align="center">
                     <td>{{$des->id}}</td>
                     <td>{{$des->name}}</td>
                     <td>{{$des->register_date}}</td>
                     <td>{{$des->customer}}</td>
-                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="design/update/{{$des->id}}">Chỉnh sửa</a></td>
-                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="design/delete/{{$des->id}}"> Xóa</a></td>
+                    
+                    <td class="center"><a href="#"><i class="fa fa-info fa-fw"></i>  </a></td>
+                    <td class="center"><a href="#"><i class="fa fa-info fa-fw"></i>  </a></td>
+                    <td class="center"><a href="#"><i class="fa fa-info fa-fw"></i>  </a></td>
+                    <td class="center"><a href="design/update/{{$des->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
+                    <td class="center"><a href="design/delete/{{$des->id}}"><i class="fa fa-trash-o  fa-fw"></i></a></td>
                 </tr>
                 @endforeach
             </tbody>

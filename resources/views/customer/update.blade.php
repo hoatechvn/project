@@ -6,8 +6,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Loại hợp đồng
-                <small>{{$type_contract->type}}</small>
+                <h1 class="page-header">Khách hàng
+                <small>{{$customer->name}}</small>
                 </h1>
         </div>
             <!-- /.col-lg-12 -->
@@ -20,19 +20,20 @@
         	</div>
         @endif
        
-            <form action="contract/update/{{$type_contract->id}}" method="POST">
+            <form action="customer/update/{{$customer->id}}" method="POST">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="form-group">
-                    <label>Loại Hợp Đồng</label>
-                    <input class="form-control" name="typecontract" placeholder="Nhập tên quyền truy cập" value="{{$type_contract->type}}" />
+                    <label>Tên khách hàng</label>
+                    <input class="form-control" name="name" placeholder="Nhập tên khách hàng" value="{{$customer->name}}" />
+                </div>
+               
+                <div class="form-group">
+               	 	<label>Địa chỉ</label>
+                	<textarea class="form-control" rows="3" name="address" placeholder="Nhập địa chỉ khách hàng">{{$customer->address}}</textarea>
                 </div>
                 <div class="form-group">
-                     <label>Mã loại Hợp Đồng</label>
-                     <input class="form-control" name="idtypecontract" placeholder="Nhập tên quyền truy cập" value="{{$type_contract->idtype}}" />
-                </div>
-                <div class="form-group">
-               	 	<label>Mô tả</label>
-                	<textarea class="form-control" rows="3" name="description">{{$type_contract->description}}</textarea>
+                    <label>Tên khách hàng</label>
+                    <input class="form-control" name="phone" placeholder="Nhập số điện thoại" value="{{$customer->phone}}" />
                 </div>
                 <button type="submit" class="btn btn-default">Cập nhật</button>
                 <button type="reset" class="btn btn-default">Làm mới</button>

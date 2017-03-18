@@ -52,50 +52,54 @@
                     <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Phân quyền<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="permision/list"> Danh sách</a>
+                            <a href="permision/list"> Danh sách phân quyền</a>
                         </li>
                         <li>
-                            <a href="permision/add"> Thêm</a>
+                            <a href="permision/add"> Thêm phân quyền</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                     <a href="#"><i class="fa fa-cube fa-fw"></i> Loại hợp đồng<span class="fa arrow"></span></a>
+                  <a href="#"><i class="fa fa-cube fa-fw"></i> Loại hợp đồng<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="contract/list">Danh sách loại hợp đồng</a>
                         </li>
                         <li>
-                            <a href="contract/add">Thêm loại hợp đồng</a> <!--typecontract tên thư mục chứa-->
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                 <li>
-                     <a href="#"><i class="fa fa-cube fa-fw"></i> Chi tiết hợp đồng<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="design/list">Danh sách chi tiết hợp đồng</a>
-                        </li>
-                        <li>
-                            <a href="design/add">Thêm Chi tiết hợp đồng</a> <!--typecontract tên thư mục chứa-->
+                            <a href="contract/add">Thêm loại hợp đồng</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-users fa-fw"></i> Account<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-users fa-fw"></i> Tài khoản<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="account/list"> Danh sách</a>
+                            <a href="account/list"> Danh sách tài khoản</a>
                         </li>
                         <li>
-                            <a href="account/add"> Thêm</a>
+                            <a href="account/add"> Thêm tài khoản</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                <li>
+                    <a href="customer/list"><i class="fa fa-users fa-fw"></i> Khách hàng</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-users fa-fw"></i> Hợp đồng thiết kế<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="design/list"> Danh sách hợp đồng</a>
+                        </li>
+                        <li>
+                            <a href="design/add"> Tạo hợp đồng</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

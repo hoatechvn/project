@@ -11,6 +11,7 @@
 |
 */
 use App\permision;
+use App\customer;
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
@@ -20,6 +21,8 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+
+//Phan thong tin cho permision
 Route::group(['prefix'=>'permision'], function(){
 	Route::get('list','PermisionController@getList');
 
@@ -33,6 +36,8 @@ Route::group(['prefix'=>'permision'], function(){
 	Route::get('delete/{id}','PermisionController@getDelete');
 });
 
+
+//Phan thong tin cho account
 Route::group(['prefix'=>'account'], function(){
 	Route::get('list','AccountController@getList');
 
@@ -48,7 +53,6 @@ Route::group(['prefix'=>'account'], function(){
 
 // Phan thong tin cho type_contract
 Route::group(['prefix'=>'contract'], function(){
-	//contract/list
 	Route::get('list','TypeContractController@getList');
 
 	Route::get('update/{id}','TypeContractController@getUpdate');
@@ -57,20 +61,30 @@ Route::group(['prefix'=>'contract'], function(){
 	Route::get('add','TypeContractController@getAdd');
 	Route::post('add','TypeContractController@postAdd');
 
-
 	Route::get('delete/{id}','TypeContractController@getDelete');
 });
-// Phan thong tin cho Design
-Route::group(['prefix'=>'design'], function(){
-	//design/list
-	Route::get('list','DesignController@getList');
 
-	Route::get('update/{id}','DesignController@getUpdate');
-	Route::post('update/{id}','DesignController@postUpdate');
+// Phan thong tin cho customer
+Route::group(['prefix'=>'customer'], function(){
+	Route::get('list','CustomerController@getList');
 
-	Route::get('add','DesignController@getAdd');
-	Route::post('add','DesignController@postAdd');
+	Route::get('update/{id}','CustomerController@getUpdate');
+	Route::post('update/{id}','CustomerController@postUpdate');
 
-
-	Route::get('delete/{id}','DesignController@getDelete');
+	Route::get('delete/{id}','CustomerController@getDelete');
 });
+
+//Phan thong tin cho design
+Route::group(['prefix'=>'design'], function(){
+ 	//design/list
+ 	Route::get('list','DesignController@getList');
+ 
+ 	Route::get('update/{id}','DesignController@getUpdate');
+ 	Route::post('update/{id}','DesignController@postUpdate');
+ 
+ 	Route::get('add','DesignController@getAdd');
+ 	Route::post('add','DesignController@postAdd');
+ 
+ 
+ 	Route::get('delete/{id}','DesignController@getDelete');
+  }); 		  

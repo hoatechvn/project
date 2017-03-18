@@ -13,4 +13,9 @@ class permision extends Model {
 		return $this->hasMany('App\account','id_permision','id');
 	}
 
+	public function design()
+	{
+		return $this->hasManyThrough('App\design', 'App\account','id_permision','id_account', 'id');	
+	}
+
 }

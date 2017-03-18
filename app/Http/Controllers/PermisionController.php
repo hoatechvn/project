@@ -21,14 +21,15 @@ class PermisionController extends Controller {
 	public function postAdd(Request $request){
 		$this->validate($request, 
 			[
-				'namePermision' => 'required|min:3|max:100',
-				'typePermision' => 'required'
+				'typePermision' => 'required',
+				'namePermision' =>'required|unique:permision,namePermision|min:3|max:100',
 			],
 			[
 				'typePermision.required' => 'Bạn chưa chọn mã phân quyền',
 				'namePermision.required' => 'Bạn chưa nhập loại phân quyền',
 				'namePermision.min' => 'Loại phân quyền phải có độ dài từ 3 đến 100 ký tự',
 				'namePermision.max' => 'Loại phân quyền phải có độ dài từ 3 đến 100 ký tự',
+				'namePermision.unique' => 'Tên phân quyền đã tồn tại',
 				
 			]);
 

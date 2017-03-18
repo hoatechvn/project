@@ -13,4 +13,9 @@ class account extends Model {
 		return $this->belongsTo('App\permision','id_permision','id');
 	}
 
+	public function design()
+	{
+		return $this->hasMany('App\design', 'id_account', 'id');
+	}
+
 }
