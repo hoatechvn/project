@@ -10,7 +10,7 @@
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
-            <div class="col-lg-7" style="padding-bottom:50px">
+            <div class="col-lg-6" style="padding-bottom:50px">
             @if(count($errors) > 0)
 				<div class="alert alert-danger">
 				@foreach($errors->all() as $err)
@@ -20,6 +20,7 @@
 			@endif
                 <form action="design/add" method="POST">
                 <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                 <h2> Thông tin chung</h2><br>
                     <div class="form-group">
                         <label>Nhân viên thụ hưởng</label>
                         <select class="form-control" name="id_account">
@@ -54,6 +55,9 @@
                         <label> Số điện thoại</label>
                         <input class="form-control" name="cus_phone" placeholder="Nhập số điện thoại" />
                     </div>
+</div>
+
+               <div class="col-lg-6" style="padding-bottom:50px">     
                     <h2> Thông tin căn nhà</h2><br>
                     <div class="form-group">
                         <label>Số nhà </label>
