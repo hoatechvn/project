@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\design;
 use App\account;
 use App\type_contract;
+use App\customer;
 class DesignController extends Controller {
 	
 	public function add_nol($number,$add_nol) {
@@ -101,6 +102,14 @@ class DesignController extends Controller {
 			}
 
 			$design->save();
+
+			$customer= new customer();
+
+			$customer->name=$request->customer;
+			$customer->address=$request->cus_address;
+			$customer->phone=$request->cus_phone;
+			
+			$customer->save();
 		
 		return redirect('design/list') ->with('thongbao', 'Thêm thành công');
 	}
@@ -112,6 +121,11 @@ class DesignController extends Controller {
 	public function postUpdate(Request $request, $id){
 		
 		
+	}
+
+	public function getDetail($id){
+		$design = design::find($id);
+		return view('design.detail',['design' => $design]);
 	}
 	public function getDelete($id){
 		

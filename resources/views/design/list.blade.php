@@ -40,7 +40,7 @@
                     <td>{{$des->register_date}}</td>
                     <td>{{$des->customer}}</td>
                     
-                    <td class="center"><a href="#"><i class="fa fa-info fa-fw"></i>  </a></td>
+                    <td class="center"><a href="design/detail/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>
                     <td class="center"><a href="#"><i class="fa fa-info fa-fw"></i>  </a></td>
                     <td class="center"><a href="#"><i class="fa fa-info fa-fw"></i>  </a></td>
                     <td class="center"><a href="design/update/{{$des->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>

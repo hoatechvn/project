@@ -78,6 +78,8 @@ Route::group(['prefix'=>'customer'], function(){
 Route::group(['prefix'=>'design'], function(){
  	//design/list
  	Route::get('list','DesignController@getList');
+
+ 	Route::get('detail/{id}', 'DesignController@getDetail');
  
  	Route::get('update/{id}','DesignController@getUpdate');
  	Route::post('update/{id}','DesignController@postUpdate');
