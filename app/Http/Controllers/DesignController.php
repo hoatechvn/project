@@ -102,15 +102,13 @@ class DesignController extends Controller {
 			}
 
 			$design->save();
-
-			$customer= new customer();
-
-			$customer->name=$request->customer;
-			$customer->address=$request->cus_address;
-			$customer->phone=$request->cus_phone;
-			
-			$customer->save();
-		
+		$customer= new customer();
+ 
+ 		$customer->name=$request->customer;
+ 		$customer->address=$request->cus_address;
+ 		$customer->phone=$request->cus_phone;
+ 		
+ 			$customer->save();
 		return redirect('design/list') ->with('thongbao', 'Thêm thành công');
 	}
 	
@@ -122,11 +120,12 @@ class DesignController extends Controller {
 		
 		
 	}
-
 	public function getDetail($id){
-		$design = design::find($id);
-		return view('design.detail',['design' => $design]);
-	}
+ 	$design = design::find($id);
+ 	//$account = account::all();
+ 	//return view('contracttemplate.contractdesign',['design' => $design, 'account'=>$account]);
+ 	return view('contracttemplate.contractdesign',['design' => $design]);
+ 	}
 	public function getDelete($id){
 		
 		return redirect('design/list') ->with('thongbao', 'Xóa thành công');
