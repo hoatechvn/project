@@ -24,29 +24,27 @@
                     <th>Tên</th>
                     <th>Địa chỉ</th>
                     <th>Số điện thoại</th>
-
+                    <th>Email</th>
                     <th>HĐ Thiết Kế</th>
                     <th>HĐ Dịch Vụ</th>
                     <th>HĐ Lấy Dấu</th>
-
                     <th>Chỉnh sửa</th>
-                    <th>Xóa</th>
+                   
                 </tr>
             </thead>
             <tbody>
             	@foreach($customer as $cus)
-                <tr class="odd gradeX" align="justify">
+                <tr class="odd gradeX" align="center">
                     <td>{{$cus->id}}</td>
                     <td>{{$cus->name}}</td>
                     <td>{{$cus->address}}</td>
                     <td>{{$cus->phone}}</td>
-
+                    <td>{{$cus->email}}</td>
+                    <td class="center"><a href="design/add/customer/{{$cus->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
+                    <td class="center"><a href="design/add/customer/{{$cus->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
+                    <td class="center"><a href="design/add/customer/{{$cus->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
                     <td class="center"><a href="customer/update/{{$cus->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
-                    <td class="center"><a href="customer/update/{{$cus->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
-                    <td class="center"><a href="customer/update/{{$cus->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
-
-                    <td class="center"><a href="customer/update/{{$cus->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
-                    <td class="center"><a href="#"> </a><i class="fa fa-trash-o  fa-fw"></i></td>
+                 
                 </tr>
                 @endforeach
             </tbody>

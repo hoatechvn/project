@@ -87,6 +87,15 @@ Route::group(['prefix'=>'design'], function(){
  	Route::get('add','DesignController@getAdd');
  	Route::post('add','DesignController@postAdd');
  
- 
+ 	Route::get('add/customer/{id}','DesignController@getAddoldcus');
  	Route::get('delete/{id}','DesignController@getDelete');
-  }); 		  
+  }); 
+
+  //Phan thong tin cho phiếu thu chi
+Route::group(['prefix'=>'bill'], function(){
+ 	
+ 	Route::get('list','BillController@getList');
+
+ 	Route::get('receipts/{id}','BillController@getReceipts');
+ 	Route::post('receipts/{id}','BillController@postReceipts');
+ });

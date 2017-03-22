@@ -20,13 +20,13 @@
 			@endif
                 <form action="design/add" method="POST">
                 <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                 <h2> Thông tin chung</h2><br>
+                <h2> Thông tin chung</h2><br>
                     <div class="form-group">
                         <label>Nhân viên thụ hưởng</label>
                         <select class="form-control" name="id_account">
                         	<option>Chọn nhân viên thụ hưởng</option>
                             @foreach ($account as $acc)
-                            <option value="{{$acc->id}}">{{$acc->username}}</option>
+                            <option value="{{$acc->id}}">{{$acc->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -55,10 +55,13 @@
                         <label> Số điện thoại</label>
                         <input class="form-control" name="cus_phone" placeholder="Nhập số điện thoại" />
                     </div>
-</div>
-
-               <div class="col-lg-6" style="padding-bottom:50px">     
-                    <h2> Thông tin căn nhà</h2><br>
+                    <div class="form-group">
+                        <label> Email</label>
+                        <input class="form-control" name="cus_mail" placeholder="Nhập email" type="email"/>
+                    </div>
+                </div>
+                <div class="col-lg-6" style="padding-bottom:50px"> 
+                    <h2> Thông tin chi tiết</h2><br>
                     <div class="form-group">
                         <label>Số nhà </label>
                         <input class="form-control" name="home_add" placeholder="Nhập số nhà " />
@@ -102,6 +105,7 @@
                     <button type="submit" class="btn btn-default">Tạo</button>
                     <button type="reset" class="btn btn-default"> Làm mới</button>
                     <button class="btn btn-default"> In hợp đồng</button>
+                </div>
 
                 <form>
             </div>

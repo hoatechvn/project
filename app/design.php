@@ -23,4 +23,8 @@ class design extends Model {
  		return $this->belongsTo('App\customer','id_customer','id');
  	}
 
+ 	public function bill()
+	{
+		return $this->hasMany('App\bill', 'id_design', 'id');
+	}
 }
