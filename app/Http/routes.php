@@ -105,3 +105,12 @@ Route::group(['prefix'=>'bill'], function(){
  	Route::get('update/{id}','BillController@getUpdate');
  	Route::post('update/{id}','BillController@postUpdate');
  });
+
+//Phan thong ke thu chi
+Route::group(['prefix' => 'filter'], function(){
+
+	Route::post('idcontract','FilterController@postIdcontruct');
+	Route::post('date','FilterController@postDate');
+	Route::post('month','FilterController@postMonth');
+	Route::post('year','FilterController@postYear');
+});

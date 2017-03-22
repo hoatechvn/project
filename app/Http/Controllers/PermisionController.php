@@ -81,7 +81,7 @@ class PermisionController extends Controller {
 		}
 		catch(\Exception $e)
 		{
-			return '<script type="text/javascript">alert("Không thể xóa loại phân quyền này do nó đã được tham chiếu"); window.location.href = "/Louis/public/permision/list";</script>';
+			return '<script type="text/javascript">alert("Không thể xóa loại phân quyền này do nó đã được tham chiếu"); window.location.href = "../list";</script>';
 		}
 	}
 }

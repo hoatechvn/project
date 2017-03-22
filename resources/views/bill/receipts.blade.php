@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label>Số tiền(VNĐ)</label>
-                    <input class="form-control" name="money"  placeholder="Nhập số tiền" />
+                    <input onChange="format_curency(this);" class="form-control" name="money"  placeholder="Nhập số tiền" />
                 </div>
                 <div class="form-group">
                     <label>Viết bằng chữ</label>
@@ -69,5 +69,10 @@
     </div>
     <!-- /.container-fluid -->
 </div>
+<script>
+function format_curency(a) {
+    a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+}
+</script>
 @endsection
 <!-- /#page-wrapper -->

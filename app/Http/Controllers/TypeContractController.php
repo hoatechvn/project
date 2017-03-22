@@ -65,7 +65,7 @@ class TypeContractController extends Controller {
 		}
 		catch(\Exception $e)
 		{
-			return '<script type="text/javascript">alert("Không thể xóa loại hợp đồng này do nó đã được tham chiếu"); window.location.href = "/Louis/public/typecontract/list";</script>';
+			return '<script type="text/javascript">alert("Không thể xóa loại hợp đồng này do nó đã được tham chiếu"); window.location.href = "../list";</script>';
 		}
 	}
 }

@@ -36,7 +36,7 @@
                     <td>{{$cont->idtype}}</td>
                     <td>{{$cont->description}}</td>
                     <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="contract/update/{{$cont->id}}">Chỉnh sửa</a></td>
-                    <td class="center"><a href="typecontract/delete/{{$cont->id}}" onclick="return confirm('Bạn có muốn xóa loại hợp đồng này không?');"><i class="fa fa-trash-o  fa-fw"></i></a>
+                    <td class="center"><a href="contract/delete/{{$cont->id}}" onclick="return confirm('Bạn có muốn xóa loại hợp đồng này không?');"><i class="fa fa-trash-o  fa-fw"></i></a>
                 </tr>
                 @endforeach
             </tbody>

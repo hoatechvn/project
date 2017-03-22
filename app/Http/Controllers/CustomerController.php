@@ -50,14 +50,6 @@ class CustomerController extends Controller {
 	}
 
 	public function getDelete($id){
-		try{
-			$permision = permision::findOrFail($id);
-			$permision->delete();
-			return redirect('permision/list') ->with('thongbao', 'Xóa thành công');
-		}
-		catch(\Exception $e)
-		{
-			return '<script type="text/javascript">alert("Không thể xóa loại phân quyền này do nó đã được tham chiếu"); window.location.href = "/Louis/public/permision/list";</script>';
-		}
+		
 	}
 }

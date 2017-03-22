@@ -236,7 +236,7 @@ class DesignController extends Controller {
 		}
 		catch(\Exception $e)
 		{
-			return '<script type="text/javascript">alert("Không thể xóa hợp đồng này do nó đã được tham chiếu"); window.location.href = "/Louis/public/design/list";</script>';
+			return '<script type="text/javascript">alert("Không thể xóa hợp đồng này do nó đã được tham chiếu"); window.location.href = "../list";</script>';
 		}
 	}
 }
