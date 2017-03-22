@@ -32,8 +32,12 @@
                 	<textarea class="form-control" rows="3" name="address" placeholder="Nhập địa chỉ khách hàng">{{$customer->address}}</textarea>
                 </div>
                 <div class="form-group">
-                    <label>Tên khách hàng</label>
+                    <label>Số điện thoại</label>
                     <input class="form-control" name="phone" placeholder="Nhập số điện thoại" value="{{$customer->phone}}" />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control" name="email" placeholder="Nhập email" value="{{$customer->email}}" />
                 </div>
                 <button type="submit" class="btn btn-default">Cập nhật</button>
                 <button type="reset" class="btn btn-default">Làm mới</button>

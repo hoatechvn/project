@@ -55,7 +55,7 @@
                     <td>{{$bil->note}}</td>
 
 
-                    <td class="center"><a href="#"><i class="fa fa-pencil fa-fw"></i> </a></td>
+                    <td class="center"><a href="bill/update/{{$bil->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
                  
                 </tr>
                 @endforeach

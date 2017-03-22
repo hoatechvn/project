@@ -58,8 +58,14 @@ class TypeContractController extends Controller {
 		
 	}
 	public function getDelete($id){
-		$type_contract = type_contract::findOrFail($id);
-		$type_contract->delete();
-		return redirect('contract/list') ->with('thongbao', 'Xóa thành công');
+		try{
+			$type_contract = type_contract::findOrFail($id);
+			$type_contract->delete();
+			return redirect('contract/list') ->with('thongbao', 'Xóa thành công');
+		}
+		catch(\Exception $e)
+		{
+			return '<script type="text/javascript">alert("Không thể xóa loại hợp đồng này do nó đã được tham chiếu"); window.location.href = "/Louis/public/typecontract/list";</script>';
+		}
 	}
 }

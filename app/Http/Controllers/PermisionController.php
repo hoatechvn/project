@@ -75,7 +75,7 @@ class PermisionController extends Controller {
 
 	public function getDelete($id){
 		try{
-			$permision = permision::findOrFail($id);
+			$permision = permision::find($id);
 			$permision->delete();
 			return redirect('permision/list') ->with('thongbao', 'Xóa thành công');
 		}

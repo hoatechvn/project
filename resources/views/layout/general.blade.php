@@ -99,6 +99,16 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                <li>
+                    <a href="#"><i class="fa fa-users fa-fw"></i> Sổ quỹ<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="bill/list"> Danh sách sổ quỹ</a>
+                        </li>
+                       
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
                 
             </ul>
         </div>

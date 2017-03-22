@@ -26,8 +26,8 @@
                     <th>Tên nhân viên</th>
                     <th>Chức vụ</th>
                     <th>Email</th>
-                    <th></th>
-                    <th></th>
+                    <th>Chỉnh sửa</th>
+                    <th>Xóa</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,22 +39,8 @@
                     <td>{{$acc->name}}</td>
                     <td>{{$acc->position}}</td>
                     <td>{{$acc->email}}</td>
-                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="account/update/{{$acc->id}}">Chỉnh sửa</a></td>
-                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="#" class="delete" data-confirm="Bạn có muốn xóa tài khoản này không?"> Xóa</a></td>
-                    <script type="text/javascript">
-                        var deleteLinks = document.querySelectorAll('.delete');
-                        for (var i = 0; i < deleteLinks.length; i++) {
-                          deleteLinks[i].addEventListener('click', function(event) {
-                              event.preventDefault();
-
-                              var choice = confirm(this.getAttribute('data-confirm'));
-
-                              if (choice) {
-                                window.location.href = "account/delete/{{$acc->id}}";
-                              }
-                          });
-                        }
-                    </script>
+                    <td class="center"></i> <a href="account/update/{{$acc->id}}"><i class="fa fa-pencil fa-fw"></a></td>
+                    <td class="center"><a href="account/delete/{{$acc->id}}" onclick="return confirm('Bạn có muốn xóa tài khoản này không?');"><i class="fa fa-trash-o  fa-fw"></i></a>
                 </tr>
                 @endforeach
             </tbody>

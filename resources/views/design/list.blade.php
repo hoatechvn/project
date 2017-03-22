@@ -44,8 +44,9 @@
                     <td class="center"><a href="bill/receipts/{{$des->id}}"><i class="fa fa-info fa-fw"></i>  </a></td>
                     <td class="center"><a href="bill/payment/{{$des->id}}"><i class="fa fa-info fa-fw"></i>  </a></td>
                     <td class="center"><a href="design/update/{{$des->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
-                    <td class="center"><a href="design/delete/{{$des->id}}"><i class="fa fa-trash-o  fa-fw"></i></a></td>
+                    <td class="center"><a href="design/delete/{{$des->id}}" onclick="return confirm('Bạn có muốn xóa hợp đồng này không?');"><i class="fa fa-trash-o  fa-fw"></i></a></td>
                 </tr>
+                
                 @endforeach
             </tbody>
         </table>

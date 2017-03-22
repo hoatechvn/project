@@ -98,4 +98,10 @@ Route::group(['prefix'=>'bill'], function(){
 
  	Route::get('receipts/{id}','BillController@getReceipts');
  	Route::post('receipts/{id}','BillController@postReceipts');
+
+ 	Route::get('payment/{id}','BillController@getPayment');
+ 	Route::post('payment/{id}','BillController@postPayment');
+
+ 	Route::get('update/{id}','BillController@getUpdate');
+ 	Route::post('update/{id}','BillController@postUpdate');
  });

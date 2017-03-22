@@ -60,7 +60,7 @@
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
             "lengthMenu": [[20, 50, 75, -1], [20, 50, 75, "All"]],
-            "order": [[ 2, "desc" ]],
+             "order": [[ 2, "desc" ]],
                 responsive: true
         });
     });

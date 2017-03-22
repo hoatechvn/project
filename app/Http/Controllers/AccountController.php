@@ -125,7 +125,7 @@ class AccountController extends Controller {
 		}
 		catch(\Exception $e)
 		{
-			
+			return '<script type="text/javascript">alert("Không thể xóa tài khoản này do nó đã được tham chiếu"); window.location.href = "/Louis/public/account/list";</script>';
 		}
 	}
 }

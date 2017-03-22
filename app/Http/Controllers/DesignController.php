@@ -229,7 +229,14 @@ class DesignController extends Controller {
 		return view('contracttemplate.contractdesign',['design' => $design]);
 	}
 	public function getDelete($id){
-		
-		return redirect('design/list') ->with('thongbao', 'Xóa thành công');
+		try{
+			$design = design::find($id);
+			$design->delete();
+			return redirect('design/list') ->with('thongbao', 'Xóa thành công');
+		}
+		catch(\Exception $e)
+		{
+			return '<script type="text/javascript">alert("Không thể xóa hợp đồng này do nó đã được tham chiếu"); window.location.href = "/Louis/public/design/list";</script>';
+		}
 	}
 }
