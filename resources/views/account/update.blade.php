@@ -38,12 +38,14 @@
                         <input class="form-control" name="username" placeholder="Nhập tên tài khoản" value="{{$account->username}}" />
                     </div>
                     <div class="form-group">
-                        <label> Mật khẩu</label>
-                        <input class="form-control" name="password" type="password" id="password" placeholder="Nhập mật khẩu" value="{{$account->password}}" />
+                        <input type="checkbox" id="changepass" name="changepass">
+                           
+                        <label> Đổi mật khẩu</label>
+                        <input class="form-control password" name="password" type="password" id="password" placeholder="Nhập mật khẩu" disabled="" />
                     </div>
                     <div class="form-group">
                         <label> Xác nhận mật khẩu</label>
-                        <input class="form-control" name="confirm_password" id="confirm_password" type="password" placeholder="Nhập lại mật khẩu" value="{{$account->password}}" />
+                        <input class="form-control password" name="confirm_password" id="confirm_password" type="password" placeholder="Nhập lại mật khẩu" disabled="" />
                     </div>
                     <div class="form-group">
                         <label>Tên nhân viên</label>
@@ -67,4 +69,20 @@
     <!-- /.container-fluid -->
 </div>
 @endsection
-<!-- /#page-wrapper -->
+@section('script')
+ <script>
+    $(document).ready(function(){
+         $("#changepass").change(function(){
+             if($(this).is(":checked"))
+             {
+                 $(".password").removeAttr('disabled');
+             }
+             else
+             {
+                 $(".password").attr('disabled','');
+             }
+ 
+         });
+     });
+ </script>>
+ @endsection<!-- /#page-wrapper -->

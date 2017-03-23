@@ -36,7 +36,12 @@
                 </div>
                 <div class="form-group">
                     <label>Số tiền(VNĐ)</label>
-                    <input onChange="format_curency(this);" class="form-control" name="money"  placeholder="Nhập số tiền" />
+                     <input onChange="format_curency(this);" class="form-control" name="money"  placeholder="Nhập số tiền (trong khoảng từ 0 đến 9)" onkeydown="return ( event.ctrlKey || event.altKey 
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                    || (95<event.keyCode && event.keyCode<106)
+                    || (event.keyCode==8) || (event.keyCode==9) 
+                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==46) )" />
                 </div>
                 <div class="form-group">
                     <label>Viết bằng chữ</label>
@@ -62,9 +67,10 @@
                     <label>Có</label>
                     <input class="form-control" name="have"  placeholder="Nhập số tiền có" />
                 </div>
-                <button type="submit" class="btn btn-default">Tạo</button>
+                <button type="submit" class="btn btn-default" formtarget="_blank">Tạo</button>
                 <button type="reset" class="btn btn-default">Làm mới</button>
             <form>
+           
         </div>
     </div>
     <!-- /.container-fluid -->

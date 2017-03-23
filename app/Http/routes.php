@@ -79,13 +79,17 @@ Route::group(['prefix'=>'design'], function(){
  	//design/list
  	Route::get('list','DesignController@getList');
 
- 	Route::get('detail/{id}', 'DesignController@getDetail');
  
  	Route::get('update/{id}','DesignController@getUpdate');
  	Route::post('update/{id}','DesignController@postUpdate');
  
  	Route::get('add','DesignController@getAdd');
  	Route::post('add','DesignController@postAdd');
+
+ 	Route::post('addprint','DesignController@postAddprint');
+ 	Route::get('detail/{id}', 'DesignController@getPrintTem');
+ 	Route::post('updateprint/{id}','DesignController@postUpdateprint');
+
  
  	Route::get('add/customer/{id}','DesignController@getAddoldcus');
  	Route::get('delete/{id}','DesignController@getDelete');
@@ -114,3 +118,5 @@ Route::group(['prefix' => 'filter'], function(){
 	Route::post('month','FilterController@postMonth');
 	Route::post('year','FilterController@postYear');
 });
+Route::get('contracttemplate/receipts/{id}', 'BillController@getRecTem');
+Route::get('contracttemplate/payment/{id}', 'BillController@getPayTem');

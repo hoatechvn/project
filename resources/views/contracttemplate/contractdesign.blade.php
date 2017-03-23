@@ -37,9 +37,9 @@ body,td,th {
   </span><span class="c2">- Di&#7879;n t&iacute;ch s&agrave;n s&#7917; d&#7909;ng, ban c&ocirc;ng : {{$design->area_s}}/m2<br>
   </span><span class="c2">- Di&#7879;n t&iacute;ch s&acirc;n th&#432;&#7907;ng, hi&ecirc;n : {{$design->area_sth}}/m2<br>
   </span><span class="c2">- Di&#7879;n t&iacute;ch s&acirc;n tr&#7889;ng, &#273;&#7845;t tr&#7889;ng (&#273;&#7871;n 1.000m2): {{$design->area_stsd}}/m2</span></p>
-  <p class="c14"><span class="c2">* Gi&aacute; tr&#7883; t&#7889;i thi&#7875;u m&#7897;t b&#7843;n v&#7869; HT nh&agrave; &ndash; &#273;&#7845;t &nbsp;l&agrave; {{number_format($design->min_cost,0,",",".")}}&#273; /c&#259;n. </span></p>
+  <p class="c14"><span class="c2">* Gi&aacute; tr&#7883; t&#7889;i thi&#7875;u m&#7897;t b&#7843;n v&#7869; HT nh&agrave; &ndash; &#273;&#7845;t &nbsp;l&agrave; {{$design->min_cost}}&#273; /c&#259;n. </span></p>
 <p class="c7"><span class="c2"></span></p><p class="c17 c20"><span class="c0">&#272;i&#7873;u 4: TH&#7874; TH&#7912;C THANH TO&Aacute;N: </span></p><p class="c17 c20"><span class="c9">Thanh to&aacute;n b&#7857;ng ti&#7873;n m&#7863;t v&agrave; chia l&agrave;m hai l&#7847;n</span></p>
-<p class="c17 c20"><span class="c2">- L&#7847;n 1: Sau khi k&yacute; h&#7907;p &#273;&#7891;ng, b&ecirc;n A t&#7841;m &#7913;ng {{number_format($design->received_cost,0,",",".") }}&#273;/c&#259;n nh&agrave;.</span></p>
+<p class="c17 c20"><span class="c2">- L&#7847;n 1: Sau khi k&yacute; h&#7907;p &#273;&#7891;ng, b&ecirc;n A t&#7841;m &#7913;ng {{$design->received_cost }}&#273;/c&#259;n nh&agrave;.</span></p>
 <p class="c17 c20"><span class="c2">- L&#7847;n 2: Sau khi nh&#7853;n b&#7843;n v&#7869;, b&ecirc;n A &nbsp;s&#7869; thanh to&aacute;n ph&#7847;n c&ograve;n l&#7841;i.</span></p>
 <p class="c3"><span class="c2"></span></p><p class="c17 c20"><span class="c0">&#272;i&#7873;u 5: &#272;I&#7872;U KHO&#7842;N THI H&Agrave;NH</span></p>
 <p class="c17 c20"><span class="c2">Ti&#7873;n t&#7841;m &#7913;ng &#273;&#432;&#7907;c ho&agrave;n l&#7841;i trong c&aacute;c tr&#432;&#7901;ng h&#7907;p sau:</span></p>

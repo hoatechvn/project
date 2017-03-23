@@ -49,8 +49,9 @@ class BillController extends Controller {
 				'reason.required' => 'Bạn chưa nhập lý do nộp tiền',
 				'money.required' => 'Bạn chưa nhập số tiền',
 				'mon_character.required' => 'Bạn chưa nhập số tiền viết bằng chữ',
-				'created_date.required' => 'Bạn chưa ngày viết phiếu',
-				'issued_date.required' => 'Bạn chưa ngày ký phiếu',
+				'created_date.required' => 'Bạn chưa chọn ngày viết phiếu',
+				'issued_date.required' => 'Bạn chưa chọn ngày ký phiếu',
+				
 			]);
 
 			$bill= new bill();
@@ -75,10 +76,17 @@ class BillController extends Controller {
 
 			$bill->save();
 
-		
-		return redirect('bill/list') ->with('thongbao', 'Thêm thành công');
+			//lưu và chuyển đến trang in
+ 			$t="PT"."".$this->add_nol($stt,5);
+ 			return redirect('contracttemplate/receipts/'.$t);
+
 	}
 
+	public function getRecTem($id)
+	{
+		$billre= bill::find($id);
+		return view('contracttemplate.receipts',['billre' => $billre]);
+	}
 	public function getPayment($id)
 	{
 		$design= design::find($id);
@@ -104,8 +112,8 @@ class BillController extends Controller {
 				'reason.required' => 'Bạn chưa nhập lý do nộp tiền',
 				'money.required' => 'Bạn chưa nhập số tiền',
 				'mon_character.required' => 'Bạn chưa nhập số tiền viết bằng chữ',
-				'created_date.required' => 'Bạn chưa ngày viết phiếu',
-				'issued_date.required' => 'Bạn chưa ngày ký phiếu',
+				'created_date.required' => 'Bạn chưa chọn ngày viết phiếu',
+				'issued_date.required' => 'Bạn chưa chọn ngày ký phiếu',
 			]);
 
 			$bill= new bill();
@@ -130,8 +138,16 @@ class BillController extends Controller {
 
 			$bill->save();
 
-		
-		return redirect('bill/list') ->with('thongbao', 'Thêm thành công');
+			$c="PC"."".$this->add_nol($stt,5);
+ 			$billpayment= bill::find($c);
+ 			return redirect('contracttemplate/payment/'.$c);
+
+	}
+
+	public function getPayTem($id)
+	{
+		$billre= bill::find($id);
+		return view('contracttemplate.payment',['billre' => $billre]);
 	}
 
 	public function getUpdate($id)
@@ -149,8 +165,4 @@ class BillController extends Controller {
 		
 		return redirect('bill/list') ->with('thongbao', 'Chỉnh sửa thành công');
 	}
-
-
-
-
 }
