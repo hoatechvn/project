@@ -35,7 +35,11 @@ class AccountController extends Controller {
 				'name' =>'required|min:3|max:100',
 				'position' =>'required|min:3|max:100',
 				'password'=>'required|min:8|max:32',
+<<<<<<< HEAD
  				'confirm_password'=>'required|same:password'
+=======
+				'confirm_password'=>'required|same:password'
+>>>>>>> origin/master
 
 			], 
 			[
@@ -52,9 +56,15 @@ class AccountController extends Controller {
 				'position.max' =>'Tên nhân viên phải có độ dài từ 3 đến 100 ký tự',
 				'password.required' => 'Bạn chưa nhập mật khẩu',
 				'password.min' => 'Mật khẩu có ít nhất 8 ký tự',
+<<<<<<< HEAD
  				'password.max' => 'Mật khẩu có nhiều nhất 32 ký tự',
  				'confirm_password.required' => 'Bạn chưa nhập lại mật khẩu',
  				'confirm_password.same' => 'Mật khẩu nhập lại chưa khớp'
+=======
+				'password.max' => 'Mật khẩu có nhiều nhất 32 ký tự',
+				'confirm_password.required' => 'Bạn chưa nhập lại mật khẩu',
+				'confirm_password.same' => 'Mật khẩu nhập lại chưa khớp'
+>>>>>>> origin/master
 			]);
 			$stt = DB::table('account')->count();
 			$stt++;
@@ -109,9 +119,6 @@ class AccountController extends Controller {
 				'username' =>'required|min:3|max:100',
 				'name' =>'required|min:3|max:100',
 				'position' =>'required|min:3|max:100',
-				'password'=>'required',
-				'confirm_password'=>'required'
-
 			], 
 			[
 				'permision.required' => 'Bạn chưa chọn loại phân quyền',
@@ -124,11 +131,31 @@ class AccountController extends Controller {
 				'position.required' => 'Bạn chưa nhập tên nhân viên',
 				'position.min' => 'Tên nhân viên phải có độ dài từ 3 đến 100 ký tự',
 				'position.max' =>'Tên nhân viên phải có độ dài từ 3 đến 100 ký tự',
-				'password.required' => 'Bạn chưa nhập mật khẩu',
-				'confirm_password.required' => 'Xác nhận mật khẩu'
+				
 			]);
 			$account->username=$request->username;
-			$account->password=md5($request->password);
+			if($request->changepass == "on")
+			{
+
+
+				$this->validate($request, 
+			[
+				
+				'password'=>'required|min:8|max:32',
+				'confirm_password'=>'required|same:password'
+
+			], 
+			[
+				
+				'password.required' => 'Bạn chưa nhập mật khẩu',
+				'password.min' => 'Mật khẩu có ít nhất 8 ký tự',
+				'password.max' => 'Mật khẩu có nhiều nhất 32 ký tự',
+				'confirm_password.required' => 'Bạn chưa nhập lại mật khẩu',
+				'confirm_password.same' => 'Mật khẩu nhập lại chưa khớp'
+			]);
+				$account->password=md5($request->password);
+			}
+			
 			$account->name=$request->name;
 			$account->position=$request->position;
 			$account->email=$request->email;
