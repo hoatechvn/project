@@ -1,28 +1,35 @@
 <?php namespace App\Http\Controllers;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\bill;
 use App\design;
+
 class BillController extends Controller {
+
+
 	public function add_nol($number,$add_nol) {
 	   while (strlen($number)<$add_nol) {
 	       $number = "0".$number;
 	   }
 	   return $number;
 	}
+
 	public function getList()
 	{
 		$bill=bill::all();
 		$design=design::all();
 		return view('bill.list', ['bill' => $bill, 'design' => $design]);
 	}
+
 	public function getReceipts($id)
 	{
 		$design= design::find($id);
 		return view('bill.receipts',['design' => $design]);
 	}
+
 	public function postReceipts(Request $request, $id){
 		$this->validate($request, 
 			[
@@ -46,9 +53,10 @@ class BillController extends Controller {
 				'issued_date.required' => 'Bạn chưa chọn ngày ký phiếu',
 				
 			]);
+			$array = array();
+			$variable = bill::all();
 			$bill= new bill();
-			$stt = DB::table('bill')->count();
-			$stt++;
+
 			$bill->customer = $request->customer;
 			$bill->address = $request ->cus_address;
 			$bill->reason = $request->reason;
@@ -62,14 +70,25 @@ class BillController extends Controller {
 			$bill->note = $request->note;
 			$bill->created_date = $request->created_date;
 			$bill->issued_date = $request->issued_date;
-			$bill->id = "PT"."".$this->add_nol($stt,5);
-			$bill->save();
-			//lưu và chuyển đến trang in
-			$t="PT"."".$this->add_nol($stt,5);
-			$billre= bill::find($t);
-			return view('contracttemplate.receipts',['billre' => $billre]);
+			
+			foreach ($variable as $key) 
+			{
+				if("PT" == preg_replace('/[^a-z]+/i',"",$key->id))
+				{
+					array_push($array, (int)preg_replace('/[^0-9]+/i',"",$key->id));
+				}
+			}
+			if(count($array) == 0)
+				{
+					$stt=0;
+				}
+				else
+					$stt=max($array);
+				$stt++;
+				$bill->id = "PT"."".$this->add_nol($stt,5);
 
-<<<<<<< HEAD
+			$bill->save();
+
 			//lưu và chuyển đến trang in
  			$t="PT"."".$this->add_nol($stt,5);
  			return redirect('contracttemplate/receipts/'.$t);
@@ -81,14 +100,12 @@ class BillController extends Controller {
 		$billre= bill::find($id);
 		return view('contracttemplate.receipts',['billre' => $billre]);
 	}
-=======
-	}
->>>>>>> origin/master
 	public function getPayment($id)
 	{
 		$design= design::find($id);
 		return view('bill.payment',['design' => $design]);
 	}
+
 	public function postPayment(Request $request, $id){
 		$this->validate($request, 
 			[
@@ -111,9 +128,14 @@ class BillController extends Controller {
 				'created_date.required' => 'Bạn chưa chọn ngày viết phiếu',
 				'issued_date.required' => 'Bạn chưa chọn ngày ký phiếu',
 			]);
+
+			$array = array();
+			$variable = bill::all();
 			$bill= new bill();
+
 			$stt = DB::table('bill')->count();
 			$stt++;
+
 			$bill->customer = $request->customer;
 			$bill->address = $request ->cus_address;
 			$bill->reason = $request->reason;
@@ -127,41 +149,48 @@ class BillController extends Controller {
 			$bill->note = $request->note;
 			$bill->created_date = $request->created_date;
 			$bill->issued_date = $request->issued_date;
-			$bill->id = "PC"."".$this->add_nol($stt,5);
+			
+			foreach ($variable as $key) 
+			{
+				if("PC" == preg_replace('/[^a-z]+/i',"",$key->id))
+				{
+					array_push($array, (int)preg_replace('/[^0-9]+/i',"",$key->id));
+				}
+			}
+			if(count($array) == 0)
+				{
+					$stt=0;
+				}
+				else
+					$stt=max($array);
+				$stt++;
+				$bill->id = "PC"."".$this->add_nol($stt,5);
 			$bill->save();
-<<<<<<< HEAD
 
 			$c="PC"."".$this->add_nol($stt,5);
- 			$billpayment= bill::find($c);
  			return redirect('contracttemplate/payment/'.$c);
 
 	}
 
 	public function getPayTem($id)
 	{
-		$billre= bill::find($id);
-		return view('contracttemplate.payment',['billre' => $billre]);
-=======
-		
-			$c="PC"."".$this->add_nol($stt,5);
-			$billpayment= bill::find($c);
-			return view('contracttemplate.paymenttem',['billpayment' => $billpayment]);
->>>>>>> origin/master
+		$billpayment= bill::find($id);
+		return view('contracttemplate.paymenttem',['billpayment' => $billpayment]);
 	}
+
 	public function getUpdate($id)
 	{
 		$bill= bill::find($id);
 		return view('bill.update',['bill' => $bill]);
 	}
+
 	public function postUpdate(Request $request, $id){
 			$bill=bill::find($id);
 			$bill->note = $request->note;
+
 			$bill->save();
+
 		
 		return redirect('bill/list') ->with('thongbao', 'Chỉnh sửa thành công');
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master

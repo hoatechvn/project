@@ -58,6 +58,7 @@ class DesignController extends Controller {
 				'cus_phone.required' => 'Bạn chưa nhập số điện thoại',
 				'cus_phone.min' => 'Số điện thoại phải có độ dài 10 hoặc 11 số',
 				'cus_phone.max' =>'Số điện thoại phải có độ dài 10 hoặc 11 số',
+				
 				'home_add.required' => 'Bạn chưa nhập địa chỉ nhà',
 				'street.required' => 'Bạn chưa nhập số đường',
 				'ward.required' => 'Bạn chưa nhập phường',
@@ -73,17 +74,17 @@ class DesignController extends Controller {
 				'time.required' => 'Bạn chưa nhập thời gian khảo sát nhà',
 				'time.integer' => 'Thời gian khảo sát nhà phải là số nguyên'
 			]);
-
+			$array = array();
+			$variable = design::all();
 			$design= new design();
 
-			$stt = DB::table('design')->count();
-			$stt++;
 			$typecontract = type_contract::all();
 
 			$design->register_date = $request->register_date;
 			$design->customer = $request->customer;
 			$design->cus_address = $request->cus_address;
 			$design->cus_phone = $request->cus_phone;
+			$design->cus_email = $request->cus_mail;
 			$design->home_add = $request->home_add;
 			$design->street = $request->street;
 			$design->ward = $request->ward;
@@ -100,8 +101,22 @@ class DesignController extends Controller {
 			foreach ($typecontract as $con) {
 				if($design->id_typecontract == $con->id)
 				{
-					$design->id = $con->idtype."".$this->add_nol($stt,5);
 					$design->name=$con->type;
+					foreach ($variable as $key) 
+					{
+						if($con->idtype == preg_replace('/[^a-z]+/i',"",$key->id))
+						{
+							array_push($array, (int)preg_replace('/[^0-9]+/i',"",$key->id));
+						}
+					}
+					if(count($array) == 0)
+					{
+						$stt=0;
+					}
+					else
+						$stt=max($array);
+					$stt++;
+					$design->id = $con->idtype."".$this->add_nol($stt,5);
 				}
 			}
 
@@ -110,18 +125,19 @@ class DesignController extends Controller {
 			$getall=customer::all();
 			foreach ($getall as $all) 
 			{
-				if(!isset($all->phone))
+				if($all->phone != $request->cus_phone)
 				{
 					$customer= new customer();
 
 					$customer->name=$request->customer;
 					$customer->address=$request->cus_address;
 					$customer->phone=$request->cus_phone;
-					$customer->email=$request->email;
+					$customer->email=$request->cus_mail;
 					
-					$customer->save();
 				}
+
 			}
+			$customer->save();
 		
 		return redirect('design/list') ->with('thongbao', 'Thêm thành công');
 	}
@@ -157,6 +173,7 @@ class DesignController extends Controller {
 				'cus_phone.required' => 'Bạn chưa nhập số điện thoại',
 				'cus_phone.min' => 'Số điện thoại phải có độ dài 10 hoặc 11 số',
 				'cus_phone.max' =>'Số điện thoại phải có độ dài 10 hoặc 11 số',
+				
 				'home_add.required' => 'Bạn chưa nhập địa chỉ nhà',
 				'street.required' => 'Bạn chưa nhập số đường',
 				'ward.required' => 'Bạn chưa nhập phường',
@@ -172,16 +189,17 @@ class DesignController extends Controller {
 				'time.required' => 'Bạn chưa nhập thời gian khảo sát nhà',
 				'time.integer' => 'Thời gian khảo sát nhà phải là số nguyên'
 			]);
+			$array = array();
+			$variable = design::all();
 			$design= new design();
 
-			$stt = DB::table('design')->count();
-			$stt++;
 			$typecontract = type_contract::all();
 
 			$design->register_date = $request->register_date;
 			$design->customer = $request->customer;
 			$design->cus_address = $request->cus_address;
 			$design->cus_phone = $request->cus_phone;
+			$design->cus_email = $request->cus_mail;
 			$design->home_add = $request->home_add;
 			$design->street = $request->street;
 			$design->ward = $request->ward;
@@ -198,30 +216,44 @@ class DesignController extends Controller {
 			foreach ($typecontract as $con) {
 				if($design->id_typecontract == $con->id)
 				{
+					$design->name=$con->type;
+					
+					foreach ($variable as $key) 
+					{
+						if($con->idtype == preg_replace('/[^a-z]+/i',"",$key->id))
+						{
+							array_push($array, (int)preg_replace('/[^0-9]+/i',"",$key->id));
+						}
+					}
+					if(count($array) == 0)
+					{
+						$stt=0;
+					}
+					else
+						$stt=max($array);
+					$stt++;
 					$design->id = $con->idtype."".$this->add_nol($stt,5);
-					$design->name = $con->type;
 					$c = $con->idtype."".$this->add_nol($stt,5);
 				}
 			}
-
 			$design->save();
 
 			$getall=customer::all();
 			foreach ($getall as $all) 
 			{
-				if(!isset($all->phone))
+				if($all->phone != $request->cus_phone)
 				{
 					$customer= new customer();
 
 					$customer->name=$request->customer;
 					$customer->address=$request->cus_address;
 					$customer->phone=$request->cus_phone;
-					$customer->email=$request->email;
+					$customer->email=$request->cus_mail;
 					
-					$customer->save();
 				}
+
 			}
-		
+			$customer->save();
 		return redirect('design/detail/'.$c);
 	}
 	
@@ -268,6 +300,7 @@ class DesignController extends Controller {
 				'cus_phone.required' => 'Bạn chưa nhập số điện thoại',
 				'cus_phone.min' => 'Số điện thoại phải có độ dài 10 hoặc 11 số',
 				'cus_phone.max' =>'Số điện thoại phải có độ dài 10 hoặc 11 số',
+				
 				'home_add.required' => 'Bạn chưa nhập địa chỉ nhà',
 				'street.required' => 'Bạn chưa nhập số đường',
 				'ward.required' => 'Bạn chưa nhập phường',
@@ -289,6 +322,7 @@ class DesignController extends Controller {
 			$design->customer = $request->customer;
 			$design->cus_address = $request->cus_address;
 			$design->cus_phone = $request->cus_phone;
+			$design->cus_email = $request->cus_mail;
 			$design->home_add = $request->home_add;
 			$design->street = $request->street;
 			$design->ward = $request->ward;
@@ -314,18 +348,19 @@ class DesignController extends Controller {
 			$getall=customer::all();
 			foreach ($getall as $all) 
 			{
-				if(!isset($all->phone))
+				if($all->phone != $request->cus_phone)
 				{
 					$customer= new customer();
 
 					$customer->name=$request->customer;
 					$customer->address=$request->cus_address;
 					$customer->phone=$request->cus_phone;
-					$customer->email=$request->email;
+					$customer->email=$request->cus_mail;
 					
-					$customer->save();
 				}
+
 			}
+			$customer->save();
 		return redirect('design/list') ->with('thongbao', 'Cập nhật thành công');
 	}
 
@@ -361,6 +396,7 @@ class DesignController extends Controller {
 				'cus_phone.required' => 'Bạn chưa nhập số điện thoại',
 				'cus_phone.min' => 'Số điện thoại phải có độ dài 10 hoặc 11 số',
 				'cus_phone.max' =>'Số điện thoại phải có độ dài 10 hoặc 11 số',
+			
 				'home_add.required' => 'Bạn chưa nhập địa chỉ nhà',
 				'street.required' => 'Bạn chưa nhập số đường',
 				'ward.required' => 'Bạn chưa nhập phường',
@@ -382,6 +418,7 @@ class DesignController extends Controller {
 			$design->customer = $request->customer;
 			$design->cus_address = $request->cus_address;
 			$design->cus_phone = $request->cus_phone;
+			$design->cus_email = $request->cus_mail;
 			$design->home_add = $request->home_add;
 			$design->street = $request->street;
 			$design->ward = $request->ward;
@@ -407,18 +444,19 @@ class DesignController extends Controller {
 			$getall=customer::all();
 			foreach ($getall as $all) 
 			{
-				if(!isset($all->phone))
+				if($all->phone != $request->cus_phone)
 				{
 					$customer= new customer();
 
 					$customer->name=$request->customer;
 					$customer->address=$request->cus_address;
 					$customer->phone=$request->cus_phone;
-					$customer->email=$request->email;
+					$customer->email=$request->cus_mail;
 					
-					$customer->save();
 				}
+
 			}
+			$customer->save();
 		$design = design::find($id);
 		return view('contracttemplate.contractdesign',['design' => $design]);
 	}

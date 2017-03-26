@@ -37,14 +37,9 @@
                         <label>Tên tài khoản</label>
                         <input class="form-control" name="username" placeholder="Nhập tên tài khoản" value="{{$account->username}}" />
                     </div>
-
                     <div class="form-group">
-<<<<<<< HEAD
                         <input type="checkbox" id="changepass" name="changepass">
                            
-=======
-                    <input type="checkbox" id="changepass" name="changepass">
->>>>>>> origin/master
                         <label> Đổi mật khẩu</label>
                         <input class="form-control password" name="password" type="password" id="password" placeholder="Nhập mật khẩu" disabled="" />
                     </div>
@@ -74,7 +69,6 @@
     <!-- /.container-fluid -->
 </div>
 @endsection
-<<<<<<< HEAD
 @section('script')
  <script>
     $(document).ready(function(){
@@ -92,24 +86,3 @@
      });
  </script>>
  @endsection<!-- /#page-wrapper -->
-=======
-<!-- /#page-wrapper -->
-@section('script')
-<script>
-    $(document).ready(function(){
-        $("#changepass").change(function(){
-            if($(this).is(":checked"))
-            {
-                $(".password").removeAttr('disabled');
-            }
-            else
-            {
-                $(".password").attr('disabled','');
-            }
-
-        });
-    });
-</script>>
-
-@endsection
->>>>>>> origin/master

@@ -13,9 +13,10 @@ class FilterController extends Controller {
 	function postIdcontruct(Request $request)
 	{	
 		$design=design::all();
-		$idcontract = $request->search_idcontract; 
+		$idcontract = $request->search_idcontract;
+		if($idcontract =="") $idcontract="ID*****";
 		$bill = bill::where('id_contract','like', "%$idcontract%")->paginate(DB::table('bill')->count());
-		return view('filter.idcontract',['bill' => $bill, 'idcontract' =>$idcontract, 'design' =>$design]);
+		return view('filter.idcontract',['bill' => $bill, 'idcontract' =>$idcontract, 'design' =>$design]);	
 	}
 
 	//Xem chi tiêu theo ngày
@@ -23,6 +24,7 @@ class FilterController extends Controller {
 	{	
 		$design=design::all();
 		$issued_date = $request->search_date; 
+		if($issued_date  =="") $issued_date ="dd/mm/yyyy";
 		$bill = bill::where('issued_date','like', "%$issued_date%")->paginate(DB::table('bill')->count());
 		return view('filter.date',['bill' => $bill, 'issued_date' =>$issued_date, 'design' =>$design]);
 	}
