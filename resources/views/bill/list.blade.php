@@ -23,7 +23,7 @@
               
                 <div class="form-group">
                     <label>Thu chi theo hợp đồng</label>
-                    <input class="form-control" name="search_idcontract"/>
+                    <input class="form-control" name="search_idcontract" placeholder="Nhập ID hợp đồng"/>
                 </div>
                 <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
         </form> 
@@ -38,14 +38,14 @@
                 <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
         </form> 
 </div>
-<div class="col-sm-3" style="background-color:#ccc; font-weight:bold;padding: 10px 20px 10px 20px;font-size: 14px;"> 
+<div class="col-sm-3" style="background-color:#ccc; font-weight:bold;padding: 10px 20px 79px 3px;font-size: 14px;"> 
         <form action="filter/month" method="POST" style="padding-bottom:20px">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="col-sm-6" >
                 <div class="form-group">
                     <label>Thu chi theo tháng</label>
                     <select class="form-control" name="search_month">
-                        <option value="00"></option>
+                        <option value="00">Chọn tháng</option>
                         <option value="01">Tháng 1</option>
                         <option value="02">Tháng 2</option>
                         <option value="03">Tháng 3</option>
@@ -59,8 +59,11 @@
                         <option value="11">Tháng 11</option>
                         <option value="12">Tháng 12</option>
                     </select>
-                </div> </div>
-<div class="col-sm-6">
+                </div> 
+                 <button type="submit" class="btn btn-default" formtarget="_blank" >Xem</button>
+                </div>
+<div class="col-sm-6" style="padding-top:25px;">
+
                 <div class="form-group">
                     <select class="form-control" name="search_year">
                         <option value="2017">2017</option>
@@ -96,7 +99,7 @@
                     </select>
                 </div>
                 </div>
-                <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
+               
         </form>
         </div>
 <div class="col-sm-3" style="background-color: #e7e7e7;font-weight:bold;padding: 10px 20px 59px 20px;font-size: 14px;">        
@@ -137,6 +140,7 @@
                         <option value="2038">2038</option>
                     </select>
                 </div>
+
                 <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
         </form>
 		
