@@ -16,6 +16,8 @@
         		
         	</div>
         @endif
+         <div class="row">
+<div class="col-sm-3" style="background-color: #ccc;font-weight:bold;padding: 10px 20px 59px 20px;font-size: 14px;"> 
         <form action="filter/idcontract" method="POST" style="padding-bottom:20px">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
               
@@ -25,6 +27,8 @@
                 </div>
                 <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
         </form> 
+</div>
+<div class="col-sm-3" style="background-color: #e7e7e7;font-weight:bold;padding: 10px 20px 59px 20px;font-size: 14px;"> 
         <form action="filter/date" method="POST" style="padding-bottom:20px">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="form-group">
@@ -33,8 +37,11 @@
                 </div>
                 <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
         </form> 
+</div>
+<div class="col-sm-3" style="background-color:#ccc; font-weight:bold;padding: 10px 20px 10px 20px;font-size: 14px;"> 
         <form action="filter/month" method="POST" style="padding-bottom:20px">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                <div class="col-sm-6" >
                 <div class="form-group">
                     <label>Thu chi theo tháng</label>
                     <select class="form-control" name="search_month">
@@ -52,7 +59,8 @@
                         <option value="11">Tháng 11</option>
                         <option value="12">Tháng 12</option>
                     </select>
-                </div>
+                </div> </div>
+<div class="col-sm-6">
                 <div class="form-group">
                     <select class="form-control" name="search_year">
                         <option value="2017">2017</option>
@@ -87,8 +95,11 @@
                         <option value="2038">2038</option>
                     </select>
                 </div>
+                </div>
                 <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
         </form>
+        </div>
+<div class="col-sm-3" style="background-color: #e7e7e7;font-weight:bold;padding: 10px 20px 59px 20px;font-size: 14px;">        
         <form action="filter/year" method="POST" style="padding-bottom:20px">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <div class="form-group">
@@ -128,10 +139,13 @@
                 </div>
                 <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
         </form>
-
+		
+         </div>
+		
+ </div> </br> </br>
 		<table class="table table-striped table-bordered table-hover" id="dataTables-example">
             <thead>
-                <tr align="center">
+                <tr align="justify">
                     <th>ID</th>
                     <th>ID hợp đồng</th>
                     <th>Tên hợp đồng</th>
@@ -146,7 +160,7 @@
             </thead>
             <tbody>
             	@foreach($bill as $bil)
-                <tr class="odd gradeX" align="center">
+                <tr class="odd gradeX" align="justify">
                     <td>{{$bil->id}}</td>
                     <td>{{$bil->id_contract}}</td>
                     <td>

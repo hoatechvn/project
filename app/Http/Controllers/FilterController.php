@@ -12,11 +12,10 @@ class FilterController extends Controller {
 	// Xem chi tiêu theo hợp đồng
 	function postIdcontruct(Request $request)
 	{	
-		$design=design::all();
 		$idcontract = $request->search_idcontract;
-		if($idcontract =="") $idcontract="ID*****";
+ 		if($idcontract =="") $idcontract="ID*****";
 		$bill = bill::where('id_contract','like', "%$idcontract%")->paginate(DB::table('bill')->count());
-		return view('filter.idcontract',['bill' => $bill, 'idcontract' =>$idcontract, 'design' =>$design]);	
+		return view('filter.idcontract',['bill' => $bill, 'idcontract' =>$idcontract, 'design' =>$design]);
 	}
 
 	//Xem chi tiêu theo ngày

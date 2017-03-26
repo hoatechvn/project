@@ -14,6 +14,7 @@ class AccountController extends Controller {
 	   }
 	   return $number;
 	}
+
 	public function getList(){
 		
 		$account=account::all();
@@ -34,7 +35,9 @@ class AccountController extends Controller {
 				'name' =>'required|min:3|max:100',
 				'position' =>'required|min:3|max:100',
 				'password'=>'required|min:8|max:32',
+
  				'confirm_password'=>'required|same:password'
+
 
 			], 
 			[
@@ -51,45 +54,67 @@ class AccountController extends Controller {
 				'position.max' =>'Tên nhân viên phải có độ dài từ 3 đến 100 ký tự',
 				'password.required' => 'Bạn chưa nhập mật khẩu',
 				'password.min' => 'Mật khẩu có ít nhất 8 ký tự',
+
  				'password.max' => 'Mật khẩu có nhiều nhất 32 ký tự',
  				'confirm_password.required' => 'Bạn chưa nhập lại mật khẩu',
  				'confirm_password.same' => 'Mật khẩu nhập lại chưa khớp'
+
 			]);
 			$array = array();
-			$variable = account::all();
+ 			$variable = account::all();
 			$account = new account();	
 			$permision = permision::all();
 			$account->username=$request->username;
 			$account->password=md5($request->password);
+			if($request->changepass == "on")
+ 			{
+ 
+ 
+ 				$this->validate($request, 
+ 			[
+ 				
+ 				'password'=>'required|min:8|max:32',
+ 				'confirm_password'=>'required|same:password'
+ 
+ 			], 
+ 			[
+ 				
+ 				'password.required' => 'Bạn chưa nhập mật khẩu',
+ 				'password.min' => 'Mật khẩu có ít nhất 8 ký tự',
+ 				'password.max' => 'Mật khẩu có nhiều nhất 32 ký tự',
+ 				'confirm_password.required' => 'Bạn chưa nhập lại mật khẩu',
+ 				'confirm_password.same' => 'Mật khẩu nhập lại chưa khớp'
+ 			]);
+ 				$account->password=md5($request->password);
+ 			}
 			$account->name=$request->name;
 			$account->position=$request->position;
 			$account->email=$request->email;
 			$account->id_permision=$request->permision;
 			foreach ($permision as $per) {
 				if($account->id_permision == $per->id)
-				{
-					foreach ($variable as $key) 
 					{
-						if($per->type == preg_replace('/[^a-z]+/i',"",$key->id))
-						{
-							array_push($array, (int)preg_replace('/[^0-9]+/i',"",$key->id));
-						}
-					}
-					if(count($array) == 0)
-					{
-						$stt=0;
-					}
-					else
-						$stt=max($array);
-					$stt++;
-					$account->id = $per->type."".$this->add_nol($stt,5);
-				}
+ 				foreach ($variable as $key) 
+ 					{
+ 						if($per->type == preg_replace('/[^a-z]+/i',"",$key->id))
+ 						{
+ 							array_push($array, (int)preg_replace('/[^0-9]+/i',"",$key->id));
+ 						}
+ 					}
+ 					if(count($array) == 0)
+ 					{
+ 						$stt=0;
+ 					}
+ 					else
+ 						$stt=max($array);
+ 					$stt++;
+  					$account->id = $per->type."".$this->add_nol($stt,5);	
+ 				}
 			}
 			
 			$account->save();
 			
 		return redirect('account/list') ->with('thongbao', 'Thêm thành công');
-
 	}
 	
 	public function getUpdate($id){
@@ -106,8 +131,7 @@ class AccountController extends Controller {
 				'name' =>'required|min:3|max:100',
 				'position' =>'required|min:3|max:100',
 				'password'=>'required',
-				'confirm_password'=>'required'
-
+ 				'confirm_password'=>'required'
 			], 
 			[
 				'permision.required' => 'Bạn chưa chọn loại phân quyền',
@@ -121,11 +145,12 @@ class AccountController extends Controller {
 				'position.min' => 'Tên nhân viên phải có độ dài từ 3 đến 100 ký tự',
 				'position.max' =>'Tên nhân viên phải có độ dài từ 3 đến 100 ký tự',
 				'password.required' => 'Bạn chưa nhập mật khẩu',
-				'confirm_password.required' => 'Xác nhận mật khẩu'
+ 				'confirm_password.required' => 'Xác nhận mật khẩu'
+				
 			]);
 			$account->username=$request->username;
 			if($request->changepass == "on")
- 			{
+			{
  
  
  				$this->validate($request, 

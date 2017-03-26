@@ -72,6 +72,18 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                 <li>
+                  <a href="#"><i class="fa fa-cube fa-fw"></i> Loại bản vẽ<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="draw/list">Danh sách loại bản vẽ</a>
+                        </li>
+                        <li>
+                            <a href="draw/add">Thêm loại bản vẽ</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
                 <li>
                     <a href="#"><i class="fa fa-users fa-fw"></i> Tài khoản<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
