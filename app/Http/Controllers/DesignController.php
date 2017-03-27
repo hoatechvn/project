@@ -335,7 +335,14 @@ class DesignController extends Controller {
 			$design->time = $request->time;
 			$design->id_typecontract = $request->id_typecontract;
 			$design->id_account = $request->id_account;
+			$design->status = $request->status;
+			$design->note = $request->note;
 
+			if($request->status == "1")
+			{
+ 
+  				$design->complete_date =$request->complete_date;
+ 			}
 			foreach ($typecontract as $con) {
 				if($design->id_typecontract == $con->id)
 				{

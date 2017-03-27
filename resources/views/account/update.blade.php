@@ -39,12 +39,12 @@
                     </div>
 
                     <div class="form-group">
-<<<<<<< HEAD
+
                         <input type="checkbox" id="changepass" name="changepass">
                            
-=======
+
                     <input type="checkbox" id="changepass" name="changepass">
->>>>>>> origin/master
+
                         <label> Đổi mật khẩu</label>
                         <input class="form-control password" name="password" type="password" id="password" placeholder="Nhập mật khẩu" disabled="" />
                     </div>
@@ -74,7 +74,7 @@
     <!-- /.container-fluid -->
 </div>
 @endsection
-<<<<<<< HEAD
+
 @section('script')
  <script>
     $(document).ready(function(){
@@ -92,7 +92,7 @@
      });
  </script>>
  @endsection<!-- /#page-wrapper -->
-=======
+
 <!-- /#page-wrapper -->
 @section('script')
 <script>
@@ -109,7 +109,7 @@
 
         });
     });
-</script>>
+</script>
 
 @endsection
->>>>>>> origin/master
+

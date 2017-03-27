@@ -68,6 +68,36 @@
                         <label> Email</label>
                         <input class="form-control" name="cus_email" value="{{$design->email}}" type="email" placeholder="Nhập email" />
                     </div>
+
+                    <div class="form-group">
+                        <label> Trạng thái hoàn thành</label>
+                        <br>
+                         <label class="radio-inline"> 
+                         <input name="status" value="0"
+                        @if($design->status ==0)
+                         {{"checked"}}
+                         @endif
+                         type="radio"> Chưa hoàn thành
+                         </label>
+
+                          <label class="radio-inline"> 
+
+                         <input id="status_com" name="status" value="1"
+                                 @if($design->status == 1)
+                                     {{"checked"}}
+                                 @endif
+                         type="radio" > Hoàn thành
+                           <li id="show-me" style="display:none"> <label> Ngày hoàn thành:&nbsp;  </label><input  style="border: none;" name="complete_date" value="{{date('Y-m-d')}}" readonly="" /></li>
+                         </label>
+
+                    </div>
+                    <div class="form-group">
+                        <label> Ghi chú</label>
+                        <textarea class="form-control" rows="3" name="note" >{{$design->note}}</textarea>
+                      
+                    </div>
+
+
                 </div>
                 <div class="col-lg-6" style="padding-bottom:50px"> 
                     <h2> Thông tin chi tiết</h2><br>
@@ -101,7 +131,7 @@
                     </div>
                     <div class="form-group">
                         <label> Giá trị tối thiểu của một bản vẽ (VNĐ) </label>
-                        <input onChange="format_curency(this);" class="form-control" name="min_cost"  placeholder="Nhập giá trị tối thiểu của bản vẽ (trong khoảng từ 0 đến 9)" onkeydown="return ( event.ctrlKey || event.altKey 
+                        <input onChange="format_curency(this);" class="form-control" name="min_cost" value="{{$design->min_cost}}"  placeholder="Nhập giá trị tối thiểu của bản vẽ (trong khoảng từ 0 đến 9)" onkeydown="return ( event.ctrlKey || event.altKey 
                     || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
                     || (95<event.keyCode && event.keyCode<106)
                     || (event.keyCode==8) || (event.keyCode==9) 
@@ -110,7 +140,7 @@
                     </div>
                     <div class="form-group">
                         <label> Số tiền tạm ứng (VNĐ) </label>
-                        <input onChange="format_curency(this);" class="form-control" name="received_cost" placeholder="Nhập số tiền tạm ứng (trong khoảng từ 0 đến 9) " onkeydown="return ( event.ctrlKey || event.altKey 
+                        <input onChange="format_curency(this);" class="form-control" name="received_cost" value="{{$design->received_cost}}" placeholder="Nhập số tiền tạm ứng (trong khoảng từ 0 đến 9) " onkeydown="return ( event.ctrlKey || event.altKey 
                     || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
                     || (95<event.keyCode && event.keyCode<106)
                     || (event.keyCode==8) || (event.keyCode==9) 
@@ -145,5 +175,19 @@
         a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
 }
 </script>
+
+<script type="text/javascript">
+ 
+});
+</script>
+@endsection
+@section('script')
+<script>
+     $("input[name=status]").click(function () {
+    $('#show-me').css('display', ($(this).val() === '1') ? 'block':'none');
+
+});
+</script>
+
 @endsection
 <!-- /#page-wrapper -->

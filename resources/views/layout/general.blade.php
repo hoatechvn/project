@@ -112,10 +112,13 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-users fa-fw"></i> Sổ quỹ<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-users fa-fw"></i> Kế toán<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="bill/list"> Danh sách sổ quỹ</a>
+                        </li>
+                        <li>
+                            <a href="statistic/list"> Thống kê hoa hồng</a>
                         </li>
                        
                     </ul>

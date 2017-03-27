@@ -122,7 +122,11 @@ Route::group(['prefix'=>'bill'], function(){
  	Route::get('update/{id}','BillController@getUpdate');
  	Route::post('update/{id}','BillController@postUpdate');
  });
-
+//Phan thong tin cho phiếu thống kê hoa hồng
+Route::group(['prefix'=>'statistic'], function(){
+ 	
+ 	Route::get('list','StatisticController@getList');
+});
 //Phan thong ke thu chi
 Route::group(['prefix' => 'filter'], function(){
 

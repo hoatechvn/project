@@ -12,6 +12,7 @@ class FilterController extends Controller {
 	// Xem chi tiêu theo hợp đồng
 	function postIdcontruct(Request $request)
 	{	
+		$design=design::all();
 		$idcontract = $request->search_idcontract;
  		if($idcontract =="") $idcontract="ID*****";
 		$bill = bill::where('id_contract','like', "%$idcontract%")->paginate(DB::table('bill')->count());
@@ -44,5 +45,14 @@ class FilterController extends Controller {
 		$issued_year = $request->search_year;
 		$bill = bill::where('issued_date','like', "%$issued_year%")->paginate(DB::table('bill')->count());
 		return view('filter.year',['bill' => $bill, 'issued_year' =>$issued_year, 'design' =>$design]);
+	}
+	//Xem thống kê hoa hồng
+	function postAcc(Request $request)
+	{	
+		$account=account::all();
+		$design=design::all();
+		$issued_month = $request->search_year."-".$request->search_month;
+		$bill = bill::where('issued_date','like', "%$issued_month%")->paginate(DB::table('bill')->count());
+		return view('filter.month',['bill' => $bill, 'issued_month' =>$issued_month, 'design' =>$design]);
 	}
 }
