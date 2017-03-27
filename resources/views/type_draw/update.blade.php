@@ -23,6 +23,7 @@
             <form action="draw/update/{{$type_draw->id}}" method="POST">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="form-group">
+<<<<<<< HEAD
                     <label>Loại Bản Vẽ <font style="color: red;">*</font></label>
                     <input class="form-control" name="typedraw" placeholder="Nhập bản vẽ" value="{{$type_draw->type}}" />
                 </div>
@@ -44,12 +45,27 @@
                 	<textarea class="form-control" rows="3" name="description">{{$type_draw->description}}</textarea>
                 </div>
                 <button type="submit" class="btn btn-default">Lưu</button>
+=======
+                    <label>Loại Bản Vẽ</label>
+                    <input class="form-control" name="typedraw" placeholder="Nhập bản vẽ" value="{{$type_draw->type}}" />
+                </div>
+                <div class="form-group">
+                     <label>Mã loại Bản Vẽ</label>
+                     <input class="form-control" name="idtypedraw" placeholder="Nhập mã loại bản vẽ" value="{{$type_draw->idtype}}" />
+                </div>
+                <div class="form-group">
+               	 	<label>Mô tả</label>
+                	<textarea class="form-control" rows="3" name="description">{{$type_draw->description}}</textarea>
+                </div>
+                <button type="submit" class="btn btn-default">Cập nhật</button>
+>>>>>>> origin/master
                 <button type="reset" class="btn btn-default">Làm mới</button>
             <form>
         </div>
     </div>
     <!-- /.container-fluid -->
 </div>
+<<<<<<< HEAD
 <script type="text/javascript">
     function submitForm(action)
     {
@@ -63,3 +79,7 @@
 </script>
 @endsection
 <!-- /#page-wrapper -->
+=======
+@endsection
+<!-- /#page-wrapper -->
+>>>>>>> origin/master

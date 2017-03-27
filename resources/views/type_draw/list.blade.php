@@ -23,7 +23,10 @@
                     <th>ID</th>
                     <th>Loại bản vẽ</th>
                     <th>Mã loại</th>
+<<<<<<< HEAD
                     <th>Giá trị (VNĐ)</th>
+=======
+>>>>>>> origin/master
                     <th>Mô tả</th>
                     <th>Chỉnh sửa</th>
                     <th>Xóa</th>
@@ -35,10 +38,16 @@
                     <td>{{$cont->id}}</td>
                     <td>{{$cont->type}}</td>
                     <td>{{$cont->idtype}}</td>
+<<<<<<< HEAD
                     <td>{{$cont->cost}}</td>
                     <td>{{$cont->description}}</td>
                     <td class="center"><a href="draw/update/{{$cont->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
                     <td class="center"><a href="draw/delete/{{$cont->id}}" onclick="return confirm('Bạn có muốn xóa loại bản vẽ này không?');"><i class="fa fa-trash-o  fa-fw"></i></a>
+=======
+                    <td>{{$cont->description}}</td>
+                    <td class="center"><a href="draw/update/{{$cont->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
+                    <td class="center"><a href="draw/delete/{{$cont->id}}" onclick="return confirm('Bạn có muốn xóa loại hợp đồng này không?');"><i class="fa fa-trash-o  fa-fw"></i></a>
+>>>>>>> origin/master
                 </tr>
                 @endforeach
             </tbody>

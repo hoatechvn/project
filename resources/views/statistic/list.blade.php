@@ -19,6 +19,7 @@
          <div class="row">
 
 
+<<<<<<< HEAD
         <form action="statistic/filter" method="POST" style="padding-bottom:20px">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <div class="col-sm-3" style="background-color:#3c763d; font-weight:bold;padding: 10px 20px 20px 30px;font-size: 14px;">               
@@ -33,6 +34,19 @@
                 </div>
             </div>
             <div class="col-sm-3" style="background-color:#f0ad4e; font-weight:bold;padding: 10px 20px 20px 30px;font-size: 14px;"> 
+=======
+        <form action="filter/month" method="POST" style="padding-bottom:20px">
+            <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+ <div class="col-sm-3" style="background-color:#3c763d; font-weight:bold;padding: 10px 20px 20px 30px;font-size: 14px;">               
+             <div class="form-group">
+                <label>Chọn nhân viên</label>
+                    <select class="form-control" name="search_year">
+                        <option value="2017">2017</option>
+                    </select>
+                </div>
+ </div>
+<div class="col-sm-3" style="background-color:#f0ad4e; font-weight:bold;padding: 10px 20px 20px 30px;font-size: 14px;"> 
+>>>>>>> origin/master
                 <div class="form-group">
                     <label>Chọn tháng</label>
                     <select class="form-control" name="search_month">
@@ -51,10 +65,17 @@
                         <option value="12">Tháng 12</option>
                     </select>
                
+<<<<<<< HEAD
                 </div>
             </div>
 
             <div class="col-sm-3" style="background-color:#f0ad4e; font-weight:bold;padding: 10px 20px 20px 30px;font-size: 14px;"> 
+=======
+                    </div>
+                </div>
+
+<div class="col-sm-3" style="background-color:#f0ad4e; font-weight:bold;padding: 10px 20px 20px 30px;font-size: 14px;"> 
+>>>>>>> origin/master
                 <div class="form-group">
                    <label>Chọn năm</label>
                     <select class="form-control" name="search_year">
@@ -90,10 +111,21 @@
                         <option value="2038">2038</option>
                     </select>
                 </div>
+<<<<<<< HEAD
             </div>
             <div class="col-sm-3" style="background-color:rgba(51, 122, 183, 0.96);; font-weight:bold;padding: 35px 20px 35px 30px;font-size: 14px;"> 
                 <button type="submit" class="btn btn-default" formtarget="_blank">Xem </button>
             </div>
+=======
+                   </div>
+               
+     
+        <div class="col-sm-3" style="background-color:rgba(51, 122, 183, 0.96);; font-weight:bold;padding: 35px 20px 35px 30px;font-size: 14px;"> 
+           
+
+                <button type="submit" class="btn btn-default" formtarget="_blank">Xem </button>
+        </div>
+>>>>>>> origin/master
         </form>
 		
      </div>
@@ -103,7 +135,11 @@
             <thead>
                 <tr align="justify">
                     <th>Mã HĐ</th>
+<<<<<<< HEAD
                     <th>Tên hợp đồng</th>
+=======
+                     <th>Tên hợp đồng</th>
+>>>>>>> origin/master
                     <th>Nhân viên thụ hưởng</th>
                     <th>Ngày ký</th>
                     <th>Ngày hoàn thành</th>
@@ -125,12 +161,21 @@
                         @endif
                     @endforeach
                     </td>
+<<<<<<< HEAD
                     <td>{{date('d/m/Y',strtotime($des->register_date))}}</td>   
                     <td>{{date('d/m/Y',strtotime($des->complete_date))}}</td>           
                     <td>???</td>
                     <td>{{$des->note}}</td>  
                 </tr>
                 @else
+=======
+                    <td>{{$des->register_date}}</td>   
+                    <td>{{$des->complete_date}}</td>           
+                    <td>???</td>
+                    <td>{{$des->note}}</td>  
+                </tr>
+                 @else
+>>>>>>> origin/master
                  <tr class="odd gradeX" align="justify">
                     <td>{{$des->id}}</td>
                     <td>{{$des->name}}</td>
@@ -141,8 +186,13 @@
                         @endif
                     @endforeach
                     </td>
+<<<<<<< HEAD
                     <td>{{date('d/m/Y',strtotime($des->register_date))}}</td>   
                     <td></td>              
+=======
+                    <td>{{$des->register_date}}</td>
+                        <td>{{$des->complete_date}}</td>              
+>>>>>>> origin/master
                     <td>???</td>
                     <td>{{$des->note}}</td>  
                 </tr>

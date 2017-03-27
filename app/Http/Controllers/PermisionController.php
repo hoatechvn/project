@@ -29,7 +29,6 @@ class PermisionController extends Controller {
 				'namePermision.required' => 'Bạn chưa nhập loại phân quyền',
 				'namePermision.min' => 'Loại phân quyền phải có độ dài từ 3 đến 100 ký tự',
 				'namePermision.max' => 'Loại phân quyền phải có độ dài từ 3 đến 100 ký tự',
-			
 				
 			]);
 
