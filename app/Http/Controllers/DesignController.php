@@ -32,7 +32,7 @@ class DesignController extends Controller {
 			[
 				'id_account' =>'required',
 				'id_typecontract' =>'required',
-				'register_date' =>'required',
+				
 				'customer' =>'required|min:3|max:100',
 				'cus_address' =>'required',
 				'cus_phone'=> 'required|min:10|max:11',
@@ -51,6 +51,7 @@ class DesignController extends Controller {
 				'id_account.required' => 'Bạn chưa chọn nhân viên thụ hưởng',
 				'id_typecontract.required' => 'Bạn chưa chọn loại hợp đồng',
 				'register_date.required' => 'Bạn chưa chọn ngày đăng ký',
+
 				'customer.required' => 'Bạn chưa nhập tên khách hàng',
 				'customer.min' => 'Tên khách hàng phải có độ dài từ 3 đến 100 ký tự',
 				'customer.max' =>'Tên khách hàng phải có độ dài từ 3 đến 100 ký tự',
@@ -72,7 +73,7 @@ class DesignController extends Controller {
 				'min_cost.required' => 'Bạn chưa nhập giá trị tối thiểu của một bản vẽ',
 				'received_cost.required' => 'Bạn chưa nhập giá trị tạm ứng hợp đồng',
 				'time.required' => 'Bạn chưa nhập thời gian khảo sát nhà',
-				'time.integer' => 'Thời gian khảo sát nhà phải là số nguyên'
+				'time.integer' => 'Thời gian khảo sát nhà phải là số nguyên',
 			]);
 			$array = array();
 			$variable = design::all();
@@ -123,21 +124,23 @@ class DesignController extends Controller {
 			$design->save();
 
 			$getall=customer::all();
+			$dem=0;
 			foreach ($getall as $all) 
 			{
-				if($all->phone != $request->cus_phone)
-				{
-					$customer= new customer();
 
-					$customer->name=$request->customer;
-					$customer->address=$request->cus_address;
-					$customer->phone=$request->cus_phone;
-					$customer->email=$request->cus_mail;
-					
-				}
-
+				if($all->phone == $request->cus_phone)
+					$dem++;
 			}
-			$customer->save();
+				
+			if($dem==0)
+			{
+				$customer= new customer();
+				$customer->name=$request->customer;
+				$customer->address=$request->cus_address;
+				$customer->phone=$request->cus_phone;
+				$customer->email=$request->cus_email;
+				$customer->save();	
+			}		
 		
 		return redirect('design/list') ->with('thongbao', 'Thêm thành công');
 	}
@@ -199,7 +202,7 @@ class DesignController extends Controller {
 			$design->customer = $request->customer;
 			$design->cus_address = $request->cus_address;
 			$design->cus_phone = $request->cus_phone;
-			$design->cus_email = $request->cus_mail;
+			$design->cus_email = $request->cus_email;
 			$design->home_add = $request->home_add;
 			$design->street = $request->street;
 			$design->ward = $request->ward;
@@ -239,21 +242,23 @@ class DesignController extends Controller {
 			$design->save();
 
 			$getall=customer::all();
+			$dem=0;
 			foreach ($getall as $all) 
 			{
-				if($all->phone != $request->cus_phone)
-				{
-					$customer= new customer();
 
-					$customer->name=$request->customer;
-					$customer->address=$request->cus_address;
-					$customer->phone=$request->cus_phone;
-					$customer->email=$request->cus_mail;
-					
-				}
-
+				if($all->phone == $request->cus_phone)
+					$dem++;
 			}
-			$customer->save();
+				
+			if($dem==0)
+			{
+				$customer= new customer();
+				$customer->name=$request->customer;
+				$customer->address=$request->cus_address;
+				$customer->phone=$request->cus_phone;
+				$customer->email=$request->cus_email;
+				$customer->save();	
+			}		
 		return redirect('design/detail/'.$c);
 	}
 	
@@ -322,7 +327,7 @@ class DesignController extends Controller {
 			$design->customer = $request->customer;
 			$design->cus_address = $request->cus_address;
 			$design->cus_phone = $request->cus_phone;
-			$design->cus_email = $request->cus_mail;
+			$design->cus_email = $request->cus_email;
 			$design->home_add = $request->home_add;
 			$design->street = $request->street;
 			$design->ward = $request->ward;
@@ -335,6 +340,14 @@ class DesignController extends Controller {
 			$design->time = $request->time;
 			$design->id_typecontract = $request->id_typecontract;
 			$design->id_account = $request->id_account;
+			$design->status = $request->status;
+ 			$design->note = $request->note;
+
+ 			if($request->status == "1")
+ 			{
+  
+   				$design->complete_date =$request->complete_date;
+  			}
 
 			foreach ($typecontract as $con) {
 				if($design->id_typecontract == $con->id)
@@ -344,23 +357,24 @@ class DesignController extends Controller {
 			}
 
 			$design->save();
-
 			$getall=customer::all();
+			$dem=0;
 			foreach ($getall as $all) 
 			{
-				if($all->phone != $request->cus_phone)
-				{
-					$customer= new customer();
 
-					$customer->name=$request->customer;
-					$customer->address=$request->cus_address;
-					$customer->phone=$request->cus_phone;
-					$customer->email=$request->cus_mail;
-					
-				}
-
+				if($all->phone == $request->cus_phone)
+					$dem++;
 			}
-			$customer->save();
+				
+			if($dem==0)
+			{
+				$customer= new customer();
+				$customer->name=$request->customer;
+				$customer->address=$request->cus_address;
+				$customer->phone=$request->cus_phone;
+				$customer->email=$request->cus_email;
+				$customer->save();	
+			}		
 		return redirect('design/list') ->with('thongbao', 'Cập nhật thành công');
 	}
 
@@ -418,7 +432,7 @@ class DesignController extends Controller {
 			$design->customer = $request->customer;
 			$design->cus_address = $request->cus_address;
 			$design->cus_phone = $request->cus_phone;
-			$design->cus_email = $request->cus_mail;
+			$design->cus_email = $request->cus_email;
 			$design->home_add = $request->home_add;
 			$design->street = $request->street;
 			$design->ward = $request->ward;
@@ -442,21 +456,23 @@ class DesignController extends Controller {
 			$design->save();
 
 			$getall=customer::all();
+			$dem=0;
 			foreach ($getall as $all) 
 			{
-				if($all->phone != $request->cus_phone)
-				{
-					$customer= new customer();
 
-					$customer->name=$request->customer;
-					$customer->address=$request->cus_address;
-					$customer->phone=$request->cus_phone;
-					$customer->email=$request->cus_mail;
-					
-				}
-
+				if($all->phone == $request->cus_phone)
+					$dem++;
 			}
-			$customer->save();
+				
+			if($dem==0)
+			{
+				$customer= new customer();
+				$customer->name=$request->customer;
+				$customer->address=$request->cus_address;
+				$customer->phone=$request->cus_phone;
+				$customer->email=$request->cus_email;
+				$customer->save();	
+			}		
 		$design = design::find($id);
 		return view('contracttemplate.contractdesign',['design' => $design]);
 	}

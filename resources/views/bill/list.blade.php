@@ -21,7 +21,7 @@
               
                 <div class="form-group">
                     <label>Thu chi theo hợp đồng</label>
-                    <input class="form-control" name="search_idcontract"/>
+                    <input class="form-control" name="search_idcontract" placeholder="Nhập mã hợp đồng cần xem" />
                 </div>
                 <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
         </form> 
@@ -37,8 +37,7 @@
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="form-group">
                     <label>Thu chi theo tháng</label>
-                    <select class="form-control" name="search_month">
-                        <option value="00"></option>
+                    <select class="form-control" name="search_month" >
                         <option value="01">Tháng 1</option>
                         <option value="02">Tháng 2</option>
                         <option value="03">Tháng 3</option>
@@ -162,8 +161,8 @@
                     @endif
                     <td>{{$status}}</td>
                     <td>{{$bil->money}}</td>
-                    <td>{{$bil->created_date}}</td>
-                    <td>{{$bil->issued_date}}</td>
+                    <td>{{date('d/m/Y',strtotime($bil->created_date))}}</td>
+                    <td>{{date('d/m/Y',strtotime($bil->issued_date))}}</td>
                     <td>{{$bil->note}}</td>
 
 

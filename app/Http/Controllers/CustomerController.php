@@ -23,18 +23,13 @@ class CustomerController extends Controller {
 		$this->validate($request, 
 			[
 				'name' => 'required|min:3|max:100',
-				'address' => 'required',
-				'phone' => 'required|min:10|max:11'
-			
 			],
 			[
-				'address.required' => 'Bạn chưa nhập địa chỉ khách hàng',
+				
 				'name.required' => 'Bạn chưa nhập tên Khách hàng',
 				'name.min' => 'Tên Khách hàng phải có độ dài từ 3 đến 100 ký tự',
 				'name.max' => 'Tên Khách hàng phải có độ dài từ 3 đến 100 ký tự',
-				'phone.required' => 'Bạn chưa nhập số điện thoại khách hàng',
-				'phone.min' =>'Số điện thoại phải là 10 hoặc 11 chữ số',
-				'phone.max' => 'Số điện thoại phải là 10 hoặc 11 chữ số'
+				
 			]);
 
 		$customer->name = $request->name;

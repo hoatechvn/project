@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Ngày
-                <small>{{$issued_date}}</small>
+                <small>{{date('d/m/Y',strtotime($issued_date))}}</small>
                 </h1>
         </div>
 
@@ -60,8 +60,8 @@
                     @endif
                     <td>{{$status}}</td>
                     <td>{{$bil->money}}</td>
-                    <td>{{$bil->created_date}}</td>
-                    <td>{{$bil->issued_date}}</td>
+                    <td>{{date('d/m/Y',strtotime($bil->created_date))}}</td>
+                    <td>{{date('d/m/Y',strtotime($bil->issued_date))}}</td>
                     <td>{{$bil->note}}</td>
                  
                 </tr>

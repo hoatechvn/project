@@ -64,6 +64,16 @@ Route::group(['prefix'=>'contract'], function(){
 	Route::get('delete/{id}','TypeContractController@getDelete');
 });
 
+
+// Phan thong tin cho type_draw
+Route::group(['prefix'=>'draw'], function(){
+	Route::get('list','TypeDrawController@getList');
+	Route::get('update/{id}','TypeDrawController@getUpdate');
+	Route::post('update/{id}','TypeDrawController@postUpdate');
+	Route::get('add','TypeDrawController@getAdd');
+	Route::post('add','TypeDrawController@postAdd');
+	Route::get('delete/{id}','TypeDrawController@getDelete');
+});
 // Phan thong tin cho customer
 Route::group(['prefix'=>'customer'], function(){
 	Route::get('list','CustomerController@getList');
@@ -95,6 +105,22 @@ Route::group(['prefix'=>'design'], function(){
  	Route::get('delete/{id}','DesignController@getDelete');
   }); 
 
+//Phan thong tin cho sign
+Route::group(['prefix'=>'sign'], function(){
+ 	//design/list
+ 	Route::get('list','SignController@getList');
+
+ 
+ 	Route::get('update/{id}','SignController@getUpdate');
+ 	Route::post('update/{id}','SignController@postUpdate');
+ 
+ 	Route::get('add','SignController@getAdd');
+ 	Route::post('add','SignController@postAdd');
+
+ 	Route::get('add/customer/{id}','SignController@getAddoldcus');
+ 	Route::get('delete/{id}','SignController@getDelete');
+  }); 
+
   //Phan thong tin cho phiếu thu chi
 Route::group(['prefix'=>'bill'], function(){
  	
@@ -102,6 +128,9 @@ Route::group(['prefix'=>'bill'], function(){
 
  	Route::get('receipts/{id}','BillController@getReceipts');
  	Route::post('receipts/{id}','BillController@postReceipts');
+
+ 	Route::get('signreceipts/{id}','BillController@getSignReceipts');
+ 	Route::post('signreceipts/{id}','BillController@postSignReceipts');
 
  	Route::get('payment/{id}','BillController@getPayment');
  	Route::post('payment/{id}','BillController@postPayment');
@@ -119,4 +148,12 @@ Route::group(['prefix' => 'filter'], function(){
 	Route::post('year','FilterController@postYear');
 });
 Route::get('contracttemplate/receipts/{id}', 'BillController@getRecTem');
+Route::get('contracttemplate/signreceipts/{id}', 'BillController@getSignRecTem');
 Route::get('contracttemplate/payment/{id}', 'BillController@getPayTem');
+
+//Phan thong tin cho phiếu thống kê hoa hồng
+Route::group(['prefix'=>'statistic'], function(){
+  	
+  	Route::get('list','StatisticController@getList');
+  	Route::post('filter','StatisticController@postFilter');
+});

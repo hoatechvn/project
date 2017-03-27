@@ -17,7 +17,7 @@ class TypeContractController extends Controller {
 		$this->validate($request, 
 			[
 				'typecontract' => 'required|min:3|max:100',
-				'idtypecontract' => 'required' //// typecontract lấy request từ name của input bên view (ví dụ: name="typecontract" placeholder="Nhập tên quyền truy cập")
+				'idtypecontract' => 'required' 
 			],
 			[
 				'typecontract.required' => 'Bạn chưa nhập loại hợp đồng',

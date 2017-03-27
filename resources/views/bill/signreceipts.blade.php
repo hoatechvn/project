@@ -6,8 +6,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Phiếu chi cho hợp đồng
-                <small>{{$design->name}}</small>
+                <h1 class="page-header">Phiếu thu cho lấy dấu
+                <small>{{$sign->id}}</small>
                 </h1>
         </div>
             <!-- /.col-lg-12 -->
@@ -19,16 +19,16 @@
         		@endforeach
         	</div>
         @endif
-            <form action="bill/payment/{{$design->id}}" method="POST">
+            <form action="bill/signreceipts/{{$sign->id}}" method="POST">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
               
                 <div class="form-group">
-                    <label>Họ và tên người nhận tiền <font style="color: red;">*</font></label>
-                    <input class="form-control" name="customer" value="{{$design->customer}}" placeholder="Nhập họ và tên người nộp tiền" />
+                    <label>Họ và tên người nộp tiền <font style="color: red;">*</font></label>
+                    <input class="form-control" name="customer" value="{{$sign->customer}}" placeholder="Nhập họ và tên người nộp tiền" />
                 </div>
                 <div class="form-group">
                     <label>Địa chỉ <font style="color: red;">*</font></label>
-                    <input class="form-control" name="cus_address" value="{{$design->cus_address}}" placeholder="Nhập địa chỉ" />
+                    <input class="form-control" name="cus_address" value="{{$sign->phone}}" placeholder="Nhập địa chỉ / số điện thoại" />
                 </div>
                 <div class="form-group">
                	 	<label>Lý do nộp <font style="color: red;">*</font></label>
@@ -70,6 +70,7 @@
                 <button type="submit" class="btn btn-default" formtarget="_blank">Lưu</button>
                 <button type="reset" class="btn btn-default">Làm mới</button>
             <form>
+           
         </div>
     </div>
     <!-- /.container-fluid -->

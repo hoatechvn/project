@@ -23,7 +23,7 @@
             <form action="customer/update/{{$customer->id}}" method="POST">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="form-group">
-                    <label>Tên khách hàng</label>
+                    <label>Tên khách hàng <font style="color: red;">*</font></label>
                     <input class="form-control" name="name" placeholder="Nhập tên khách hàng" value="{{$customer->name}}" />
                 </div>
                
@@ -39,7 +39,7 @@
                     <label>Email</label>
                     <input class="form-control" name="email" placeholder="Nhập email" value="{{$customer->email}}" />
                 </div>
-                <button type="submit" class="btn btn-default">Cập nhật</button>
+                <button type="submit" class="btn btn-default">Lưu</button>
                 <button type="reset" class="btn btn-default">Làm mới</button>
             <form>
         </div>

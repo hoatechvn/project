@@ -46,4 +46,13 @@ class FilterController extends Controller {
 		$bill = bill::where('issued_date','like', "%$issued_year%")->paginate(DB::table('bill')->count());
 		return view('filter.year',['bill' => $bill, 'issued_year' =>$issued_year, 'design' =>$design]);
 	}
+
+	function postAcc(Request $request)
+ 	{	
+ 		$account=account::all();
+ 		$design=design::all();
+ 		$issued_month = $request->search_year."-".$request->search_month;
+ 		$bill = bill::where('issued_date','like', "%$issued_month%")->paginate(DB::table('bill')->count());
+ 		return view('filter.month',['bill' => $bill, 'issued_month' =>$issued_month, 'design' =>$design]);
+ 	}
 }

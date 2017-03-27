@@ -24,7 +24,7 @@
                 <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <h2> Thông tin chung</h2><br>
                     <div class="form-group">
-                        <label>Nhân viên thụ hưởng</label>
+                        <label>Nhân viên thụ hưởng <font style="color: red;">*</font></label>
                         <select class="form-control" name="id_account">
                         	<option>Chọn nhân viên thụ hưởng</option>
                             @foreach ($account as $acc)
@@ -33,7 +33,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Loại hợp đồng</label>
+                        <label>Loại hợp đồng <font style="color: red;">*</font></label>
                         <select class="form-control" name="id_typecontract">
                             <option value="0">Chọn loại hợp đồng </option>
                             @foreach ($typecontract as $con)
@@ -42,20 +42,25 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Ngày đăng ký</label>
+                        <label>Ngày đăng ký <font style="color: red;">*</font></label>
                         <input class="form-control" name="register_date" type="date"/>
                     </div>
                     <div class="form-group">
-                        <label> Họ và tên khách hàng</label>
+                        <label> Họ và tên khách hàng <font style="color: red;">*</font></label>
                         <input class="form-control" name="customer" value="{{$design->name}}"  placeholder="Nhập họ và tên khách hàng" />
                     </div>
                     <div class="form-group">
-                        <label> Địa chỉ khách hàng</label>
+                        <label> Địa chỉ khách hàng <font style="color: red;">*</font></label>
                         <input class="form-control" name="cus_address" value="{{$design->address}}" placeholder="Nhập địa chỉ của khách hàng" />
                     </div>
                     <div class="form-group">
-                        <label> Số điện thoại</label>
-                        <input class="form-control" name="cus_phone" value="{{$design->phone}}" placeholder="Nhập số điện thoại" />
+                        <label> Số điện thoại <font style="color: red;">*</font></label>
+                        <input onChange="format_curency(this);" class="form-control" name="cus_phone" placeholder="Nhập số điện thoại" onkeydown="return ( event.ctrlKey || event.altKey 
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                    || (95<event.keyCode && event.keyCode<106)
+                    || (event.keyCode==8) || (event.keyCode==9) 
+                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==46) )" />
                     </div>
                     <div class="form-group">
                         <label> Email</label>
@@ -63,37 +68,37 @@
                     </div>
                 </div>
                 <div class="col-lg-6" style="padding-bottom:50px"> 
-                    <h2> Thông tin chi tiết</h2><br>
+                    <h2> Thông tin chi tiết </h2><br>
                     <div class="form-group">
-                        <label>Số nhà </label>
+                        <label>Số nhà <font style="color: red;">*</font></label>
                         <input class="form-control" name="home_add" placeholder="Nhập số nhà " />
                     </div>
                     <div class="form-group">
-                        <label>Đường </label>
+                        <label>Đường <font style="color: red;">*</font></label>
                         <input class="form-control" name="street" placeholder="Nhập đường " />
                     </div>
                     <div class="form-group">
-                        <label> Phường</label>
+                        <label> Phường <font style="color: red;">*</font></label>
                         <input class="form-control" name="ward" placeholder="Nhập phường " />
                     </div>
                     <div class="form-group">
-                        <label> Quận</label>
+                        <label> Quận <font style="color: red;">*</font></label>
                         <input class="form-control" name="district" placeholder="Nhập quận " />
                     </div>
                     <div class="form-group">
-                        <label> Diện tích sàn sử dụng, ban công (m2)</label>
+                        <label> Diện tích sàn sử dụng, ban công (m2) <font style="color: red;">*</font></label>
                         <input class="form-control" name="area_s" placeholder="Nhập diện tích sàn sử dụng, ban công " />
                     </div>
                     <div class="form-group">
-                        <label> Diện tích sân thượng, hiên (m2)</label>
+                        <label> Diện tích sân thượng, hiên (m2) <font style="color: red;">*</font></label>
                         <input class="form-control" name="area_sth" placeholder="Nhập diện tích sân thượng, hiên " />
                     </div>
                     <div class="form-group">
-                        <label> Diện tích sân trống, đất trống (m2)</label>
+                        <label> Diện tích sân trống, đất trống (m2) <font style="color: red;">*</font></label>
                         <input class="form-control" name="area_stsd" placeholder="Nhập diện tích sân trống, đất trống " />
                     </div>
                     <div class="form-group">
-                        <label> Giá trị tối thiểu của một bản vẽ (VNĐ) </label>
+                        <label> Giá trị tối thiểu của một bản vẽ (VNĐ) <font style="color: red;">*</font></label>
                         <input onChange="format_curency(this);" class="form-control" name="min_cost"  placeholder="Nhập giá trị tối thiểu của bản vẽ (trong khoảng từ 0 đến 9)" onkeydown="return ( event.ctrlKey || event.altKey 
                     || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
                     || (95<event.keyCode && event.keyCode<106)
@@ -102,7 +107,7 @@
                     || (event.keyCode==46) )" />
                     </div>
                     <div class="form-group">
-                        <label> Số tiền tạm ứng (VNĐ) </label>
+                        <label> Số tiền tạm ứng (VNĐ) <font style="color: red;">*</font> </label>
                         <input onChange="format_curency(this);" class="form-control" name="received_cost" placeholder="Nhập số tiền tạm ứng (trong khoảng từ 0 đến 9) " onkeydown="return ( event.ctrlKey || event.altKey 
                     || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
                     || (95<event.keyCode && event.keyCode<106)
@@ -111,7 +116,7 @@
                     || (event.keyCode==46) )" />
                     </div>
                     <div class="form-group">
-                        <label> Thời gian khảo sát nhà (ngày) </label>
+                        <label> Thời gian khảo sát nhà (ngày) <font style="color: red;">*</font></label>
                         <input class="form-control" name="time" placeholder="Nhập thời gian khảo sát nhà" />
                     </div>
                     <button type="submit" class="btn btn-default" onclick="submitForm('design/add')" >Lưu</button>

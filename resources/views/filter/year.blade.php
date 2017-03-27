@@ -60,8 +60,8 @@
                     @endif
                     <td>{{$status}}</td>
                     <td>{{$bil->money}}</td>
-                    <td>{{$bil->created_date}}</td>
-                    <td>{{$bil->issued_date}}</td>
+                    <td>{{date('d/m/Y',strtotime($bil->created_date))}}</td>
+                    <td>{{date('d/m/Y',strtotime($bil->issued_date))}}</td>
                     <td>{{$bil->note}}</td>
                  
                 </tr>

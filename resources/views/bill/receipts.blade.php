@@ -23,19 +23,19 @@
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
               
                 <div class="form-group">
-                    <label>Họ và tên người nộp tiền</label>
+                    <label>Họ và tên người nộp tiền <font style="color: red;">*</font></label>
                     <input class="form-control" name="customer" value="{{$design->customer}}" placeholder="Nhập họ và tên người nộp tiền" />
                 </div>
                 <div class="form-group">
-                    <label>Địa chỉ</label>
+                    <label>Địa chỉ <font style="color: red;">*</font></label>
                     <input class="form-control" name="cus_address" value="{{$design->cus_address}}" placeholder="Nhập địa chỉ" />
                 </div>
                 <div class="form-group">
-               	 	<label>Lý do nộp</label>
+               	 	<label>Lý do nộp <font style="color: red;">*</font></label>
                 	<textarea class="form-control" rows="3" name="reason"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Số tiền(VNĐ)</label>
+                    <label>Số tiền(VNĐ) <font style="color: red;">*</font></label>
                      <input onChange="format_curency(this);" class="form-control" name="money"  placeholder="Nhập số tiền (trong khoảng từ 0 đến 9)" onkeydown="return ( event.ctrlKey || event.altKey 
                     || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
                     || (95<event.keyCode && event.keyCode<106)
@@ -44,7 +44,7 @@
                     || (event.keyCode==46) )" />
                 </div>
                 <div class="form-group">
-                    <label>Viết bằng chữ</label>
+                    <label>Viết bằng chữ <font style="color: red;">*</font></label>
                     <textarea class="form-control" rows="3" name="mon_character"></textarea>
                 </div>
                 <div class="form-group">
@@ -52,11 +52,11 @@
                     <input class="form-control" name="attach"  placeholder="Nhập số chứng từ kế toán kèm theo" />
                 </div>
                 <div class="form-group">
-                    <label>Ngày tạo</label>
+                    <label>Ngày tạo <font style="color: red;">*</font></label>
                     <input class="form-control" name="created_date"  type="date" />
                 </div>
                 <div class="form-group">
-                    <label>Ngày ký</label>
+                    <label>Ngày ký <font style="color: red;">*</font></label>
                     <input class="form-control" name="issued_date"  type="date" />
                 </div>
                 <div class="form-group">
@@ -67,7 +67,7 @@
                     <label>Có</label>
                     <input class="form-control" name="have"  placeholder="Nhập số tiền có" />
                 </div>
-                <button type="submit" class="btn btn-default" formtarget="_blank">Tạo</button>
+                <button type="submit" class="btn btn-default" formtarget="_blank">Lưu</button>
                 <button type="reset" class="btn btn-default">Làm mới</button>
             <form>
            

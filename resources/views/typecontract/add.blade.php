@@ -21,18 +21,18 @@
             <form action="contract/add" method="POST">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="form-group">
-                    <label>Tên loại hợp đồng</label>
+                    <label>Tên loại hợp đồng <font style="color: red;">*</font></label>
                     <input class="form-control" name="typecontract" placeholder="Nhập tên loại hợp đồng" />
                 </div>
                 <div class="form-group">
-                <label>Mã loại hợp đồng</label>
+                <label>Mã loại hợp đồng <font style="color: red;">*</font></label>
                    <input class="form-control" name="idtypecontract" placeholder="Nhập mã loại hợp đồng" />
                 </div>
                 <div class="form-group">
                	 	<label>Mô tả</label>
                 	<textarea class="form-control" rows="3" name="description"></textarea>
                 </div>
-                <button type="submit" class="btn btn-default">Thêm</button>
+                <button type="submit" class="btn btn-default">Lưu</button>
                 <button type="reset" class="btn btn-default">Làm mới</button>
             <form>
         </div>

@@ -12,6 +12,10 @@ class customer extends Model {
 	{
 		return $this->hasMany('App\design','id_customer','id');
 	}
+	public function sign()
+	{
+		return $this->hasMany('App\sign','id_customer','id');
+	}
 
 	
 

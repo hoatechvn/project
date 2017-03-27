@@ -27,7 +27,7 @@
                     <textarea class="form-control" rows="3" name="note">{{$bill->note}}</textarea>
                 </div>
                 
-                <button type="submit" class="btn btn-default">Chỉnh sửa</button>
+                <button type="submit" class="btn btn-default">Lưu</button>
                 <button type="reset" class="btn btn-default">Làm mới</button>
             <form>
         </div>

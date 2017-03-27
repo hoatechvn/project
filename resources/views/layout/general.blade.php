@@ -73,7 +73,19 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-users fa-fw"></i> Tài khoản<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-users fa-fw"></i> Loại bản vẽ <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="draw/list"> Danh sách bản vẽ</a>
+                        </li>
+                        <li>
+                            <a href="draw/add"> Thêm loại bản vẽ </a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-user fa-fw"></i> Tài khoản<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="account/list"> Danh sách tài khoản</a>
@@ -88,7 +100,7 @@
                     <a href="customer/list"><i class="fa fa-users fa-fw"></i> Khách hàng</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-users fa-fw"></i> Hợp đồng thiết kế<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-retweet fa-fw"></i> Hợp đồng thiết kế<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="design/list"> Danh sách hợp đồng</a>
@@ -100,12 +112,27 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-users fa-fw"></i> Sổ quỹ<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-book fa-fw "></i> Kế toán<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="bill/list"> Danh sách sổ quỹ</a>
                         </li>
+                        <li>
+                            <a href="statistic/list"> Thống kê hoa hồng</a>
+                        </li>
                        
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                 <li>
+                    <a href="#"><i class="fa fa-plus fa-fw"></i> Lấy dấu<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="sign/list"> Danh sách lấy dấu</a>
+                        </li>
+                        <li>
+                            <a href="sign/add"> Thêm lấy dấu</a>
+                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

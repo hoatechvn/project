@@ -17,5 +17,10 @@ class account extends Model {
 	{
 		return $this->hasMany('App\design', 'id_account', 'id');
 	}
+	
+	public function sign()
+	{
+		return $this->hasMany('App\sign', 'id_account', 'id');
+	}
 
 }

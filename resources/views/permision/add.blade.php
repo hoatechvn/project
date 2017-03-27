@@ -21,7 +21,7 @@
             <form action="permision/add" method="POST">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="form-group">
-                        <label>Mã phân quyền</label>
+                        <label>Mã phân quyền <font style="color: red;">*</font></label>
                         <select class="form-control" name="typePermision">
                             <option value="">Chọn mã phân quyền</option>
                             <option value="AD">AD</option>
@@ -32,7 +32,7 @@
                         </select>
                 </div>
                 <div class="form-group">
-                    <label>Tên phân quyền</label>
+                    <label>Tên phân quyền <font style="color: red;">*</font></label>
                     <input class="form-control" name="namePermision" placeholder="Nhập tên quyền truy cập" />
                 </div>
                 
@@ -40,7 +40,7 @@
                	 	<label>Mô tả</label>
                 	<textarea class="form-control" rows="3" name="description"></textarea>
                 </div>
-                <button type="submit" class="btn btn-default">Thêm</button>
+                <button type="submit" class="btn btn-default">Lưu</button>
                 <button type="reset" class="btn btn-default">Làm mới</button>
             <form>
         </div>
