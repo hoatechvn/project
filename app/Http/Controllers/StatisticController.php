@@ -10,15 +10,10 @@ class StatisticController extends Controller {
 	
 	public function getList()
 	{
-<<<<<<< HEAD
-=======
-		//$bill=bill::all();
->>>>>>> origin/master
 		$design=design::all();
 		$account=account::all();
 		return view('statistic.list', ['design' => $design,'account' => $account]);
 	}
-<<<<<<< HEAD
 	function postFilter(Request $request)
 	{	
 		$account=account::all();
@@ -28,7 +23,3 @@ class StatisticController extends Controller {
 		return view('statistic.filter',['design' => $design, 'idaccount' =>$idaccount, 'issued_month' =>$issued_month,'account' =>$account]);	
 	}
 }
-=======
-	
-}
->>>>>>> origin/master

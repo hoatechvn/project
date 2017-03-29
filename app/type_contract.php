@@ -10,7 +10,11 @@ class type_contract extends Model {
 
 	public function design()
  	{
- 		return $this->hasMany('App\design','id_typecontruct','id');
+ 		return $this->hasMany('App\design','id_typecontract','id');
+ 	}
+ 	public function workday()
+ 	{
+ 		return $this->hasMany('App\workday','id_typecontract','id');
  	}
 
 }

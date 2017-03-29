@@ -34,17 +34,10 @@
                 </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
                 @foreach($design as $des)
                 @if($des->status==1)                
                 <tr style="background-color: #5cb85c;" align="center">
                 
-=======
-                @foreach($design as $des)  
-                @if($des->status==1) 
-               
-                <tr style="background-color: #5cb85c;" align="center">
->>>>>>> origin/master
                     <td>{{$des->id}}</td>
                     <td>{{$des->name}}</td>
                     <td>{{date('d/m/Y',strtotime($des->register_date))}}</td>
@@ -57,7 +50,6 @@
                     <td class="center"><a href="design/update/{{$des->id}}"><i class="fa fa-pencil fa-fw" style="display:none"></i> </a></td>
                     <td class="center"><a href="design/delete/{{$des->id}}" onclick="return confirm('Bạn có muốn xóa hợp đồng này không?');"><i class="fa fa-trash-o  fa-fw"></i></a></td>
                 </tr>
-<<<<<<< HEAD
                 @else
                     <tr class="odd gradeX" align="center">
                 
@@ -74,26 +66,7 @@
                 </tr>
 
                 @endif
-=======
-             
-                @else
->>>>>>> origin/master
                 
-                    <tr class="odd gradeX" align="center">
-                    <td>{{$des->id}}</td>
-                    <td>{{$des->name}}</td>
-                    <td>{{$des->register_date}}</td>
-                    <td>{{$des->customer}}</td>
-                    
-                    <td class="center"><a href="design/detail/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>
-                    <td class="center"><a href="bill/receipts/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>
-                    <td class="center"><a href="bill/payment/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>
-                    <td>{{$des->note}}</td>
-                    <td class="center"><a href="design/update/{{$des->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
-                    <td class="center"><a href="design/delete/{{$des->id}}" onclick="return confirm('Bạn có muốn xóa hợp đồng này không?');"><i class="fa fa-trash-o  fa-fw"></i></a></td>
-                </tr>
-              
-                  @endif
                 @endforeach
             </tbody>
         </table>

@@ -17,18 +17,22 @@ class TypeContractController extends Controller {
 		$this->validate($request, 
 			[
 				'typecontract' => 'required|min:3|max:100',
-				'idtypecontract' => 'required' 
+				'idtypecontract' => 'required',
+				'time' =>'required|integer' 
 			],
 			[
 				'typecontract.required' => 'Bạn chưa nhập loại hợp đồng',
 				'typecontract.min' => 'loại hợp đồng phải có độ dài từ 3 đến 100 ký tự',
 				'typecontract.max' => 'loại hợp đồng phải có độ dài từ 3 đến 100 ký tự',
 				'idtypecontract.required' => 'Bạn chưa nhập mã loại hợp đồng',
+				'time.required' =>"Bạn phải nhập thời gian làm việc",
+				'time.integer' =>'Thời gian làm việc phải là số nguyên'
 			]);
 			$type_contract = new type_contract();  // tạo type_contract model mới
 			$type_contract->type = $request->typecontract;  // typecontract lấy request từ name của input bên view (ví dụ: name="typecontract" placeholder="Nhập tên quyền truy cập")
 			$type_contract->description = $request->description; // tương tự như trên
 			$type_contract->idtype = $request->idtypecontract;
+			$type_contract->time = $request->time;
 			$type_contract->save();
 			return redirect('contract/list') ->with('thongbao', 'Thêm thành công');
 		}
@@ -42,17 +46,21 @@ class TypeContractController extends Controller {
 		$this->validate($request, 
 			[
 				'typecontract' => 'required|min:3|max:100',
-				'idtypecontract' => 'required' 
+				'idtypecontract' => 'required',
+				'time' =>'required|integer'  
 			],
 			[
 				'typecontract.required' => 'Bạn chưa nhập loại hợp đồng',
 				'typecontract.min' => 'loại hợp đồng phải có độ dài từ 3 đến 100 ký tự',
 				'typecontract.max' => 'loại hợp đồng phải có độ dài từ 3 đến 100 ký tự',
 				'idtypecontract.required' => 'Bạn chưa nhập mã loại hợp đồng',
+				'time.required' =>"Bạn phải nhập thời gian làm việc",
+				'time.integer' =>'Thời gian làm việc phải là số nguyên'
 			]);
 		$type_contract->type = $request->typecontract;
 		$type_contract->description = $request->description;
 		$type_contract->idtype = $request->idtypecontract;
+		$type_contract->time = $request->time;
 		$type_contract->save();
 		return redirect('contract/list') ->with('thongbao', 'Cập nhật thành công');
 		

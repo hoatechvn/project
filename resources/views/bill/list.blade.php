@@ -16,23 +16,15 @@
         		
         	</div>
         @endif
-         <div class="row">
-<div class="col-sm-3" style="background-color: #ccc;font-weight:bold;padding: 10px 20px 59px 20px;font-size: 14px;"> 
         <form action="filter/idcontract" method="POST" style="padding-bottom:20px">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
               
                 <div class="form-group">
                     <label>Thu chi theo hợp đồng</label>
-<<<<<<< HEAD
                     <input class="form-control" name="search_idcontract" placeholder="Nhập mã hợp đồng cần xem" />
-=======
-                    <input class="form-control" name="search_idcontract" placeholder="Nhập ID hợp đồng"/>
->>>>>>> origin/master
                 </div>
                 <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
         </form> 
-</div>
-<div class="col-sm-3" style="background-color: #e7e7e7;font-weight:bold;padding: 10px 20px 59px 20px;font-size: 14px;"> 
         <form action="filter/date" method="POST" style="padding-bottom:20px">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="form-group">
@@ -41,19 +33,11 @@
                 </div>
                 <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
         </form> 
-</div>
-<div class="col-sm-3" style="background-color:#ccc; font-weight:bold;padding: 10px 20px 79px 3px;font-size: 14px;"> 
         <form action="filter/month" method="POST" style="padding-bottom:20px">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                <div class="col-sm-6" >
                 <div class="form-group">
                     <label>Thu chi theo tháng</label>
-<<<<<<< HEAD
                     <select class="form-control" name="search_month" >
-=======
-                    <select class="form-control" name="search_month">
-                        <option value="00">Chọn tháng</option>
->>>>>>> origin/master
                         <option value="01">Tháng 1</option>
                         <option value="02">Tháng 2</option>
                         <option value="03">Tháng 3</option>
@@ -67,11 +51,7 @@
                         <option value="11">Tháng 11</option>
                         <option value="12">Tháng 12</option>
                     </select>
-                </div> 
-                 <button type="submit" class="btn btn-default" formtarget="_blank" >Xem</button>
                 </div>
-<div class="col-sm-6" style="padding-top:25px;">
-
                 <div class="form-group">
                     <select class="form-control" name="search_year">
                         <option value="2017">2017</option>
@@ -106,11 +86,8 @@
                         <option value="2038">2038</option>
                     </select>
                 </div>
-                </div>
-               
+                <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
         </form>
-        </div>
-<div class="col-sm-3" style="background-color: #e7e7e7;font-weight:bold;padding: 10px 20px 59px 20px;font-size: 14px;">        
         <form action="filter/year" method="POST" style="padding-bottom:20px">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
             <div class="form-group">
@@ -148,16 +125,12 @@
                         <option value="2038">2038</option>
                     </select>
                 </div>
-
                 <button type="submit" class="btn btn-default" formtarget="_blank">Xem</button>
         </form>
-		
-         </div>
-		
- </div> </br> </br>
+
 		<table class="table table-striped table-bordered table-hover" id="dataTables-example">
             <thead>
-                <tr align="justify">
+                <tr align="center">
                     <th>ID</th>
                     <th>ID hợp đồng</th>
                     <th>Tên hợp đồng</th>
@@ -172,7 +145,7 @@
             </thead>
             <tbody>
             	@foreach($bill as $bil)
-                <tr class="odd gradeX" align="justify">
+                <tr class="odd gradeX" align="center">
                     <td>{{$bil->id}}</td>
                     <td>{{$bil->id_contract}}</td>
                     <td>

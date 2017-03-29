@@ -1,33 +1,36 @@
 <?php namespace App\Http\Controllers;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\bill;
 use App\design;
-<<<<<<< HEAD
 use App\sign;
 
-=======
->>>>>>> origin/master
 class BillController extends Controller {
+
+
 	public function add_nol($number,$add_nol) {
 	   while (strlen($number)<$add_nol) {
 	       $number = "0".$number;
 	   }
 	   return $number;
 	}
+
 	public function getList()
 	{
 		$bill=bill::all();
 		$design=design::all();
 		return view('bill.list', ['bill' => $bill, 'design' => $design]);
 	}
+
 	public function getReceipts($id)
 	{
 		$design= design::find($id);
 		return view('bill.receipts',['design' => $design]);
 	}
+
 	public function postReceipts(Request $request, $id){
 		$this->validate($request, 
 			[
@@ -56,7 +59,8 @@ class BillController extends Controller {
 			]);
 			$array = array();
 			$variable = bill::all();
-  			$bill= new bill();		  		
+			$bill= new bill();
+
 			$bill->customer = $request->customer;
 			$bill->address = $request ->cus_address;
 			$bill->reason = $request->reason;
@@ -70,6 +74,7 @@ class BillController extends Controller {
 			$bill->note = $request->note;
 			$bill->created_date = $request->created_date;
 			$bill->issued_date = $request->issued_date;
+			
 			foreach ($variable as $key) 
 			{
 				if("PT" == preg_replace('/[^a-z]+/i',"",$key->id))
@@ -85,9 +90,9 @@ class BillController extends Controller {
 					$stt=max($array);
 				$stt++;
 				$bill->id = "PT"."".$this->add_nol($stt,5);
+
 			$bill->save();
-			
-			
+
 			//lưu và chuyển đến trang in
  			$t="PT"."".$this->add_nol($stt,5);
  			return redirect('contracttemplate/receipts/'.$t);
@@ -99,13 +104,12 @@ class BillController extends Controller {
 		$billre= bill::find($id);
 		return view('contracttemplate.receipts',['billre' => $billre]);
 	}
-
-	
 	public function getPayment($id)
 	{
 		$design= design::find($id);
 		return view('bill.payment',['design' => $design]);
 	}
+
 	public function postPayment(Request $request, $id){
 		$this->validate($request, 
 			[
@@ -128,12 +132,13 @@ class BillController extends Controller {
 				'created_date.required' => 'Bạn chưa chọn ngày viết phiếu',
 				'issued_date.required' => 'Bạn chưa chọn ngày ký phiếu',
 			]);
+
 			$array = array();
 			$variable = bill::all();
 			$bill= new bill();
+
 			$stt = DB::table('bill')->count();
 			$stt++;
-
 
 			$bill->customer = $request->customer;
 			$bill->address = $request ->cus_address;
@@ -148,6 +153,7 @@ class BillController extends Controller {
 			$bill->note = $request->note;
 			$bill->created_date = $request->created_date;
 			$bill->issued_date = $request->issued_date;
+			
 			foreach ($variable as $key) 
 			{
 				if("PC" == preg_replace('/[^a-z]+/i',"",$key->id))
@@ -164,6 +170,7 @@ class BillController extends Controller {
 				$stt++;
 				$bill->id = "PC"."".$this->add_nol($stt,5);
 			$bill->save();
+
 			$c="PC"."".$this->add_nol($stt,5);
  			return redirect('contracttemplate/payment/'.$c);
 
@@ -174,7 +181,6 @@ class BillController extends Controller {
 		$billpayment= bill::find($id);
 		return view('contracttemplate.paymenttem',['billpayment' => $billpayment]);
 	}
-<<<<<<< HEAD
 
 	public function getSignReceipts($id)
 	{
@@ -258,17 +264,18 @@ class BillController extends Controller {
 		$billre= bill::find($id);
 		return view('contracttemplate.receipts',['billre' => $billre]);
 	}
-=======
->>>>>>> origin/master
 	public function getUpdate($id)
 	{
 		$bill= bill::find($id);
 		return view('bill.update',['bill' => $bill]);
 	}
+
 	public function postUpdate(Request $request, $id){
 			$bill=bill::find($id);
 			$bill->note = $request->note;
+
 			$bill->save();
+
 		
 		return redirect('bill/list') ->with('thongbao', 'Chỉnh sửa thành công');
 	}

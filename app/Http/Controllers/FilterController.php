@@ -14,9 +14,9 @@ class FilterController extends Controller {
 	{	
 		$design=design::all();
 		$idcontract = $request->search_idcontract;
- 		if($idcontract =="") $idcontract="ID*****";
+		if($idcontract =="") $idcontract="ID*****";
 		$bill = bill::where('id_contract','like', "%$idcontract%")->paginate(DB::table('bill')->count());
-		return view('filter.idcontract',['bill' => $bill, 'idcontract' =>$idcontract, 'design' =>$design]);
+		return view('filter.idcontract',['bill' => $bill, 'idcontract' =>$idcontract, 'design' =>$design]);	
 	}
 
 	//Xem chi tiêu theo ngày
@@ -46,7 +46,6 @@ class FilterController extends Controller {
 		$bill = bill::where('issued_date','like', "%$issued_year%")->paginate(DB::table('bill')->count());
 		return view('filter.year',['bill' => $bill, 'issued_year' =>$issued_year, 'design' =>$design]);
 	}
-<<<<<<< HEAD
 
 	function postAcc(Request $request)
  	{	
@@ -56,15 +55,4 @@ class FilterController extends Controller {
  		$bill = bill::where('issued_date','like', "%$issued_month%")->paginate(DB::table('bill')->count());
  		return view('filter.month',['bill' => $bill, 'issued_month' =>$issued_month, 'design' =>$design]);
  	}
-=======
-	//Xem thống kê hoa hồng
-	function postAcc(Request $request)
-	{	
-		$account=account::all();
-		$design=design::all();
-		$issued_month = $request->search_year."-".$request->search_month;
-		$bill = bill::where('issued_date','like', "%$issued_month%")->paginate(DB::table('bill')->count());
-		return view('filter.month',['bill' => $bill, 'issued_month' =>$issued_month, 'design' =>$design]);
-	}
->>>>>>> origin/master
 }

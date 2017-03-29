@@ -21,7 +21,6 @@
             <form action="draw/add" method="POST">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="form-group">
-<<<<<<< HEAD
                     <label>Tên loại bản vẽ <font style="color: red;">*</font></label>
                     <input class="form-control" name="typedraw" placeholder="Nhập tên loại bản vẽ" />
                 </div>
@@ -43,27 +42,12 @@
                 	<textarea class="form-control" rows="3" name="description"></textarea>
                 </div>
                 <button type="submit" class="btn btn-default">Lưu</button>
-=======
-                    <label>Tên loại bản vẽ</label>
-                    <input class="form-control" name="typedraw" placeholder="Nhập tên loại bản vẽ" />
-                </div>
-                <div class="form-group">
-                <label>Mã loại bản vẽ</label>
-                   <input class="form-control" name="idtypedraw" placeholder="Nhập mã loại bản vẽ" />
-                </div>
-                <div class="form-group">
-               	 	<label>Mô tả</label>
-                	<textarea class="form-control" rows="3" name="description"></textarea>
-                </div>
-                <button type="submit" class="btn btn-default">Thêm</button>
->>>>>>> origin/master
                 <button type="reset" class="btn btn-default">Làm mới</button>
             <form>
         </div>
     </div>
     <!-- /.container-fluid -->
 </div>
-<<<<<<< HEAD
 <script type="text/javascript">
     function submitForm(action)
     {
@@ -75,7 +59,5 @@
         a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
 }
 </script>
-=======
->>>>>>> origin/master
 @endsection
 <!-- /#page-wrapper -->

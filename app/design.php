@@ -15,7 +15,7 @@ class design extends Model {
 
 	public function type_contract()
  	{
- 		return $this->belongsTo('App\type_contract','id_typecontruct','id');
+ 		return $this->belongsTo('App\type_contract','id_typecontract','id');
  	}
 
  	public function customer()

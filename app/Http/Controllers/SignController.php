@@ -107,8 +107,8 @@ class SignController extends Controller {
 			if($dem==0)
 			{
 				$customer= new customer();
-				$customer->name=$request->customer;
-				$customer->phone=$request->phone;
+				$customer->name=$request->owed_home;
+				$customer->address=$request->address;
 				$customer->save();	
 			}		
 		
@@ -176,8 +176,8 @@ class SignController extends Controller {
 			if($dem==0)
 			{
 				$customer= new customer();
-				$customer->name=$request->customer;
-				$customer->phone=$request->phone;
+				$customer->name=$request->owed_home;
+				$customer->address=$request->address;
 				$customer->save();	
 			}		
 		

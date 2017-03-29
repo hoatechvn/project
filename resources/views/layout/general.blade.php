@@ -72,18 +72,6 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                 <li>
-                  <a href="#"><i class="fa fa-cube fa-fw"></i> Loại bản vẽ<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="draw/list">Danh sách loại bản vẽ</a>
-                        </li>
-                        <li>
-                            <a href="draw/add">Thêm loại bản vẽ</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
                 <li>
                     <a href="#"><i class="fa fa-users fa-fw"></i> Loại bản vẽ <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -92,6 +80,30 @@
                         </li>
                         <li>
                             <a href="draw/add"> Thêm loại bản vẽ </a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-users fa-fw"></i> Giá diện tích <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="cost/list"> Danh sách giá diện tích</a>
+                        </li>
+                        <li>
+                            <a href="cost/add"> Thêm giá diện tích </a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-users fa-fw"></i> Quản lý công việc <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="workday/list"> Danh sách công việc</a>
+                        </li>
+                        <li>
+                            <a href="workday/add"> Thêm công việc </a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -124,11 +136,7 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-<<<<<<< HEAD
                     <a href="#"><i class="fa fa-book fa-fw "></i> Kế toán<span class="fa arrow"></span></a>
-=======
-                    <a href="#"><i class="fa fa-users fa-fw"></i> Kế toán<span class="fa arrow"></span></a>
->>>>>>> origin/master
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="bill/list"> Danh sách sổ quỹ</a>

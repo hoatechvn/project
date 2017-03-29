@@ -64,7 +64,31 @@ Route::group(['prefix'=>'contract'], function(){
 	Route::get('delete/{id}','TypeContractController@getDelete');
 });
 
-<<<<<<< HEAD
+// Phan thong tin cho tham số giá/ diện tích
+Route::group(['prefix'=>'cost'], function(){
+	Route::get('list','CostController@getList');
+
+	Route::get('update/{id}','CostController@getUpdate');
+	Route::post('update/{id}','CostController@postUpdate');
+
+	Route::get('add','CostController@getAdd');
+	Route::post('add','CostController@postAdd');
+
+	Route::get('delete/{id}','CostController@getDelete');
+});
+
+// Phan thong tin cho quản lý thời gian công việc
+Route::group(['prefix'=>'workday'], function(){
+	Route::get('list','WorkdayController@getList');
+
+	Route::get('update/{id}','WorkdayController@getUpdate');
+	Route::post('update/{id}','WorkdayControllerr@postUpdate');
+
+	Route::get('add','WorkdayController@getAdd');
+	Route::post('add','WorkdayController@postAdd');
+
+	Route::get('delete/{id}','WorkdayController@getDelete');
+});
 
 // Phan thong tin cho type_draw
 Route::group(['prefix'=>'draw'], function(){
@@ -75,21 +99,6 @@ Route::group(['prefix'=>'draw'], function(){
 	Route::post('add','TypeDrawController@postAdd');
 	Route::get('delete/{id}','TypeDrawController@getDelete');
 });
-=======
-// Phan thong tin cho type_draw
-Route::group(['prefix'=>'draw'], function(){
-	Route::get('list','TypeDrawController@getList');
-
-	Route::get('update/{id}','TypeDrawController@getUpdate');
-	Route::post('update/{id}','TypeDrawController@postUpdate');
-
-	Route::get('add','TypeDrawController@getAdd');
-	Route::post('add','TypeDrawController@postAdd');
-
-	Route::get('delete/{id}','TypeDrawController@getDelete');
-});
-
->>>>>>> origin/master
 // Phan thong tin cho customer
 Route::group(['prefix'=>'customer'], function(){
 	Route::get('list','CustomerController@getList');
@@ -154,11 +163,7 @@ Route::group(['prefix'=>'bill'], function(){
  	Route::get('update/{id}','BillController@getUpdate');
  	Route::post('update/{id}','BillController@postUpdate');
  });
-//Phan thong tin cho phiếu thống kê hoa hồng
-Route::group(['prefix'=>'statistic'], function(){
- 	
- 	Route::get('list','StatisticController@getList');
-});
+
 //Phan thong ke thu chi
 Route::group(['prefix' => 'filter'], function(){
 

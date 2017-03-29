@@ -24,6 +24,7 @@
                     <th>Chủ nhà</th>
                     <th>Địa chỉ</th>
                     <th>Người lấy dấu</th>
+                    <th>Số điện thoại</th>
                     <th>Ngày lấy dấu</th>
                     <th>Chi phí (VNĐ)</th>
                     <th>Tạm ứng (VNĐ)</th>
@@ -46,6 +47,7 @@
                     <td>{{$sig->owed_home}}</td>
                     <td>{{$sig->address}}</td>
                     <td>{{$sig->customer}}</td>
+                    <td>{{$sig->phone}}</td>
                     <td>{{date('d/m/Y',strtotime($sig->created_date))}}</td>
                     <td>{{number_format($cost,0,",",".")}}</td>
                     <td>{{$sig->received_cost}}</td>
@@ -61,6 +63,7 @@
                     <td>{{$sig->owed_home}}</td>
                     <td>{{$sig->address}}</td>
                     <td>{{$sig->customer}}</td>
+                    <td>{{$sig->phone}}</td>
                     <td>{{date('d/m/Y',strtotime($sig->created_date))}}</td>
                     <td>{{number_format($cost,0,",",".")}}</td>
                     <td>{{$sig->received_cost}}</td>
