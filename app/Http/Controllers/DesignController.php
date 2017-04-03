@@ -7,6 +7,7 @@ use App\design;
 use App\account;
 use App\type_contract;
 use App\customer;
+use App\cost;
 class DesignController extends Controller {
 	
 	public function add_nol($number,$add_nol) {
@@ -19,7 +20,8 @@ class DesignController extends Controller {
 	public function getList(){
 		
 		$design=design::all(); 
-		return view('design.list',['design'=>$design]); 
+		return view('design.list',['design'=>$design]);
+
 									
 	}
 	public function getAdd(){
@@ -36,16 +38,8 @@ class DesignController extends Controller {
 				'customer' =>'required|min:3|max:100',
 				'cus_address' =>'required',
 				'cus_phone'=> 'required|min:10|max:11',
-				'home_add' =>'required',
-				'street' =>'required',
-				'ward' =>'required',
-				'district' =>'required',
-				'area_s' =>'required|numeric',
-				'area_sth' =>'required|numeric',
-				'area_stsd' =>'required|numeric',
-				'min_cost' =>'required',
-				'received_cost' =>'required',
-				'time' =>'required|integer',
+				
+				
 			],
 			[
 				'id_account.required' => 'Bạn chưa chọn nhân viên thụ hưởng',
@@ -60,20 +54,7 @@ class DesignController extends Controller {
 				'cus_phone.min' => 'Số điện thoại phải có độ dài 10 hoặc 11 số',
 				'cus_phone.max' =>'Số điện thoại phải có độ dài 10 hoặc 11 số',
 				
-				'home_add.required' => 'Bạn chưa nhập địa chỉ nhà',
-				'street.required' => 'Bạn chưa nhập số đường',
-				'ward.required' => 'Bạn chưa nhập phường',
-				'district.required' => 'Bạn chưa quận',
-				'area_s.required' => 'Bạn chưa nhập diện tích sàn sử dụng, ban công',
-				'area_s.numeric' => 'Diện tích sàn sử dụng, ban công phải là số thực ',
-				'area_sth.required' => 'Bạn chưa nhập diện tích sân thượng, hiên',
-				'area_sth.numeric' => 'Diện tích sàn sân thượng, hiên phải là số thực ',
-				'area_stsd.required' => 'Bạn chưa nhập diện tích sân trống, đất trống',
-				'area_stsd.numeric' => 'Diện tích diện tích sân trống, đất trống phải là số thực ',
-				'min_cost.required' => 'Bạn chưa nhập giá trị tối thiểu của một bản vẽ',
-				'received_cost.required' => 'Bạn chưa nhập giá trị tạm ứng hợp đồng',
-				'time.required' => 'Bạn chưa nhập thời gian khảo sát nhà',
-				'time.integer' => 'Thời gian khảo sát nhà phải là số nguyên',
+				
 			]);
 			$array = array();
 			$variable = design::all();
@@ -84,18 +65,19 @@ class DesignController extends Controller {
 			$design->register_date = $request->register_date;
 			$design->customer = $request->customer;
 			$design->cus_address = $request->cus_address;
+			if($request->changeadd == "on")
+ 			{
+
+			$design->cus_address1 = $request->add1;
+
+			}
+			else
+			{
+			$design->cus_address1 = $request->cus_address;
+			}
 			$design->cus_phone = $request->cus_phone;
 			$design->cus_email = $request->cus_mail;
-			$design->home_add = $request->home_add;
-			$design->street = $request->street;
-			$design->ward = $request->ward;
-			$design->district = $request->district;
-			$design->area_s = $request->area_s;
-			$design->area_stsd = $request->area_stsd;
-			$design->area_sth = $request->area_sth;
-			$design->min_cost = $request->min_cost;
-			$design->received_cost = $request->received_cost;
-			$design->time = $request->time;
+		
 			$design->id_typecontract = $request->id_typecontract;
 			$design->id_account = $request->id_account;
 
@@ -120,6 +102,8 @@ class DesignController extends Controller {
 					$design->id = $con->idtype."".$this->add_nol($stt,5);
 				}
 			}
+			$design->sum_cost = $request->tong_tien;
+
 
 			$design->save();
 
@@ -265,7 +249,9 @@ class DesignController extends Controller {
 	public function getPrintTem($id)
 	{
 		$design=design::find($id);
-		return view('contracttemplate.contractdesign',['design' =>$design]);
+		$cost=cost::all();
+		$typecontract=type_contract::all();
+		return view('contracttemplate.contractdesign',['design' =>$design,'cost' =>$cost,'typecontract' => $typecontract]);
 	}
 	public function getUpdate($id){
 		$design = design::find($id);
@@ -277,7 +263,7 @@ class DesignController extends Controller {
 		$design=design::find($id);
 		$this->validate($request, 
 			[
-				'id_account' =>'required',
+	/*			'id_account' =>'required',
 				'id_typecontract' =>'required',
 				'register_date' =>'required',
 				'customer' =>'required|min:3|max:100',
@@ -292,10 +278,10 @@ class DesignController extends Controller {
 				'area_stsd' =>'required|numeric',
 				'min_cost' =>'required',
 				'received_cost' =>'required',
-				'time' =>'required|integer',
+				'time' =>'required|integer',*/
 			],
 			[
-				'id_account.required' => 'Bạn chưa chọn nhân viên thụ hưởng',
+			/*	'id_account.required' => 'Bạn chưa chọn nhân viên thụ hưởng',
 				'id_typecontract.required' => 'Bạn chưa chọn loại hợp đồng',
 				'register_date.required' => 'Bạn chưa chọn ngày đăng ký',
 				'customer.required' => 'Bạn chưa nhập tên khách hàng',
@@ -319,7 +305,7 @@ class DesignController extends Controller {
 				'min_cost.required' => 'Bạn chưa nhập giá trị tối thiểu của một bản vẽ',
 				'received_cost.required' => 'Bạn chưa nhập giá trị tạm ứng hợp đồng',
 				'time.required' => 'Bạn chưa nhập thời gian khảo sát nhà',
-				'time.integer' => 'Thời gian khảo sát nhà phải là số nguyên'
+				'time.integer' => 'Thời gian khảo sát nhà phải là số nguyên'*/
 			]);
 			$typecontract = type_contract::all();
 
@@ -327,17 +313,18 @@ class DesignController extends Controller {
 			$design->customer = $request->customer;
 			$design->cus_address = $request->cus_address;
 			$design->cus_phone = $request->cus_phone;
-			$design->cus_email = $request->cus_email;
-			$design->home_add = $request->home_add;
-			$design->street = $request->street;
-			$design->ward = $request->ward;
-			$design->district = $request->district;
-			$design->area_s = $request->area_s;
-			$design->area_stsd = $request->area_stsd;
-			$design->area_sth = $request->area_sth;
-			$design->min_cost = $request->min_cost;
-			$design->received_cost = $request->received_cost;
-			$design->time = $request->time;
+			//$design->cus_email = $request->cus_email;
+			//$design->home_add = $request->home_add;
+			//$design->street = $request->street;
+			//$design->ward = $request->ward;
+			//$design->district = $request->district;
+			//$design->area_s = $request->area_s;
+			//$design->area_stsd = $request->area_stsd;
+			//$design->area_sth = $request->area_sth;
+			//$design->min_cost = $request->min_cost;
+			$design->sum_cost = $request->sum_cost;
+			$design->sum_cost_fi = $request->chang_fi;
+			//$design->time = $request->time;
 			$design->id_typecontract = $request->id_typecontract;
 			$design->id_account = $request->id_account;
 			$design->status = $request->status;
@@ -483,10 +470,7 @@ class DesignController extends Controller {
 		$typecontract=type_contract::all();
 		return view('design.addoldcus',['design' => $design, 'account' => $account, 'typecontract' => $typecontract]);
 	}
-	public function getDetail($id){
-		$design = design::find($id);
-		return view('contracttemplate.contractdesign',['design' => $design]);
-	}
+	
 	public function getDelete($id){
 		try{
 			$design = design::find($id);
