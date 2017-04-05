@@ -2,12 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class design extends Model {
+class service extends Model {
 
 	//
-	protected $table="design";
+	protected $table="service";
 	public $timestamps = false;
-
 	public function account()
 	{
 		$this->belongsTo('App\account','id_account','id');
@@ -23,13 +22,20 @@ class design extends Model {
  		return $this->belongsTo('App\customer','id_customer','id');
  	}
 
- 	public function service()
- 	{
- 		return $this->belongsTo('App\service','id_customer','id');
- 	} 
-
  	public function bill()
 	{
-		return $this->hasMany('App\bill', 'id_design', 'id');
+		return $this->hasMany('App\bill', 'id_service', 'id');
 	}
+
+	public function detailbrief()
+	{
+		return $this->hasMany('App\detailbrief','id_service','id');
+	}
+
+	public function design()
+	{
+		return $this->hasMany('App\service', 'id_service', 'id');
+	}
+
+
 }

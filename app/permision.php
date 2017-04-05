@@ -23,4 +23,8 @@ class permision extends Model {
 		return $this->hasManyThrough('App\sign', 'App\account','id_permision','id_account', 'id');	
 	}
 
+	public function service()
+	{
+		return $this->hasManyThrough('App\service', 'App\account','id_permision','id_account', 'id');	
+	}
 }

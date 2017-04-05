@@ -23,15 +23,15 @@ class CustomerController extends Controller {
 		$this->validate($request, 
 			[
 				'name' => 'required|min:3|max:100',
+				'phone' => 'unique:customer,phone'
 			],
 			[
 				
 				'name.required' => 'Bạn chưa nhập tên Khách hàng',
 				'name.min' => 'Tên Khách hàng phải có độ dài từ 3 đến 100 ký tự',
 				'name.max' => 'Tên Khách hàng phải có độ dài từ 3 đến 100 ký tự',
-				
+				'phone.unique' => 'Số điện thoại này đã tồn tại'
 			]);
-
 		$customer->name = $request->name;
 		$customer->address = $request->address;
 		$customer->phone = $request->phone;

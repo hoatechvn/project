@@ -11,5 +11,9 @@ class bill extends Model {
  	{
  		return $this->belongsTo('App\design','id_design','id');
  	}
+ 	public function service()
+ 	{
+ 		return $this->belongsTo('App\service','id_service','id');
+ 	}
 
 }

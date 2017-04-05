@@ -23,4 +23,9 @@ class account extends Model {
 		return $this->hasMany('App\sign', 'id_account', 'id');
 	}
 
+	public function service()
+	{
+		return $this->hasMany('App\service', 'id_account', 'id');
+	}
+
 }

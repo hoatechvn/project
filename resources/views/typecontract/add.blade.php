@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Thêm tham số giá
+                <h1 class="page-header">Thêm loại hợp đồng
                 </h1>
         </div>
             <!-- /.col-lg-12 -->
@@ -18,20 +18,23 @@
         		@endforeach
         	</div>
         @endif
-            <form action="cost/add" method="POST">
+            <form action="contract/add" method="POST">
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="form-group">
-                    <label>Tên tham số diện tích <font style="color: red;">*</font></label>
-                    <input class="form-control" name="name" placeholder="Nhập tham số diện tích" />
+                    <label>Loại Hợp Đồng <font style="color: red;">*</font></label>
+                    <input class="form-control" name="typecontract" placeholder="Nhập loại hợp đồng"  />
                 </div>
                 <div class="form-group">
-                <label>Giá <font style="color: red;">*</font></label>
-                   <input class="form-control" name="có" placeholder="Nhập giá" />
+                     <label>Mã loại Hợp Đồng <font style="color: red;">*</font></label>
+                     <input class="form-control" name="idtypecontract" placeholder="Nhập mã loại hợp đồng" />
                 </div>
-               
                 <div class="form-group">
-               	 	<label>Mô tả</label>
-                	<textarea class="form-control" rows="3" name="description"></textarea>
+                <label>Thời gian làm việc <font style="color: red;">*</font></label>
+                   <input class="form-control" name="time" placeholder="Nhập thời gian làm việc"  />
+                </div>
+                <div class="form-group">
+                    <label>Mô tả</label>
+                    <textarea class="form-control" rows="3" name="description"></textarea>
                 </div>
                 <button type="submit" class="btn btn-default">Lưu</button>
                 <button type="reset" class="btn btn-default">Làm mới</button>

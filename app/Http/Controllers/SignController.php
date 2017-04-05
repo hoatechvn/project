@@ -95,22 +95,10 @@ class SignController extends Controller {
 
 			$sign->save();
 
-			$getall=customer::all();
-			$dem=0;
-			foreach ($getall as $all) 
-			{
-
-				if($all->phone == $request->cus_phone)
-					$dem++;
-			}
-				
-			if($dem==0)
-			{
-				$customer= new customer();
-				$customer->name=$request->owed_home;
-				$customer->address=$request->address;
-				$customer->save();	
-			}		
+			$customer= new customer();
+			$customer->name=$request->owed_home;
+			$customer->address=$request->address;
+			$customer->save();	
 		
 		return redirect('sign/list') ->with('thongbao', 'Thêm thành công');
 		

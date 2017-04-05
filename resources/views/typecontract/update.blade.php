@@ -24,11 +24,11 @@
             <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                 <div class="form-group">
                     <label>Loại Hợp Đồng <font style="color: red;">*</font></label>
-                    <input class="form-control" name="typecontract" placeholder="Nhập tên quyền truy cập" value="{{$type_contract->type}}" />
+                    <input class="form-control" name="typecontract" placeholder="Nhập loại hợp đồng" value="{{$type_contract->type}}" />
                 </div>
                 <div class="form-group">
                      <label>Mã loại Hợp Đồng <font style="color: red;">*</font></label>
-                     <input class="form-control" name="idtypecontract" placeholder="Nhập tên quyền truy cập" value="{{$type_contract->idtype}}" />
+                     <input class="form-control" name="idtypecontract" placeholder="Nhập mã loại hợp đồng" value="{{$type_contract->idtype}}" />
                 </div>
                 <div class="form-group">
                 <label>Thời gian làm việc <font style="color: red;">*</font></label>

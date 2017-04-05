@@ -147,13 +147,43 @@
             	@foreach($bill as $bil)
                 <tr class="odd gradeX" align="center">
                     <td>{{$bil->id}}</td>
-                    <td>{{$bil->id_contract}}</td>
                     <td>
-                    @foreach($design as $des)
-                        @if ($bil->id_contract == $des->id)
-                            {{$des->name}}
-                        @endif
-                    @endforeach
+                    @if ($bil->id_design != "")
+                        {{$bil->id_design}}
+                    @endif
+                    @if ($bil->id_service != "")
+                        {{$bil->id_service}}
+                    @endif
+                    @if ($bil->id_sign != "")
+                        {{$bil->id_sign}}
+                    @endif
+                    </td>
+                    <td>
+                    @if ($bil->id_design != "")
+                        @foreach($design as $des)
+                            @if ($bil->id_design == $des->id)
+                                {{$des->name}}
+                            @endif
+                        @endforeach
+                    @endif
+                    @if ($bil->id_service != "")
+                        @foreach($service as $ser)
+                            @if ($bil->id_service == $ser->id)
+                                {{$ser->name}}
+                            @endif
+                        @endforeach
+                    @endif
+                    @if ($bil->id_sign != "")
+                        @foreach($sign as $sig)
+                            @if ($bil->id_sign == $sig->id)
+                                @foreach($typedraw as $draw)
+                                    @if($sig->id_typedraw == $draw->id)
+                                        {{$draw->type}}
+                                    @endif
+                                @endforeach
+                            @endif
+                        @endforeach
+                    @endif
                     </td>
                     <td>{{$bil->customer}}</td>
                     @if ($bil->receipts == 1) {!! ''; $status = 'thu'; !!}
@@ -167,9 +197,10 @@
 
 
                     <td class="center"><a href="bill/update/{{$bil->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
-                 
                 </tr>
                 @endforeach
+
+                
             </tbody>
         </table>
         <!-- /.row -->

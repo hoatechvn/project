@@ -61,6 +61,18 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
+                    <a href="#"><i class="fa fa-user fa-fw"></i> Tài khoản<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="account/list"> Danh sách tài khoản</a>
+                        </li>
+                        <li>
+                            <a href="account/add"> Thêm tài khoản</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
                   <a href="#"><i class="fa fa-cube fa-fw"></i> Loại hợp đồng<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -96,6 +108,8 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+               
+              
                 <li>
                     <a href="#"><i class="fa fa-users fa-fw"></i> Quản lý công việc <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -108,18 +122,7 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-user fa-fw"></i> Tài khoản<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="account/list"> Danh sách tài khoản</a>
-                        </li>
-                        <li>
-                            <a href="account/add"> Thêm tài khoản</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
+               
                 <li>
                     <a href="customer/list"><i class="fa fa-users fa-fw"></i> Khách hàng</a>
                 </li>
@@ -131,6 +134,18 @@
                         </li>
                         <li>
                             <a href="design/add"> Tạo hợp đồng</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-retweet fa-fw"></i> Hợp đồng dịch vụ<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="service/list"> Danh sách hợp đồng</a>
+                        </li>
+                        <li>
+                            <a href="service/add"> Tạo hợp đồng</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

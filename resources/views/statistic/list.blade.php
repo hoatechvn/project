@@ -66,14 +66,6 @@
                         <option value="2022">2022</option>
                         <option value="2023">2023</option>
                         <option value="2024">2024</option>
-                        <option value="2017">2017</option>
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
                         <option value="2025">2025</option>
                         <option value="2026">2026</option>
                         <option value="2027">2027</option>
@@ -107,48 +99,120 @@
                     <th>Nhân viên thụ hưởng</th>
                     <th>Ngày ký</th>
                     <th>Ngày hoàn thành</th>
-                    <th>Tổng tiền</th> 
+                    <th>Tổng tiền (VNĐ)</th> 
+                    <th>Dịch vụ</th>
                     <th>Lưu ý</th>
                   
                 </tr>
             </thead>
             <tbody>
             	@foreach($design as $des)
-                @if($des->status==1) 
-                <tr style="background-color: #5cb85c;" align="justify">
-                    <td>{{$des->id}}</td>
-                    <td>{{$des->name}}</td>
-                    <td>
-                    @foreach($account as $acc)
-                        @if ($des->id_account == $acc->id)
-                            {{$acc->name}}
-                        @endif
-                    @endforeach
-                    </td>
-                    <td>{{date('d/m/Y',strtotime($des->register_date))}}</td>   
-                    <td>{{date('d/m/Y',strtotime($des->complete_date))}}</td>           
-                    <td>???</td>
-                    <td>{{$des->note}}</td>  
-                </tr>
-                @else
-                 <tr class="odd gradeX" align="justify">
-                    <td>{{$des->id}}</td>
-                    <td>{{$des->name}}</td>
-                    <td>
-                    @foreach($account as $acc)
-                        @if ($des->id_account == $acc->id)
-                            {{$acc->name}}
-                        @endif
-                    @endforeach
-                    </td>
-                    <td>{{date('d/m/Y',strtotime($des->register_date))}}</td>   
-                    <td></td>              
-                    <td>???</td>
-                    <td>{{$des->note}}</td>  
-                </tr>
+                    @if($des->status==1) 
+                    <tr style="background-color: #5cb85c;" align="justify">
+                        <td>{{$des->id}}</td>
+                        <td>{{$des->name}}</td>
+                        <td>
+                        @foreach($account as $acc)
+                            @if ($des->id_account == $acc->id)
+                                {{$acc->name}}
+                            @endif
+                        @endforeach
+                        </td>
+                        <td>{{date('d/m/Y',strtotime($des->register_date))}}</td>   
+                        <td>{{date('d/m/Y',strtotime($des->complete_date))}}</td>           
+                        <td>{{$des->sum_cost_fi}}</td>
+                        <td>
+                            @foreach($service as $ser)
+                                @if($des->id_service == $ser->id)
+                                    {{$ser->name}}
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>{{$des->note}}</td>  
+                    </tr>
+                    @else
+                     <tr class="odd gradeX" align="justify">
+                        <td>{{$des->id}}</td>
+                        <td>{{$des->name}}</td>
+                        <td>
+                        @foreach($account as $acc)
+                            @if ($des->id_account == $acc->id)
+                                {{$acc->name}}
+                            @endif
+                        @endforeach
+                        </td>
+                        <td>{{date('d/m/Y',strtotime($des->register_date))}}</td>   
+                        <td>Đang cập nhật...</td>              
+                        <td>Đang cập nhật...</td>
+                        <td>
+                            @foreach($service as $ser)
+                                @if($des->id_service == $ser->id)
+                                    {{$ser->name}}
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>{{$des->note}}</td>  
+                    </tr>
+                    @endif
+                @endforeach
 
 
-                 @endif
+                @foreach($service as $ser)
+                    @if($ser->status==1) 
+                    <tr style="background-color: #5cb85c;" align="justify">
+                        <td>{{$ser->id}}</td>
+                        <td>{{$ser->name}}</td>
+                        <td>
+                        @foreach($account as $acc)
+                            @if ($ser->id_account == $acc->id)
+                                {{$acc->name}}
+                            @endif
+                        @endforeach
+                        </td>
+                        <td>{{date('d/m/Y',strtotime($ser->register_date))}}</td>   
+                        <td>{{date('d/m/Y',strtotime($ser->complete_date))}}</td>           
+                        <td>{{$ser->sum_cost_fi}}</td>
+                        <td></td>
+                        <td>{{$ser->note}}</td>  
+                    </tr>
+                    @else
+                     <tr class="odd gradeX" align="justify">
+                        <td>{{$ser->id}}</td>
+                        <td>{{$ser->name}}</td>
+                        <td>
+                        @foreach($account as $acc)
+                            @if ($ser->id_account == $acc->id)
+                                {{$acc->name}}
+                            @endif
+                        @endforeach
+                        </td>
+                        <td>{{date('d/m/Y',strtotime($ser->register_date))}}</td>   
+                        <td>Đang cập nhật...</td>              
+                        <td>Đang cập nhật...</td>
+                        <td></td>
+                        <td>{{$ser->note}}</td>  
+                    </tr>
+                    @endif
+                @endforeach
+
+                @foreach($sign as $sig)
+                    @foreach($typedraw as $draw)
+                        @if ($draw->id == $sig->id_typedraw)
+                           {!! ''; $cost= (int) str_replace(".","",$draw->cost)  ; !!}
+                        @endif
+                    @endforeach
+                    @if($cost - (int) str_replace(".","",$sig->received_cost) <= 0)
+                    <tr style="background-color: #f0a52b;" align="justify">
+                        <td>{{$sig->id}}</td>
+                        <td></td>
+                        <td>{{$sig->customer}}</td>
+                        <td>{{date('d/m/Y',strtotime($sig->created_date))}}</td>   
+                        <td></td>           
+                        <td>{{number_format($cost,0,",",".")}}</td>
+                        <td></td>
+                        <td>{{$sig->note}}</td>  
+                    </tr> 
+                    @endif 
                 @endforeach
             </tbody>
         </table>

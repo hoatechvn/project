@@ -41,7 +41,7 @@
                     <td>{{$cus->phone}}</td>
                     <td>{{$cus->email}}</td>
                     <td class="center"><a href="design/add/customer/{{$cus->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
-                    <td class="center"><a href="design/add/customer/{{$cus->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
+                    <td class="center"><a href="service/add/customer/{{$cus->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
                     <td class="center"><a href="sign/add/customer/{{$cus->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
                     <td class="center"><a href="customer/update/{{$cus->id}}"><i class="fa fa-pencil fa-fw"></i> </a></td>
                  

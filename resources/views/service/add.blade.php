@@ -2,11 +2,12 @@
 
 @section('content')
 <!-- Page Content -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Tạo hợp đồng thiết kế
+                <h1 class="page-header">Tạo hợp đồng dịch vụ
                 </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -17,8 +18,8 @@
                 @endforeach
                 </div>
             @endif
-            <form id="form1" action="design/add" method="POST">
-                <div class="col-lg-6" style="padding-bottom:50px">
+            <form id="form1" action="service/add" method="POST">
+                <div class="col-lg-4" style="padding-bottom:50px">
                 <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                     <div class="form-group">
                         <label>Nhân viên thụ hưởng <font style="color: red;">*</font></label>
@@ -35,15 +36,6 @@
                             <option value="0">Chọn loại hợp đồng </option>
                             @foreach ($typecontract as $con)
                             <option value="{{$con->id}}">{{$con->type}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Dịch vụ </label>
-                        <select class="form-control" name="id_service">
-                            <option value="0">Chọn loại dịch vụ </option>
-                            @foreach ($service as $ser)
-                            <option value="{{$ser->id}}">{{$ser->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -80,19 +72,57 @@
                         <input class="form-control" name="cus_mail" placeholder="Nhập email" type="email"/>
                     </div>
                     <div class="form-group">
-                        <label> Tổng tiền </label>
-                        <input class="form-control"  onChange="format_curency(this);"  id="tong-tien" name="tong_tien" placeholder="Nhập tổng tiền"/>
+                        <label> Tổng tiền (VNĐ) </label>
+                        <input class="form-control"  onChange="format_curency(this);"  name="tong_tien" placeholder="Nhập tổng tiền"/>
+                    </div>
+                    <div class="form-group">
+                        <label> Tạm ứng (VNĐ) </label>
+                        <input class="form-control"  onChange="format_curency(this);"  name="received_cost" placeholder="Nhập số tiền tạm ứng"/>
                     </div>
 
                     
-                    <button type="submit" class="btn btn-default" onclick="submitForm('design/add')" >Lưu</button>
+                    <button type="submit" class="btn btn-default" onclick="submitForm('service/add')" >Lưu</button>
                     <button type="reset" class="btn btn-default"> Làm mới</button>
-                    <button type="submit" class="btn btn-default" onclick="submitForm('design/addprint')" formtarget="_blank" >Lưu và in </button>
+                    <button type="submit" class="btn btn-default" onclick="submitForm('service/addprint')" formtarget="_blank" >Lưu và in </button>
                 </div>
-                                                
-                    
-                  
-            </form>
+                                     
+                <div class="col-lg-8" style="padding-bottom:50px">
+                    <div id="box">
+                        <div class="col-lg-3" >
+                            <label>Loại hồ sơ</label>
+                            <select class="form-control" name="brief[]">
+                                <option value="1">Hồ sơ</option>
+                                @foreach ($brief as $bri)
+                                @if ($bri->id !== 1)
+                                    <option value="{{$bri->id}}">{{$bri->name}}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-lg-3">
+                            <label>Chi tiết </label>
+                            <input  class="form-control" name="name[]"  placeholder="Chi tiết">
+                        </div>
+                        <div class="col-lg-3" >
+                            <label>Bản chính</label>
+                            <input  class="form-control" name="main[]"  placeholder="Bản chính">
+                        </div>
+                        <div class="col-lg-3" style="padding-bottom:30px" >
+                            <label>Bản photo</label>
+                            <input  class="form-control" name="photo[]"  placeholder="Bản photo">
+                        </div>
+                    </div>  
+                    <div class="col-lg-3">
+                        <a id="add">Thêm</button>
+                    </div>  
+                </div>
+            </form> 
+
+            
+       
+        
+        
+</div>
         </div>
         <!-- /.row -->
     </div>
@@ -109,6 +139,33 @@
 }
 </script>
 <!-- /#page-wrapper -->
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    $('#add').click(function(){
+        
+        var inp = $('#box');
+        
+        var i = $('input').size() + 1;
+        
+        $('<div id="box' + i +'"><div class="col-lg-3" ><select class="form-control" name="brief[]"><option value="1">Hồ sơ</option> @foreach ($brief as $bri) @if ($bri->id !== 1) <option value="{{$bri->id}}">{{$bri->name}}</option> @endif @endforeach  </select> </div><div class="col-lg-3" ><input  class="form-control" name="name[]"  placeholder="Chi tiết"> </div><div class="col-lg-3" ><input  class="form-control" name="main[]"  placeholder="Bản chính"> </div><div class="col-lg-3" >   <input  class="form-control" name="photo[]"  placeholder="Bản photo"></div><a <i class="fa fa-trash-o  fa-fw" id="remove" ></i></a> </div>').appendTo($('#box '));
+        
+        i++;
+        
+    });
+    
+    
+    
+    $('body').on('click','#remove',function(){
+        
+        $(this).parent('div').remove();
+
+        
+    });
+
+        
+});
+</script>
 @endsection
 
 

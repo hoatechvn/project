@@ -25,7 +25,7 @@
                 <th>Tên hợp đồng</th>
                 <th>Ngày ký</th>
                 <th>Ngày hoàn thành</th>
-                <th>Tổng tiền</th> 
+                <th>Tổng tiền (VNĐ)</th> 
                 <th>Lưu ý</th>
             </tr>
         </thead>
@@ -36,8 +36,18 @@
                 <td>{{$des->name}}</td>
                 <td>{{date('d/m/Y',strtotime($des->register_date))}}</td>   
                 <td>{{date('d/m/Y',strtotime($des->complete_date))}}</td>              
-                <td>???</td>
+                <td>{{$des->sum_cost_fi}}</td>
                 <td>{{$des->note}}</td>  
+            </tr>
+            @endforeach
+            @foreach($service as $ser)
+            <tr class="odd gradeX" align="justify">
+                <td>{{$ser->id}}</td>
+                <td>{{$ser->name}}</td>
+                <td>{{date('d/m/Y',strtotime($ser->register_date))}}</td>   
+                <td>{{date('d/m/Y',strtotime($ser->complete_date))}}</td>              
+                <td>{{$ser->sum_cost_fi}}</td>
+                <td>{{$ser->note}}</td>  
             </tr>
             @endforeach
         </tbody>

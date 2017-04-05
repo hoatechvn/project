@@ -11,20 +11,22 @@
         </div>
 
         @if(session('thongbao'))
-        	<div class="alert alert-success">
-        		{{session('thongbao')}}
-        		
-        	</div>
+            <div class="alert alert-success">
+                {{session('thongbao')}}
+                
+            </div>
         @endif
            
-		<table class="table table-striped table-bordered table-hover"  id="dataTables-example">
+        <table class="table table-striped table-bordered table-hover"  id="dataTables-example">
             <thead>
                 <tr align="center">
                    <th>ID</th>
                     <th>Tên hợp đồng</th>
                     <th>Ngày đăng ký</th>
+                    <th>Ngày trả hợp đồng</th>
+                    <th>Ngày hoàn thành</th>
                     <th>Tên khách hàng</th>
-                    
+                    <th>Tổng tiền</th>
                     <th>Chi tiết</th>
                     <th>Phiếu thu</th>
                     <th>Phiếu chi</th>
@@ -41,7 +43,12 @@
                     <td>{{$des->id}}</td>
                     <td>{{$des->name}}</td>
                     <td>{{date('d/m/Y',strtotime($des->register_date))}}</td>
+                    <td>{{date('d/m/Y',strtotime($des->return_date))}}</td>
+                    <td>{{date('d/m/Y',strtotime($des->complete_date))}}</td>
+                    
                     <td>{{$des->customer}}</td>
+                    <td>{{$des->sum_cost_fi}}</td>
+                    
                     
                     <td class="center"><a href="design/detail/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>
                     <td class="center"><a href="bill/receipts/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>
@@ -56,7 +63,13 @@
                     <td>{{$des->id}}</td>
                     <td>{{$des->name}}</td>
                     <td>{{date('d/m/Y',strtotime($des->register_date))}}</td>
+                    <td>{{date('d/m/Y',strtotime($des->return_date))}}</td>
+                    <td>Đang cập nhật..</td>
+                    
                     <td>{{$des->customer}}</td>
+                    <td>Đang cập nhật...</td>
+
+                     
                     <td class="center"><a href="design/detail/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>
                     <td class="center"><a href="bill/receipts/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>
                     <td class="center"><a href="bill/payment/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>

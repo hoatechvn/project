@@ -1,16 +1,20 @@
 <?php namespace App\Http\Controllers;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\design;
+use App\service;
 use App\account;
 use App\type_contract;
 use App\customer;
 use App\cost;
-use App\service;
-class DesignController extends Controller {
-	
+use App\detailbrief;
+use App\brief;
+
+class ServiceController extends Controller {
+
 	public function add_nol($number,$add_nol) {
 	   while (strlen($number)<$add_nol) {
 	       $number = "0".$number;
@@ -23,16 +27,15 @@ class DesignController extends Controller {
     	return preg_replace('/(\d)(?=(\d{3})+(?!\d))/', '$1.',$a);
     	
 	}
-
 	public function getList(){
-		$design=design::all(); 
-		return view('design.list',['design'=>$design]);			
+		$service=service::all(); 
+		return view('service.list',['service'=>$service]);			
 	}
 	public function getAdd(){
 		$account=account::all();
 		$typecontract=type_contract::all();
-		$service = service::all();
-		return view('design.add',['account'=>$account, 'typecontract'=>$typecontract, 'service' => $service]);
+		$brief=brief::all();
+		return view('service.add',['account'=>$account, 'typecontract'=>$typecontract,'brief' => $brief]);
 	}
 	public function postAdd(Request $request){
 		$this->validate($request, 
@@ -42,6 +45,8 @@ class DesignController extends Controller {
 				'customer' =>'required|min:3|max:100',
 				'cus_address' =>'required',
 				'cus_phone'=> 'required|min:10|max:11',
+				'register_date' =>'required',
+				'tong_tien' =>'required'
 			],
 			[
 				'id_account.required' => 'Bạn chưa chọn nhân viên thụ hưởng',
@@ -54,41 +59,41 @@ class DesignController extends Controller {
 				'cus_phone.required' => 'Bạn chưa nhập số điện thoại',
 				'cus_phone.min' => 'Số điện thoại phải có độ dài 10 hoặc 11 số',
 				'cus_phone.max' =>'Số điện thoại phải có độ dài 10 hoặc 11 số',
+				'tong_tien.required' => 'Bạn chưa nhập tổng tiền của hợp đồng'
 			]);
 			$array = array();
-			$variable = design::all();
-			$design= new design();
+			$variable = service::all();
+			$service= new service();
 
 			$typecontract = type_contract::all();
 
-			$design->register_date = $request->register_date;
-			$design->customer = $request->customer;
-			$design->cus_address = $request->cus_address;
+			$service->register_date = $request->register_date;
+			$service->customer = $request->customer;
+			$service->cus_address = $request->cus_address;
 			if($request->changeadd == "on")
   			{
-  				$design->cus_address1 = $request->add1;
+  				$service->cus_address1 = $request->add1;
  			}
  			else
  			{
- 				$design->cus_address1 = $request->cus_address;
+ 				$service->cus_address1 = $request->cus_address;
  			}
-			$design->cus_phone = $request->cus_phone;
-			$design->cus_email = $request->cus_mail;
-			$design->id_typecontract = $request->id_typecontract;
-			$design->id_account = $request->id_account;
-			$design->sum_cost = $request->tong_tien;
-			$design->received_cost = "1.400.000";
-			$design->id_service = $request->id_service;
+			$service->cus_phone = $request->cus_phone;
+			$service->cus_email = $request->cus_mail;
+			$service->id_typecontract = $request->id_typecontract;
+			$service->id_account = $request->id_account;
+			$service->sum_cost = $request->tong_tien;
+			$service->received_cost = $request->received_cost;
 			foreach ($typecontract as $con) 
 			{
 				if($con->id == $request->id_typecontract)
 					$time=$con->time;
 			}
-			$design->return_date=date('Y-m-d', mktime(0, 0, 0, date('m',strtotime($request->register_date)) , date('d',strtotime($request->register_date))+$time, date('Y',strtotime($request->register_date))));
+			$service->return_date=date('Y-m-d', mktime(0, 0, 0, date('m',strtotime($request->register_date)) , date('d',strtotime($request->register_date))+$time, date('Y',strtotime($request->register_date))));
 			$dates=array();
 			$dem=0;
 			$start=strtotime($request->register_date);
-			$end= strtotime($design->return_date);
+			$end= strtotime($service->return_date);
 			while($start<=$end)
 			{
 				array_push($dates, $start);
@@ -102,16 +107,16 @@ class DesignController extends Controller {
 				}
 				
 			}
-			$design->return_date=date('Y-m-d', mktime(0, 0, 0, date('m',$end) , date('d',$end)+$dem	, date('Y',$end)));
-			if(date('w',strtotime($design->return_date)) == 6)
-				$design->return_date = date('Y-m-d', strtotime('+2 day', strtotime($design->return_date)));
-			if(date('w',strtotime($design->return_date)) == 0)
-				$design->return_date = date('Y-m-d', strtotime('+1 day', strtotime($design->return_date)));
+			$service->return_date=date('Y-m-d', mktime(0, 0, 0, date('m',$end) , date('d',$end)+$dem, date('Y',$end)));
+			if(date('w',strtotime($service->return_date)) == 6)
+				$service->return_date = date('Y-m-d', strtotime('+2 day', strtotime($service->return_date)));
+			if(date('w',strtotime($service->return_date)) == 0)
+				$service->return_date = date('Y-m-d', strtotime('+1 day', strtotime($service->return_date)));
 
 			foreach ($typecontract as $con) {
-				if($design->id_typecontract == $con->id)
+				if($service->id_typecontract == $con->id)
 				{
-					$design->name=$con->type;
+					$service->name=$con->type;
 					foreach ($variable as $key) 
 					{
 						if($con->idtype == preg_replace('/[^a-z]+/i',"",$key->id))
@@ -126,11 +131,12 @@ class DesignController extends Controller {
 					else
 						$stt=max($array);
 					$stt++;
-					$design->id = $con->idtype."".$this->add_nol($stt,5);
+					$service->id = $con->idtype."".$this->add_nol($stt,5);
+					$id=$con->idtype."".$this->add_nol($stt,5);
 				}
 			}
 
-			$design->save();
+			$service->save();
 
 			$getall=customer::all();
 			$dem=0;
@@ -150,18 +156,33 @@ class DesignController extends Controller {
 				$customer->email=$request->cus_email;
 				$customer->save();	
 			}		
-		
-		return redirect('design/list') ->with('thongbao', 'Thêm thành công');
+		for($i=0;$i<count($request->input('name')); $i++)
+  		 	{
+  		 		$detailbrief = new detailbrief();
+  		 		$brief = brief::all();
+  		 		foreach ($brief as $bri) {
+  		 			if($bri->id == $request->get('brief')[$i])
+  		 				$detailbrief->name = $bri->name." ".$request->get('name')[$i];
+  		 		}
+  		 		$detailbrief->main = $request->get('main')[$i];
+  		 		$detailbrief->photo = $request->get('photo')[$i];
+  		 		$detailbrief->id_brief = $request->get('brief')[$i];
+  		 		$detailbrief->id_service = $id;
+  		 		$detailbrief->save();
+  		 	}
+		return redirect('service/list') ->with('thongbao', 'Thêm thành công');
 	}
 
 	public function postAddprint(Request $request){
 		$this->validate($request, 
-				[
+			[
 				'id_account' =>'required',
 				'id_typecontract' =>'required',
 				'customer' =>'required|min:3|max:100',
 				'cus_address' =>'required',
 				'cus_phone'=> 'required|min:10|max:11',
+				'register_date' =>'required',
+				'tong_tien' =>'required'
 			],
 			[
 				'id_account.required' => 'Bạn chưa chọn nhân viên thụ hưởng',
@@ -174,41 +195,41 @@ class DesignController extends Controller {
 				'cus_phone.required' => 'Bạn chưa nhập số điện thoại',
 				'cus_phone.min' => 'Số điện thoại phải có độ dài 10 hoặc 11 số',
 				'cus_phone.max' =>'Số điện thoại phải có độ dài 10 hoặc 11 số',
+				'tong_tien.required' => 'Bạn chưa nhập tổng tiền của hợp đồng'
 			]);
 			$array = array();
-			$variable = design::all();
-			$design= new design();
+			$variable = service::all();
+			$service= new service();
 
 			$typecontract = type_contract::all();
 
-			$design->register_date = $request->register_date;
-			$design->customer = $request->customer;
-			$design->cus_address = $request->cus_address;
+			$service->register_date = $request->register_date;
+			$service->customer = $request->customer;
+			$service->cus_address = $request->cus_address;
 			if($request->changeadd == "on")
   			{
-  				$design->cus_address1 = $request->add1;
+  				$service->cus_address1 = $request->add1;
  			}
  			else
  			{
- 				$design->cus_address1 = $request->cus_address;
+ 				$service->cus_address1 = $request->cus_address;
  			}
-			$design->cus_phone = $request->cus_phone;
-			$design->cus_email = $request->cus_mail;
-			$design->id_typecontract = $request->id_typecontract;
-			$design->id_account = $request->id_account;
-			$design->sum_cost = $request->tong_tien;
-			$design->received_cost = "1.400.000";
-			$design->id_service = $request->id_service;
+			$service->cus_phone = $request->cus_phone;
+			$service->cus_email = $request->cus_mail;
+			$service->id_typecontract = $request->id_typecontract;
+			$service->id_account = $request->id_account;
+			$service->sum_cost = $request->tong_tien;
+			$service->received_cost = $request->received_cost;
 			foreach ($typecontract as $con) 
 			{
 				if($con->id == $request->id_typecontract)
 					$time=$con->time;
 			}
-			$design->return_date=date('Y-m-d', mktime(0, 0, 0, date('m',strtotime($request->register_date)) , date('d',strtotime($request->register_date))+$time, date('Y',strtotime($request->register_date))));
+			$service->return_date=date('Y-m-d', mktime(0, 0, 0, date('m',strtotime($request->register_date)) , date('d',strtotime($request->register_date))+$time, date('Y',strtotime($request->register_date))));
 			$dates=array();
 			$dem=0;
 			$start=strtotime($request->register_date);
-			$end= strtotime($design->return_date);
+			$end= strtotime($service->return_date);
 			while($start<=$end)
 			{
 				array_push($dates, $start);
@@ -222,16 +243,16 @@ class DesignController extends Controller {
 				}
 				
 			}
-			$design->return_date=date('Y-m-d', mktime(0, 0, 0, date('m',$end) , date('d',$end)+$dem	, date('Y',$end)));
-			if(date('w',strtotime($design->return_date)) == 6)
-				$design->return_date = date('Y-m-d', strtotime('+2 day', strtotime($design->return_date)));
-			if(date('w',strtotime($design->return_date)) == 0)
-				$design->return_date = date('Y-m-d', strtotime('+1 day', strtotime($design->return_date)));
+			$service->return_date=date('Y-m-d', mktime(0, 0, 0, date('m',$end) , date('d',$end)+$dem, date('Y',$end)));
+			if(date('w',strtotime($service->return_date)) == 6)
+				$service->return_date = date('Y-m-d', strtotime('+2 day', strtotime($service->return_date)));
+			if(date('w',strtotime($service->return_date)) == 0)
+				$service->return_date = date('Y-m-d', strtotime('+1 day', strtotime($service->return_date)));
+
 			foreach ($typecontract as $con) {
-				if($design->id_typecontract == $con->id)
+				if($service->id_typecontract == $con->id)
 				{
-					$design->name=$con->type;
-					
+					$service->name=$con->type;
 					foreach ($variable as $key) 
 					{
 						if($con->idtype == preg_replace('/[^a-z]+/i',"",$key->id))
@@ -246,11 +267,12 @@ class DesignController extends Controller {
 					else
 						$stt=max($array);
 					$stt++;
-					$design->id = $con->idtype."".$this->add_nol($stt,5);
-					$c = $con->idtype."".$this->add_nol($stt,5);
+					$service->id = $con->idtype."".$this->add_nol($stt,5);
+					$id=$con->idtype."".$this->add_nol($stt,5);
 				}
 			}
-			$design->save();
+
+			$service->save();
 
 			$getall=customer::all();
 			$dem=0;
@@ -270,38 +292,57 @@ class DesignController extends Controller {
 				$customer->email=$request->cus_email;
 				$customer->save();	
 			}		
-		return redirect('design/detail/'.$c);
+		for($i=0;$i<count($request->input('name')); $i++)
+  		 	{
+  		 		$detailbrief = new detailbrief();
+  		 		$brief = brief::all();
+  		 		foreach ($brief as $bri) {
+  		 			if($bri->id == $request->get('brief')[$i])
+  		 				$detailbrief->name = $bri->name." ".$request->get('name')[$i];
+  		 		}
+  		 		$detailbrief->main = $request->get('main')[$i];
+  		 		$detailbrief->photo = $request->get('photo')[$i];
+  		 		$detailbrief->id_brief = $request->get('brief')[$i];
+  		 		$detailbrief->id_service = $id;
+  		 		$detailbrief->save();
+  		 	}
+  		 	return redirect('service/detail/'.$c);
 	}
-	
+
 	public function getPrintTem($id)
 	{
-		$design=design::find($id);
-		$cost=cost::all();
+		$service=service::find($id);
+		$service=cost::all();
  		$typecontract=type_contract::all();
- 		return view('contracttemplate.contractdesign',['design' =>$design,'cost' =>$cost,'typecontract' => $typecontract]);
+ 		return view('contracttemplate.contractservice',['service' =>$service,'cost' =>$cost,'typecontract' => $typecontract]);
  	}
-	public function getUpdate($id){
-		$design = design::find($id);
+
+ 	public function getUpdate($id){
+		$service = service::find($id);
 		$account=account::all();
 		$typecontract=type_contract::all();
-		return view('design.update',['design' => $design, 'account' => $account, 'typecontract' => $typecontract]);
+		$detailbrief = detailbrief::all();
+		$brie = brief::all();
+		return view('service.update',['service' => $service, 'account' => $account, 'typecontract' => $typecontract, 'detailbrief' => $detailbrief, 'brie' => $brie]);
 	}
-	public function postUpdate(Request $request, $id){
-		$design=design::find($id);
+
+	public function postUpdate(Request $request, $id)
+	{
+		$service = service::find($id);
 		$this->validate($request, 
 			[
 				'id_account' =>'required',
 				'id_typecontract' =>'required',
-				
 				'customer' =>'required|min:3|max:100',
 				'cus_address' =>'required',
 				'cus_phone'=> 'required|min:10|max:11',
+				'register_date' =>'required',
+				
 			],
 			[
 				'id_account.required' => 'Bạn chưa chọn nhân viên thụ hưởng',
 				'id_typecontract.required' => 'Bạn chưa chọn loại hợp đồng',
 				'register_date.required' => 'Bạn chưa chọn ngày đăng ký',
-
 				'customer.required' => 'Bạn chưa nhập tên khách hàng',
 				'customer.min' => 'Tên khách hàng phải có độ dài từ 3 đến 100 ký tự',
 				'customer.max' =>'Tên khách hàng phải có độ dài từ 3 đến 100 ký tự',
@@ -310,83 +351,51 @@ class DesignController extends Controller {
 				'cus_phone.min' => 'Số điện thoại phải có độ dài 10 hoặc 11 số',
 				'cus_phone.max' =>'Số điện thoại phải có độ dài 10 hoặc 11 số',
 				
-			
 			]);
-			$typecontract = type_contract::all();
-			$cost = cost::all();
 
-			$design->register_date = $request->register_date;
-			$design->customer = $request->customer;
-			$design->cus_address = $request->cus_address;
-			$design->cus_phone = $request->cus_phone;
-			$design->sum_cost = $request->sum_cost;
-			$design->area_s = $request->area_s;
-			$design->area_sth = $request->area_sth;	
-			$design->area_stsd = $request->area_stsd;
-			$design->id_service = $request->id_service;
-			
+			$typecontract = type_contract::all();
+
+			$service->register_date = $request->register_date;
+			$service->customer = $request->customer;
+			$service->cus_address = $request->cus_address;
+			if($request->changeadd == "on")
+  			{
+  				$service->cus_address1 = $request->add1;
+ 			}
+ 			else
+ 			{
+ 				$service->cus_address1 = $request->cus_address;
+ 			}
+			$service->cus_phone = $request->cus_phone;
+			$service->cus_email = $request->cus_mail;
+			$service->id_typecontract = $request->id_typecontract;
+			$service->id_account = $request->id_account;
+			$service->sum_cost = $request->sum_cost;
+			$service->received_cost = $request->received_cost;
+			$service->status = $request->status;
+
 			if($request->changeend == "on")
-			{	
-				if(preg_replace('/[^a-z]+/i',"",$id) == 'HTND')
-				{
-					$this->validate($request, 
-					[
-					'area_s' => 'required',
-					'area_sth' => 'required',
-					'area_stsd' => 'required',
-					],
-					[
-					'area_s.required' => 'Bạn phải nhập diện tích sàn sử dụng, ban công',
-					'area_sth.required' => 'Bạn phải nhập diện tích sân thượng, hiên, sân mái che',
-					'area_stsd.required' => 'Bạn phải nhập diện tích sân trống, đất trống',
-					]);
-				}
-				else
-				{
-					$this->validate($request, 
+			{
+				$this->validate($request, 
 					[
 					'chang_fi' => 'required'
 					],
 					[
 					'chang_fi.required' => 'Bạn phải nhập giá trị mới cho tổng tiền'
 					]);
-				}
-				
-				if($request->chang_fi != "")		
-	 				$design->sum_cost_fi = $request->chang_fi;
-	 			else
-	 			{
-	 				foreach ($cost as $cos) {
-	 					if($cos->id == 'BC') $area_s = (float) str_replace(".","",$cos->cost);
-	 					if($cos->id == 'ST') $area_sth = (float) str_replace(".","",$cos->cost);
-	 					if($cos->id == 'DT') $area_stsd = (float) str_replace(".","",$cos->cost);	
-	 				}
-	 				$design->sum_cost_fi = $this->format_curency((string)($area_s * $design->area_s  + $area_sth * $design->area_sth + $area_stsd * $design->area_stsd ));
-	 			}
-	 		}
-	 		else
-	 		{
-	 			$design->sum_cost_fi = $request->sum_cost;
-	 		}
-			$design->id_typecontract = $request->id_typecontract;
-			$design->id_account = $request->id_account;
-			$design->status = $request->status;
- 			$design->note = $request->note;
-
- 			if($request->status == "1")
+				$service->sum_cost_fi = $request->chang_fi;
+			}
+			else
+			{
+				$service->sum_cost_fi = $request->sum_cost;
+			}
+			if($request->status == "1")
  			{
   
-   				$design->complete_date =$request->complete_date;
+   				$service->complete_date =$request->complete_date;
   			}
+			$service->save();
 
-			foreach ($typecontract as $con) {
-				if($design->id_typecontract == $con->id)
-				{
-					$design->name=$con->type;
-				}
-			}
-
-			$design->save();
 			$getall=customer::all();
 			$dem=0;
 			foreach ($getall as $all) 
@@ -404,26 +413,48 @@ class DesignController extends Controller {
 				$customer->phone=$request->cus_phone;
 				$customer->email=$request->cus_email;
 				$customer->save();	
+			}
+			$d=0;
+			$detail = detailbrief::all();
+			foreach ($detail as $key ) 
+			{
+				if($key->id_service == $id)
+					$d++;
+
 			}		
-		return redirect('design/list') ->with('thongbao', 'Cập nhật thành công');
+		for($i=$d;$i<count($request->input('name')); $i++)
+  		 	{
+  		 		$detailbrief = new detailbrief();
+  		 		$brief = brief::all();
+  		 		foreach ($brief as $bri) {
+  		 			if($bri->id == $request->get('brief')[$i])
+  		 				$detailbrief->name = $bri->name." ".$request->get('name')[$i];
+  		 		}
+  		 		$detailbrief->main = $request->get('main')[$i];
+  		 		$detailbrief->photo = $request->get('photo')[$i];
+  		 		$detailbrief->id_brief = $request->get('brief')[$i];
+  		 		$detailbrief->id_service = $id;
+  		 		$detailbrief->save();
+  		 	}
+  		return redirect('service/list') ->with('thongbao', 'Cập nhật thành công');
 	}
 
 	public function postUpdateprint(Request $request, $id){
-		$design=design::find($id);
+		$service = service::find($id);
 		$this->validate($request, 
 			[
 				'id_account' =>'required',
 				'id_typecontract' =>'required',
-				
 				'customer' =>'required|min:3|max:100',
 				'cus_address' =>'required',
 				'cus_phone'=> 'required|min:10|max:11',
+				'register_date' =>'required',
+				
 			],
 			[
 				'id_account.required' => 'Bạn chưa chọn nhân viên thụ hưởng',
 				'id_typecontract.required' => 'Bạn chưa chọn loại hợp đồng',
 				'register_date.required' => 'Bạn chưa chọn ngày đăng ký',
-
 				'customer.required' => 'Bạn chưa nhập tên khách hàng',
 				'customer.min' => 'Tên khách hàng phải có độ dài từ 3 đến 100 ký tự',
 				'customer.max' =>'Tên khách hàng phải có độ dài từ 3 đến 100 ký tự',
@@ -432,83 +463,45 @@ class DesignController extends Controller {
 				'cus_phone.min' => 'Số điện thoại phải có độ dài 10 hoặc 11 số',
 				'cus_phone.max' =>'Số điện thoại phải có độ dài 10 hoặc 11 số',
 				
-			
 			]);
-			$typecontract = type_contract::all();
-			$cost = cost::all();
 
-			$design->register_date = $request->register_date;
-			$design->customer = $request->customer;
-			$design->cus_address = $request->cus_address;
-			$design->cus_phone = $request->cus_phone;
-			$design->sum_cost = $request->sum_cost;
-			$design->area_s = $request->area_s;
-			$design->area_sth = $request->area_sth;	
-			$design->area_stsd = $request->area_stsd;
-			$design->id_service = $request->id_service;
-			
+			$typecontract = type_contract::all();
+
+			$service->register_date = $request->register_date;
+			$service->customer = $request->customer;
+			$service->cus_address = $request->cus_address;
+			if($request->changeadd == "on")
+  			{
+  				$service->cus_address1 = $request->add1;
+ 			}
+ 			else
+ 			{
+ 				$service->cus_address1 = $request->cus_address;
+ 			}
+			$service->cus_phone = $request->cus_phone;
+			$service->cus_email = $request->cus_mail;
+			$service->id_typecontract = $request->id_typecontract;
+			$service->id_account = $request->id_account;
+			$service->sum_cost = $request->sum_cost;
+			$service->received_cost = $request->received_cost;
+
 			if($request->changeend == "on")
-			{	
-				if(preg_replace('/[^a-z]+/i',"",$id) == 'HTND')
-				{
-					$this->validate($request, 
-					[
-					'area_s' => 'required',
-					'area_sth' => 'required',
-					'area_stsd' => 'required',
-					],
-					[
-					'area_s.required' => 'Bạn phải nhập diện tích sàn sử dụng, ban công',
-					'area_sth.required' => 'Bạn phải nhập diện tích sân thượng, hiên, sân mái che',
-					'area_stsd.required' => 'Bạn phải nhập diện tích sân trống, đất trống',
-					]);
-				}
-				else
-				{
-					$this->validate($request, 
+			{
+				$this->validate($request, 
 					[
 					'chang_fi' => 'required'
 					],
 					[
 					'chang_fi.required' => 'Bạn phải nhập giá trị mới cho tổng tiền'
 					]);
-				}
-				
-				if($request->chang_fi != "")		
-	 				$design->sum_cost_fi = $request->chang_fi;
-	 			else
-	 			{
-	 				foreach ($cost as $cos) {
-	 					if($cos->id == 'BC') $area_s = (float) str_replace(".","",$cos->cost);
-	 					if($cos->id == 'ST') $area_sth = (float) str_replace(".","",$cos->cost);
-	 					if($cos->id == 'DT') $area_stsd = (float) str_replace(".","",$cos->cost);	
-	 				}
-	 				$design->sum_cost_fi = $this->format_curency((string)($area_s * $design->area_s  + $area_sth * $design->area_sth + $area_stsd * $design->area_stsd ));
-	 			}
-	 		}
-	 		else
-	 		{
-	 			$design->sum_cost_fi = $request->sum_cost;
-	 		}
-			$design->id_typecontract = $request->id_typecontract;
-			$design->id_account = $request->id_account;
-			$design->status = $request->status;
- 			$design->note = $request->note;
-
- 			if($request->status == "1")
- 			{
-  
-   				$design->complete_date =$request->complete_date;
-  			}
-
-			foreach ($typecontract as $con) {
-				if($design->id_typecontract == $con->id)
-				{
-					$design->name=$con->type;
-				}
+				$service->sum_cost_fi = $request->chang_fi;
 			}
+			else
+			{
+				$service->sum_cost_fi = $request->sum_cost;
+			}
+			$service->save();
 
-			$design->save();
 			$getall=customer::all();
 			$dem=0;
 			foreach ($getall as $all) 
@@ -526,23 +519,44 @@ class DesignController extends Controller {
 				$customer->phone=$request->cus_phone;
 				$customer->email=$request->cus_email;
 				$customer->save();	
-			}		
-		 return view('contracttemplate.contractdesign',['design' =>$design,'cost' =>$cost,'typecontract' => $typecontract]);
-	}
+			}
+			$d=0;
+			$detail = detailbrief::all();
+			foreach ($detail as $key ) 
+			{
+				if($key->id_service == $id)
+					$d++;
 
+			}		
+		for($i=$d;$i<count($request->input('name')); $i++)
+  		 	{
+  		 		$detailbrief = new detailbrief();
+  		 		$brief = brief::all();
+  		 		foreach ($brief as $bri) {
+  		 			if($bri->id == $request->get('brief')[$i])
+  		 				$detailbrief->name = $bri->name." ".$request->get('name')[$i];
+  		 		}
+  		 		$detailbrief->main = $request->get('main')[$i];
+  		 		$detailbrief->photo = $request->get('photo')[$i];
+  		 		$detailbrief->id_brief = $request->get('brief')[$i];
+  		 		$detailbrief->id_service = $id;
+  		 		$detailbrief->save();
+  		 	}
+  		 return view('contracttemplate.contractservice',['service' =>$service,'cost' =>$cost,'typecontract' => $typecontract]);
+	}
 	public function getAddoldcus($id){
-		$design=customer::find($id);
+		$service=customer::find($id);
 		$account=account::all();
 		$typecontract=type_contract::all();
-		$service = service::all();
-		return view('design.addoldcus',['design' => $design, 'account' => $account, 'typecontract' => $typecontract, 'service' => $service]);
+		$brief=brief::all();
+		return view('service.addoldcus',['service' => $service, 'account' => $account, 'typecontract' => $typecontract, 'brief' => $brief]);
 	}
 	
 	public function getDelete($id){
 		try{
-			$design = design::find($id);
-			$design->delete();
-			return redirect('design/list') ->with('thongbao', 'Xóa thành công');
+			$service = service::find($id);
+			$service->delete();
+			return redirect('service/list') ->with('thongbao', 'Xóa thành công');
 		}
 		catch(\Exception $e)
 		{
