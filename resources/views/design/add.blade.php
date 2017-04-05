@@ -60,7 +60,6 @@
                         <input class="form-control" name="cus_address"  placeholder="Nhập địa chỉ của khách hàng" />
                     </div>
 
-<<<<<<< HEAD
                     <div class="form-group">
                         <input type="checkbox" id="changeadd" name="changeadd"> 
                         <label> Địa chỉ căn nhà </label>
@@ -68,15 +67,6 @@
                     </div>
 
                     <div class="form-group">
-=======
-                    <div class="form-group">
-                        <input type="checkbox" id="changeadd" name="changeadd"> 
-                        <label> Địa chỉ căn nhà </label>
-                        <input class="form-control add1" name="add1" id="add1" placeholder="Nhập địa chỉ căn nhà" disabled="" />
-                    </div>
-
-                    <div class="form-group">
->>>>>>> origin/master
                         <label> Số điện thoại <font style="color: red;">*</font></label>
                         <input class="form-control" name="cus_phone" placeholder="Nhập số điện thoại" onkeydown="return ( event.ctrlKey || event.altKey 
                     || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
@@ -85,7 +75,6 @@
                     || (event.keyCode>34 && event.keyCode<40) 
                     || (event.keyCode==46) )" />
                     </div>
-<<<<<<< HEAD
                     <div class="form-group">
                         <label> Email </label>
                         <input class="form-control" name="cus_mail" placeholder="Nhập email" type="email"/>
@@ -93,18 +82,6 @@
                     <div class="form-group">
                         <label> Tổng tiền </label>
                         <input class="form-control"  onChange="format_curency(this);"  id="tong-tien" name="tong_tien" placeholder="Nhập tổng tiền"/>
-=======
-                   
-                    <div class="form-group">
-                        <input type="checkbox" id="changetongtien" name="changetongtien"> 
-                        <label> Tổng tiền </label>
-                        <input class="form-control tong_tien" id="tong-tien" name="tong_tien" placeholder="Nhập tổng tiền" disabled="" />
-                    </div>
-
-                    <div class="form-group">
-                        <label> Email </label>
-                        <input class="form-control" name="cus_mail" placeholder="Nhập email" type="email"/>
->>>>>>> origin/master
                     </div>
 
                     
@@ -133,27 +110,7 @@
 </script>
 <!-- /#page-wrapper -->
 @endsection
-<<<<<<< HEAD
 
-=======
-@section('script')
- <script>
-    $(document).ready(function(){
-         $("#changetongtien").change(function(){
-             if($(this).is(":checked"))
-             {
-                 $(".tong_tien").removeAttr('disabled');
-             }
-             else
-             {
-                 $(".tong_tien").attr('disabled','');
-             }
- 
-         });
-     });
- </script>
- @endsection
->>>>>>> origin/master
 
  @section('script')
  
@@ -174,8 +131,4 @@
  </script>
 
  @endsection
-<<<<<<< HEAD
 <!-- /#page-wrapper -->
-=======
-<!-- /#page-wrapper -->
->>>>>>> origin/master

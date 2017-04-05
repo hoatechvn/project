@@ -77,8 +77,4 @@ body,td,th {
 }
 </style>
 <input type="button" id="print_button" class="buttonin" value="In Hợp Đồng" onClick="this.style.display ='none'; window.print()" />
-<<<<<<< HEAD
 <!-- /#page-wrapper -->
-=======
-<!-- /#page-wrapper -->
->>>>>>> origin/master
