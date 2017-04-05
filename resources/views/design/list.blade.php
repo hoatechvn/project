@@ -23,7 +23,10 @@
                    <th>ID</th>
                     <th>Tên hợp đồng</th>
                     <th>Ngày đăng ký</th>
+<<<<<<< HEAD
                     <th>Ngày trả hợp đồng</th>
+=======
+>>>>>>> origin/master
                     <th>Ngày hoàn thành</th>
                     <th>Tên khách hàng</th>
                     <th>Tổng tiền</th>
@@ -43,12 +46,18 @@
                     <td>{{$des->id}}</td>
                     <td>{{$des->name}}</td>
                     <td>{{date('d/m/Y',strtotime($des->register_date))}}</td>
+<<<<<<< HEAD
                     <td>{{date('d/m/Y',strtotime($des->return_date))}}</td>
                     <td>{{date('d/m/Y',strtotime($des->complete_date))}}</td>
                     
                     <td>{{$des->customer}}</td>
                     <td>{{$des->sum_cost_fi}}</td>
                     
+=======
+                    <td>{{date('d/m/Y',strtotime($des->complete_date))}}</td>
+                    <td>{{$des->customer}}</td>
+                     <td>{{$des->sum_cost}}</td>
+>>>>>>> origin/master
                     
                     <td class="center"><a href="design/detail/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>
                     <td class="center"><a href="bill/receipts/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>
@@ -63,12 +72,18 @@
                     <td>{{$des->id}}</td>
                     <td>{{$des->name}}</td>
                     <td>{{date('d/m/Y',strtotime($des->register_date))}}</td>
+<<<<<<< HEAD
                     <td>{{date('d/m/Y',strtotime($des->return_date))}}</td>
                     <td>Đang cập nhật..</td>
                     
                     <td>{{$des->customer}}</td>
                     <td>Đang cập nhật...</td>
 
+=======
+                     <td>Đang cập nhật..</td>
+                    <td>{{$des->customer}}</td>
+                     <td>{{$des->sum_cost}}</td>
+>>>>>>> origin/master
                      
                     <td class="center"><a href="design/detail/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>
                     <td class="center"><a href="bill/receipts/{{$des->id}}" target="_blank"><i class="fa fa-info fa-fw"></i>  </a></td>

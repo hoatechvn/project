@@ -61,6 +61,20 @@
                         <input class="form-control" name="cus_address" value="{{$design->cus_address}}" placeholder="Nhập địa chỉ của khách hàng" />
                     </div>
                     <div class="form-group">
+<<<<<<< HEAD
+=======
+                        <label> Tổng tiền đầu tiên </label>
+                        <input class="form-control" name="sum_cost" value="{{$design->sum_cost}}" readonly="" />
+                    </div>
+
+                     <div class="form-group">
+                        <input type="checkbox" id="changeend" name="changeend"> 
+                        <label> Tổng tiền cuối cùng </label>
+                        <input class="form-control chang_fi" name="chang_fi" id="chang_fi" placeholder="Tổng tiền cuối cùng" disabled="" />
+                    </div>
+
+                    <div class="form-group">
+>>>>>>> origin/master
                         <label> Số điện thoại </label>
                        <input onChange="format_curency(this);" class="form-control" name="cus_phone" value="{{$design->cus_phone}}"
                        placeholder="Nhập số điện thoại" onkeydown="return ( event.ctrlKey || event.altKey 
@@ -70,6 +84,7 @@
                     || (event.keyCode>34 && event.keyCode<40) 
                     || (event.keyCode==46) )" />
                     </div>
+<<<<<<< HEAD
                     <div class="form-group">
                         <label> Tổng tiền đầu tiên </label>
                         <input class="form-control" name="sum_cost" value="{{$design->sum_cost}}" readonly="" />
@@ -87,6 +102,9 @@
                         @endif
 
                     </div>
+=======
+                   
+>>>>>>> origin/master
                     <div class="form-group">
                         <label> Trạng thái hoàn thành</label>
                         <br>
@@ -139,6 +157,25 @@
 </script>
 
 @endsection
+ @section('script')
+ <script>
+    $(document).ready(function(){
+         $("#changeend").change(function(){
+             if($(this).is(":checked"))
+             {
+                 $(".chang_fi").removeAttr('disabled');
+             }
+             else
+             {
+                 $(".chang_fi").attr('disabled','');
+             }
+ 
+         });
+     });
+ </script>
+
+
+ @endsection  
 @section('script')
  <script>
     $(document).ready(function(){
